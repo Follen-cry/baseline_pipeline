@@ -1,0 +1,14 @@
+# Core dependencies
+numpy==1.26.4
+Pillow==10.4.0
+pydantic==2.10.5
+
+# Video generation
+opencv-python==4.10.0.84
+
+# Shape scaling specific dependencies
+# (All required dependencies are covered by the core packages above)
+# - numpy: For mathematical calculations and array operations
+# - Pillow: For image creation, drawing, and manipulation
+# - pydantic: For configuration validation
+# - opencv-python: For video generation from image frames

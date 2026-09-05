@@ -1,0 +1,16 @@
+# Core dependencies
+numpy==1.26.4
+Pillow==10.4.0
+pydantic==2.10.5
+
+# Video generation
+opencv-python==4.10.0.84
+
+# 2D geometric transformation task dependencies
+# Core libraries (numpy, Pillow) are sufficient for 2D rotation operations
+# math module is used but is part of Python standard library (no install needed)
+
+# Add your task-specific dependencies here if needed
+# Examples:
+# networkx==3.0  # For graph-based tasks (maze)
+# scipy==1.11.0  # For scientific computing

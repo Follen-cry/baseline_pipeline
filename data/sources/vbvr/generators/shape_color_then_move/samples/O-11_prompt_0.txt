@@ -1,0 +1,1 @@
+The scene shows a sequential analogy A→B→C :: D→?→? with three shapes per row. On the top row, a color_238 minus becomes color_089, then moves down. On the bottom row, apply the same two-step transformation to the star: first change color from color_238 to color_089, then move down. Show both transformations sequentially in the video.

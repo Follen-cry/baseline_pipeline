@@ -1,0 +1,1 @@
+The scene contains multiple colored objects and star markers. Keep all star markers unchanged in position. Move each colored object to the star marker with the same color using straight paths, aligning the center of each object with the center of its matching star marker.

@@ -1,0 +1,339 @@
+{
+  "results": {
+    "ball_bounces_given_time": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_id_ball_bounces_given_time_eval_00039",
+        "rule_score": 0.0443959518381064,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/ball_bounces_given_time/vbvr_tp_id_ball_bounces_given_time_eval_00039/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/ball_bounces_given_time/vbvr_tp_id_ball_bounces_given_time_eval_00039.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/ball_bounces_given_time/raw/ball_bounces_given_time_task/ball_bounces_given_time_00001984/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: A ball is placed at the initial position with a direction arrow indicating its movement direction. The ball bounces 6 times off the boundary walls following elastic collision physics (angle of incidence equals angle of reflection). Show its final position after the 6th bounce -- at the wall where the last collision occurs -- with its complete path drawn from start to end.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "final_position": "wrong"
+        },
+        "judge_reasoning": "The candidate image is completely black, showing no ball or any visible content, whereas the ground truth clearly shows a red ball at the left boundary. The final position is missing entirely.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_id_ball_bounces_given_time_eval_00000",
+        "rule_score": 0.0,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/ball_bounces_given_time/vbvr_tp_id_ball_bounces_given_time_eval_00000/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/ball_bounces_given_time/vbvr_tp_id_ball_bounces_given_time_eval_00000.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/ball_bounces_given_time/raw/ball_bounces_given_time_task/ball_bounces_given_time_00000632/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: A ball is placed at the initial position with a direction arrow indicating its movement direction. The ball bounces 2 times off the boundary walls following elastic collision physics (angle of incidence equals angle of reflection). Show its final position after the 2th bounce -- at the wall where the last collision occurs -- with its complete path drawn from start to end.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "final_position": "wrong"
+        },
+        "judge_reasoning": "The candidate shows two red balls in the upper portion of the frame, whereas the ground truth shows a single red ball at the bottom center. The final position in the candidate does not match the ground truth location, and the presence of two balls instead of one indicates a failure to represent the correct final state.",
+        "judge_error": null
+      }
+    ],
+    "stable_sort": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_id_stable_sort_eval_00070",
+        "rule_score": 0.4162285299192765,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/stable_sort/vbvr_tp_id_stable_sort_eval_00070/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/stable_sort/vbvr_tp_id_stable_sort_eval_00070.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/stable_sort/raw/stable_sort_task/stable_sort_00001245/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene contains two types of shapes, each type has three shapes of different sizes arranged randomly. Keep all shapes unchanged in appearance (type, size, and color). Only rearrange their positions: first group the shapes by type, then within each group, sort the shapes from smallest to largest (left to right), and arrange all shapes in a single horizontal line from left to right.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "classification": "wrong",
+          "order": "wrong",
+          "fidelity": "wrong",
+          "layout": "wrong"
+        },
+        "judge_reasoning": "The candidate image shows incorrect shapes (e.g., a green semicircle) and altered sizes, with shapes not grouped by type or ordered by size. The layout is scattered, not a single horizontal line, and the content does not match the ground truth.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_id_stable_sort_eval_00089",
+        "rule_score": 0.0,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/stable_sort/vbvr_tp_id_stable_sort_eval_00089/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/stable_sort/vbvr_tp_id_stable_sort_eval_00089.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/stable_sort/raw/stable_sort_task/stable_sort_00001154/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene contains two types of shapes, each type has three shapes of different sizes arranged randomly. Keep all shapes unchanged in appearance (type, size, and color). Only rearrange their positions: first group the shapes by type, then within each group, sort the shapes from smallest to largest (left to right), and arrange all shapes in a single horizontal line from left to right.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "classification": "wrong",
+          "order": "wrong",
+          "fidelity": "wrong",
+          "layout": "wrong"
+        },
+        "judge_reasoning": "The candidate image is completely black, showing no shapes at all, so it fails all criteria: no shapes are present to group, order, or align, and no fidelity to the original shapes is maintained.",
+        "judge_error": null
+      }
+    ],
+    "multi_object_placement": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_id_multi_object_placement_eval_00088",
+        "rule_score": 0.1723902341411354,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/multi_object_placement/vbvr_tp_id_multi_object_placement_eval_00088/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/multi_object_placement/vbvr_tp_id_multi_object_placement_eval_00088.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/multi_object_placement/raw/multi_object_placement_task/multi_object_placement_00001926/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene contains multiple colored objects and star markers. Keep all star markers unchanged in position. Move each colored object to the star marker with the same color using straight paths, aligning the center of each object with the center of its matching star marker.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "color_matching": "wrong",
+          "alignment": "wrong",
+          "fidelity": "wrong",
+          "star_invariance": "wrong"
+        },
+        "judge_reasoning": "Image 2 shows objects moved to stars but with incorrect color matching, misaligned centers, and additional artifacts like paths and faded shapes not present in the ground truth. Star positions are altered, and object count/size are inconsistent with the original frame.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_id_multi_object_placement_eval_00013",
+        "rule_score": 0.002481168685727641,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/multi_object_placement/vbvr_tp_id_multi_object_placement_eval_00013/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/multi_object_placement/vbvr_tp_id_multi_object_placement_eval_00013.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/multi_object_placement/raw/multi_object_placement_task/multi_object_placement_00000951/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene contains multiple colored objects and star markers. Keep all star markers unchanged in position. Move each colored object to the star marker with the same color using straight paths, aligning the center of each object with the center of its matching star marker.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "color_matching": "wrong",
+          "alignment": "wrong",
+          "fidelity": "wrong",
+          "star_invariance": "wrong"
+        },
+        "judge_reasoning": "Image 2 shows numerous objects and stars not present in the original frame, with objects scattered across the image and not aligned with any star. The star positions have changed, and the object count and sizes are incorrect compared to the first frame. No object is on its matching-color star, and the scene is a chaotic mix of elements not matching the ground truth.",
+        "judge_error": null
+      }
+    ],
+    "grid_shift": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_id_grid_shift_eval_00064",
+        "rule_score": 0.03125,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/grid_shift/vbvr_tp_id_grid_shift_eval_00064/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/grid_shift/vbvr_tp_id_grid_shift_eval_00064.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/grid_shift/raw/grid_shift_task/grid_shift_00000289/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: In the scene, there is a 6x6 grid with 3 cyan square blocks, each outlined in black, placed at different positions. Translate all blocks leftward by exactly 2 steps, moving simultaneously and uniformly. Each block shifts 2 cells toward the left direction, and all blocks must remain completely within the grid boundaries. The goal is to achieve a configuration where every block has been moved exactly 2 steps leftward to reach its final position.",
+        "judge_score": 1.0,
+        "judge_criteria": {
+          "direction_correctness": "correct",
+          "step_accuracy": "correct",
+          "position_precision": "correct",
+          "completeness": "correct"
+        },
+        "judge_reasoning": "All blocks moved left by exactly 2 steps, matching the ground truth positions precisely. The number, color, and outline of the blocks are unchanged, and their final positions align exactly with the expected outcome.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_id_grid_shift_eval_00000",
+        "rule_score": 0.0,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/grid_shift/vbvr_tp_id_grid_shift_eval_00000/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/grid_shift/vbvr_tp_id_grid_shift_eval_00000.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/grid_shift/raw/grid_shift_task/grid_shift_00001884/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a 11x11 grid with 8 blue square blocks, each with a black outline, positioned at various locations. All blocks must move simultaneously upward by exactly 3 steps. Each block shifts one grid cell per step toward the top, and all blocks must remain within the grid boundaries throughout the movement. After the movement, all blocks should be positioned exactly 3 steps upward from their original positions.",
+        "judge_score": 1.0,
+        "judge_criteria": {
+          "direction_correctness": "correct",
+          "step_accuracy": "correct",
+          "position_precision": "correct",
+          "completeness": "correct"
+        },
+        "judge_reasoning": "All blocks moved upward by exactly 3 steps, matching the ground truth in direction, distance, and final positions. The number, color, and pattern of blocks are identical to the starting frame, with no missing or extra elements.",
+        "judge_error": null
+      }
+    ],
+    "rotation_puzzle": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_id_rotation_puzzle_eval_00084",
+        "rule_score": 0.18965119805884142,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/rotation_puzzle/vbvr_tp_id_rotation_puzzle_eval_00084/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/rotation_puzzle/vbvr_tp_id_rotation_puzzle_eval_00084.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/rotation_puzzle/raw/rotation_puzzle_task/rotation_puzzle_00000817/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: Solve this rotation puzzle by rotating the four squares to connect the pipe paths. Each square can be rotated 90 degrees clockwise or counterclockwise. Rotate the squares so that all pipe paths connect to form a continuous path. Viewed from a fixed top-down perspective, all square positions must remain unchanged; only rotation should change. The final image should show all pipes connected and the puzzle solved.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "path_connection": "wrong",
+          "rotation_accuracy": "wrong",
+          "position_preservation": "wrong",
+          "alignment_precision": "wrong"
+        },
+        "judge_reasoning": "The candidate image shows a completely different configuration with disconnected pipes, arbitrary pipe extensions, and tiles that have moved from their original grid positions, failing all criteria compared to the ground-truth solution.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_id_rotation_puzzle_eval_00085",
+        "rule_score": 0.003,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/rotation_puzzle/vbvr_tp_id_rotation_puzzle_eval_00085/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/rotation_puzzle/vbvr_tp_id_rotation_puzzle_eval_00085.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/id/rotation_puzzle/raw/rotation_puzzle_task/rotation_puzzle_00000619/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: Solve this rotation puzzle by rotating the four squares to connect the pipe paths. Each square can be rotated 90 degrees clockwise or counterclockwise. Rotate the squares so that all pipe paths connect to form a continuous path. Viewed from a fixed top-down perspective, all square positions must remain unchanged; only rotation should change. The final image should show all pipes connected and the puzzle solved.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "path_connection": "wrong",
+          "rotation_accuracy": "wrong",
+          "position_preservation": "wrong",
+          "alignment_precision": "wrong"
+        },
+        "judge_reasoning": "The candidate image shows a single large dark rectangle with two blue L-shaped pipes at the bottom, which does not match the 2x2 grid structure of the ground truth. No tiles are in their original positions, rotations are not evident, and the pipe connections are not formed into a continuous loop. The layout is completely incorrect, with missing tiles and misaligned elements.",
+        "judge_error": null
+      }
+    ],
+    "shape_color_then_move": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_ood_shape_color_then_move_eval_00026",
+        "rule_score": 0.18617575675442588,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/shape_color_then_move/vbvr_tp_ood_shape_color_then_move_eval_00026/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/shape_color_then_move/vbvr_tp_ood_shape_color_then_move_eval_00026.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/shape_color_then_move/raw/shape_color_then_move_task/shape_color_then_move_00000026/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a sequential analogy A\u2192B\u2192C :: D\u2192?\u2192? with three shapes per row. On the top row, a color_007 oval becomes color_334, then moves down. On the bottom row, apply the same two-step transformation to the hexagon: first change color from color_007 to color_334, then move down. The final image should show both transformations already applied.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "first_row_preservation": "wrong",
+          "second_row_completion": "wrong",
+          "color_accuracy": "wrong",
+          "shape_count": "wrong"
+        },
+        "judge_reasoning": "The candidate alters the top row shapes (first is yellow, not purple), adds incorrect shapes with text and wrong colors, and has an incorrect shape count and layout. The bottom row does not follow the transformation pattern, with E and F not matching B's color or being properly placed.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_ood_shape_color_then_move_eval_00022",
+        "rule_score": 0.0,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/shape_color_then_move/vbvr_tp_ood_shape_color_then_move_eval_00022/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/shape_color_then_move/vbvr_tp_ood_shape_color_then_move_eval_00022.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/shape_color_then_move/raw/shape_color_then_move_task/shape_color_then_move_00000022/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a sequential analogy A\u2192B\u2192C :: D\u2192?\u2192? with three shapes per row. On the top row, a color_035 heart becomes color_015, then moves down. On the bottom row, apply the same two-step transformation to the L_shape: first change color from color_035 to color_015, then move down. The final image should show both transformations already applied.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "first_row_preservation": "wrong",
+          "second_row_completion": "wrong",
+          "color_accuracy": "wrong",
+          "shape_count": "wrong"
+        },
+        "judge_reasoning": "The candidate image is a distorted, low-quality rendering with no recognizable shapes matching the reference. The top row is not preserved, the bottom row does not show the correct transformation, and the shapes are unidentifiable. The color and shape counts are incorrect, and the overall structure does not match the ground truth.",
+        "judge_error": null
+      }
+    ],
+    "animal_size_sorting": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_ood_animal_size_sorting_eval_00025",
+        "rule_score": 0.24000000000000005,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/animal_size_sorting/vbvr_tp_ood_animal_size_sorting_eval_00025/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/animal_size_sorting/vbvr_tp_ood_animal_size_sorting_eval_00025.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/animal_size_sorting/raw/animal_size_sorting_task/animal_size_sorting_00000025/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: Animal faces of different sizes are scattered randomly on the canvas. Sort them by size from smallest to largest and align them horizontally at the bottom baseline.",
+        "judge_score": 0.4,
+        "judge_criteria": {
+          "sorting": "wrong",
+          "alignment": "correct",
+          "fidelity": "wrong",
+          "completeness": "correct"
+        },
+        "judge_reasoning": "The candidate fails sorting as the order is not smallest to largest; the pig is largest and on the right, but the fox is smallest and on the left, yet the order is incorrect. Alignment is correct as all animals are on the baseline. Fidelity is wrong because the rabbit is distorted and the pig is misaligned in size. Completeness is correct as all animals are present.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_ood_animal_size_sorting_eval_00058",
+        "rule_score": 0.0,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/animal_size_sorting/vbvr_tp_ood_animal_size_sorting_eval_00058/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/animal_size_sorting/vbvr_tp_ood_animal_size_sorting_eval_00058.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/animal_size_sorting/raw/animal_size_sorting_task/animal_size_sorting_00000058/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: Animal faces of different sizes are scattered randomly on the canvas. Sort them by size from smallest to largest and align them horizontally at the bottom baseline.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "sorting": "wrong",
+          "alignment": "wrong",
+          "fidelity": "wrong",
+          "completeness": "wrong"
+        },
+        "judge_reasoning": "The candidate image is completely black, showing no animals, so it fails all criteria: no sorting, no alignment, no fidelity to original animals, and no completeness.",
+        "judge_error": null
+      }
+    ],
+    "maze": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_ood_maze_eval_00003",
+        "rule_score": 0.0335,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/maze/vbvr_tp_ood_maze_eval_00003/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/maze/vbvr_tp_ood_maze_eval_00003.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/maze/raw/maze_task/maze_00000003/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a 15\u00d715 grid maze with dark walls and white pathways. A green circular marker indicates the starting position, and a red flag marks the end position. Starting from the green start position, navigate through the maze by moving along the white pathways. You can move to adjacent cells (up, down, left, right) but cannot pass through the dark walls. Find the complete path from the green start to the red flag end position, and draw it in the final image, marking each step of the journey through the maze.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "path_validity": "wrong",
+          "path_completeness": "wrong",
+          "navigation_accuracy": "wrong",
+          "element_preservation": "wrong"
+        },
+        "judge_reasoning": "The candidate draws scattered, non-contiguous colored dots and shapes that do not form a coherent path, cross walls, and fail to connect start to end. The start and end markers are altered, and the maze walls are partially obscured by the incorrect markings.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_ood_maze_eval_00063",
+        "rule_score": 0.001825,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/maze/vbvr_tp_ood_maze_eval_00063/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/maze/vbvr_tp_ood_maze_eval_00063.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/maze/raw/maze_task/maze_00000063/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a 15\u00d715 grid maze with dark walls and white pathways. A green circular marker indicates the starting position, and a red flag marks the end position. Starting from the green start position, navigate through the maze by moving along the white pathways. You can move to adjacent cells (up, down, left, right) but cannot pass through the dark walls. Find the complete path from the green start to the red flag end position, and draw it in the final image, marking each step of the journey through the maze.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "path_validity": "wrong",
+          "path_completeness": "wrong",
+          "navigation_accuracy": "wrong",
+          "element_preservation": "wrong"
+        },
+        "judge_reasoning": "The candidate image does not show a valid path through the maze; instead, it displays an unrelated hand-like drawing that does not connect the start and end markers. The path is not drawn along the white corridors, crosses walls, and does not follow the maze layout. The start and end markers are altered, and the maze walls are not preserved. The image fails to represent the correct navigation result in any aspect.",
+        "judge_error": null
+      }
+    ],
+    "2d_geometric_transformation": [
+      {
+        "label": "Representative (closest to task mean)",
+        "id": "vbvr_tp_ood_2d_geometric_transformation_eval_00067",
+        "rule_score": 0.4824498618950402,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/2d_geometric_transformation/vbvr_tp_ood_2d_geometric_transformation_eval_00067/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/2d_geometric_transformation/vbvr_tp_ood_2d_geometric_transformation_eval_00067.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/2d_geometric_transformation/raw/transformation_worlds_2d_geometric_transformation_task/transformation_worlds_2d_geometric_transformation_00000067/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a colored 2D polygon, a rotation center marked by a small circular marker, and a dashed target outline indicating the final orientation. Only orientation changes. Rotate the polygon in the counterclockwise direction. First note the polygon\u2019s initial orientation and the marked center, then read the dashed outline to know the target orientation. Rotate the polygon counterclockwise around the center until it completely overlaps the dashed outline with no offset. Keep size unchanged, keep a line to the center, and end with the polygon exactly matching the dashed outline.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "rotation_angle": "wrong",
+          "position_alignment": "wrong",
+          "shape_fidelity": "wrong"
+        },
+        "judge_reasoning": "The candidate shows a rotated shape that does not align with the dashed target outline, is mispositioned relative to the pivot, and includes an incorrect yellow shape and partial overlap, indicating a wrong rotation, position, and fidelity.",
+        "judge_error": null
+      },
+      {
+        "label": "Worst-scoring",
+        "id": "vbvr_tp_ood_2d_geometric_transformation_eval_00002",
+        "rule_score": 0.01142857142857143,
+        "input_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_smoke_infer/_prescaled/512/2d_geometric_transformation/vbvr_tp_ood_2d_geometric_transformation_eval_00002/first_frame.png",
+        "generated_image": "/scratch/network/ssd2/junlin/ssl_mllm/results/vbvr_target_pred_eval/base_prescale512_vaecond/2d_geometric_transformation/vbvr_tp_ood_2d_geometric_transformation_eval_00002.png",
+        "target_image": "/scratch/network/ssd/junlin/vbvr_target_pred/ood/2d_geometric_transformation/raw/transformation_worlds_2d_geometric_transformation_task/transformation_worlds_2d_geometric_transformation_00000002/final_frame.png",
+        "prompt": "Generate a single image showing the final result of the task described below. Do not produce a video, animation, sequence of frames, or intermediate steps \u2014 output one image representing the completed final state only.\n\nTask: The scene shows a colored 2D polygon, a rotation center marked by a small circular marker, and a dashed target outline indicating the final orientation. Only orientation changes. Rotate the polygon in the counterclockwise direction. First note the polygon\u2019s initial orientation and the marked center, then read the dashed outline to know the target orientation. Rotate the polygon counterclockwise around the center until it completely overlaps the dashed outline with no offset. Keep size unchanged, keep a line to the center, and end with the polygon exactly matching the dashed outline.",
+        "judge_score": 0.0,
+        "judge_criteria": {
+          "rotation_angle": "wrong",
+          "position_alignment": "wrong",
+          "shape_fidelity": "wrong"
+        },
+        "judge_reasoning": "The candidate shows a different shape (orange triangle) in a different location, which is not rotated from the original and does not align with the dashed target outline. The correct result should be the original L-shaped polygon rotated to match the dashed outline at the same pivot point.",
+        "judge_error": null
+      }
+    ]
+  },
+  "elapsed_s": 66.9
+}
