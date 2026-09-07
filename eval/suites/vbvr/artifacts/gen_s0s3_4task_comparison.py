@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
-"""Build the 4-model comparison artifact for the S0-S3 pretraining-recipe
-follow-up: four independently-pretrained InternVL-U checkpoints (S0-S3, each
+"""Build the 6-model comparison artifact for the S0-S4 pretraining-recipe
+follow-up: five independently-pretrained InternVL-U checkpoints (S0-S4, each
 a different 3-frames-in next-frame-prediction pretraining recipe over the
-same ~49k-row mixed real+synthetic dataset -- see data/specs/S0_S3_DATASET_SPEC.md)
-were each fine-tuned with an IDENTICAL recipe (LoRA rank 32, lr 1e-5, batch
-16, no-ce, all conditioning images through the ViT) on the SAME 2,000-row,
-4-task target-prediction set (500/task: multi_object_placement,
+same ~49k-row mixed real+synthetic dataset -- see data/specs/S0_S3_DATASET_SPEC.md
+for S0-S3; S4 adds a progression caption + free-text next-frame description
+target on top of the same base recipe) plus the plain, unpretrained Base
+checkpoint were each fine-tuned with an IDENTICAL recipe (LoRA rank 32, lr
+1e-5, batch 16, no-ce, all conditioning images through the ViT) on the SAME
+2,000-row, 4-task target-prediction set (500/task: multi_object_placement,
 rotation_puzzle, shape_color_then_move, 2d_geometric_transformation --
 2 ID + 2 OOD, subset of the earlier 9-task set). The only difference across
-the four is which S0-S3 pretraining recipe the SFT started from:
+the five S0-S4 variants is which pretraining recipe the SFT started from:
 
-  S0 (V2I-F)  : 3 frames -> fixed next frame, no caption
-  S1 (V2I-V)  : 3 frames -> variable target (next OR preceding), no caption
-  S2 (VC2I-F) : 3 frames + caption -> fixed next frame
-  S3 (VC2IA-F): 3 frames + caption + 4 candidates -> fixed next frame + MCQ
+  S0 (V2I-F)   : 3 frames -> fixed next frame, no caption
+  S1 (V2I-V)   : 3 frames -> variable target (next OR preceding), no caption
+  S2 (VC2I-F)  : 3 frames + caption -> fixed next frame
+  S3 (VC2IA-F) : 3 frames + caption + 4 candidates -> fixed next frame + MCQ
+  S4 (VC2IC-F) : 3 frames + caption -> fixed next frame + progression caption
+                 (free-text change description, not an MCQ)
 
-All four are evaluated on the identical 400-sample (4 task x 100) eval
-split. Adapted from gen_9task_sft_comparison.py's visual language, trimmed
-to 4 tasks and (up to) 4 models.
+All six (Base + S0-S4) are evaluated on the identical 400-sample (4 task x
+100) eval split. Adapted from gen_9task_sft_comparison.py's visual language,
+trimmed to 4 tasks and (up to) 6 models.
 
 Each model directory under results/vbvr_target_pred_eval/ is expected to
 contain scored_new.json (rule-based, from validation/score_target_pred_eval_v2.py
@@ -86,7 +90,7 @@ MODELS = [
     ("s1", "S1 (V2I-V)", f"{RUN}/s1_4task500sft", f"{RUN}/s1_4task500sft/judge_scored.json"),
     ("s2", "S2 (VC2I-F)", f"{RUN}/s2_4task500sft", f"{RUN}/s2_4task500sft/judge_scored.json"),
     ("s3", "S3 (VC2IA-F)", f"{RUN}/s3_4task500sft", f"{RUN}/s3_4task500sft/judge_scored.json"),
-    ("s4", "S4 (progression)", f"{RUN}/s4_4task500sft", f"{RUN}/s4_4task500sft/judge_scored.json"),
+    ("s4", "S4 (VC2IC-F)", f"{RUN}/s4_4task500sft", f"{RUN}/s4_4task500sft/judge_scored.json"),
 ]
 
 CATEGORY_OF = {
@@ -565,7 +569,7 @@ footer.meta p {{ color: var(--ink-faint); font-size: 0.84rem; line-height: 1.7; 
         <tr><td class="mono">S1 (V2I-V)</td><td>3 frames</td><td>Variable (next or preceding)</td><td>none</td><td>&mdash;</td></tr>
         <tr><td class="mono">S2 (VC2I-F)</td><td>3 frames + caption</td><td>Fixed (next frame)</td><td>yes</td><td>&mdash;</td></tr>
         <tr><td class="mono">S3 (VC2IA-F)</td><td>3 frames + caption + 4 candidates</td><td>Fixed (next frame)</td><td>yes</td><td>4-way MCQ</td></tr>
-        <tr><td class="mono">S4 (progression)</td><td>3 frames + caption</td><td>Fixed (next frame)</td><td>yes</td><td>progression description + text next-frame prediction</td></tr>
+        <tr><td class="mono">S4 (VC2IC-F)</td><td>3 frames + caption</td><td>Fixed (next frame)</td><td>yes</td><td>progression description + text next-frame prediction</td></tr>
       </tbody>
     </table>
     <div class="legend" style="margin-top:1.4rem">{legend}</div>
@@ -579,7 +583,7 @@ footer.meta p {{ color: var(--ink-faint); font-size: 0.84rem; line-height: 1.7; 
     <div class="intro-cols">
       <div class="intro-col">
         <h3><span class="ink-dot ink-dot-rule"></span>Rule-based method</h3>
-        <p>Per task, a small set of weighted sub-criteria is computed from classical computer vision &mdash; contour detection, connected components, CIELAB color matching &mdash; identically for all five models' outputs. Deterministic, zero marginal cost per sample, no learned models.</p>
+        <p>Per task, a small set of weighted sub-criteria is computed from classical computer vision &mdash; contour detection, connected components, CIELAB color matching &mdash; identically for all six models' outputs. Deterministic, zero marginal cost per sample, no learned models.</p>
         <p class="method-note"><b>Rebuilt 2026-09-03.</b> These are the rewritten scorers in <span class="mono">VBVR-CustomEval/scorers/</span>. Every one of the four originals was dominated by a detection failure that routed silently into a constant fallback rather than a measurement &mdash; <span class="mono">rotation_puzzle</span> searched for <i>blue</i> pipes in images whose pipes are rendered orange, pink or yellow per sample, and returned its <span class="mono">0.5</span> constants when the mask came back empty. The rewrites match each ground-truth object to a candidate counterpart with color as a hard gate and score position, pose and shape per object, so an element present <i>somewhere</i> in the image earns no positional credit. Every threshold is derived from a measurement on this split; each task's <span class="mono">&lt;task&gt;_notes.md</span> records the derivation and the remaining failure modes.</p>
       </div>
       <div class="intro-col">
