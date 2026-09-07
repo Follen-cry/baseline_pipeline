@@ -10,3 +10,23 @@ data/datasets/s4_progression/manifest_shard*.jsonl
 data/datasets/s4_progression/manifest_retry_epic*.jsonl
 data/datasets/s4_progression/caption_prefixes/
 data/datasets/s4_progression/labels/
+
+# eval/: generated report pages are pure presentation, 100% regenerable from the
+# matching gen_*.py / *_artifact.py script plus the (tracked) run-result JSON they
+# read -- no unique information lives only in the HTML. Applies to any current or
+# future suite, since every suite here follows the same script-produces-report
+# pattern; hand-written docs in this repo are always .md, never .html.
+eval/**/*.html
+
+# Routine run logs (not the S0-S3 provenance training logs -- those live inside
+# the training/models/internvl-u submodule and are force-tracked there on purpose).
+eval/**/*.log
+
+# Local/editor/OS cruft
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
