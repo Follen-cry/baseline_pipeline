@@ -86,6 +86,7 @@ MODELS = [
     ("s1", "S1 (V2I-V)", f"{RUN}/s1_4task500sft", f"{RUN}/s1_4task500sft/judge_scored.json"),
     ("s2", "S2 (VC2I-F)", f"{RUN}/s2_4task500sft", f"{RUN}/s2_4task500sft/judge_scored.json"),
     ("s3", "S3 (VC2IA-F)", f"{RUN}/s3_4task500sft", f"{RUN}/s3_4task500sft/judge_scored.json"),
+    ("s4", "S4 (progression)", f"{RUN}/s4_4task500sft", f"{RUN}/s4_4task500sft/judge_scored.json"),
 ]
 
 CATEGORY_OF = {
@@ -105,7 +106,7 @@ RULE_MECHANISM = {
     "2d_geometric_transformation": "Scored against the ground-truth final frame rather than the input. Orientation error is the rotation that best maps the candidate silhouette onto ground truth, found by exhaustive search over 360 degrees, which stays unambiguous under symmetry. Position is measured against the move the task actually asked for, so a shape left where it started scores zero by construction.",
 }
 
-MODEL_COLORS = {"base": "#A8395A", "s0": "#6B7A8F", "s1": "#8C6BAB", "s2": "#C9922B", "s3": "#4C8C5B"}
+MODEL_COLORS = {"base": "#A8395A", "s0": "#6B7A8F", "s1": "#8C6BAB", "s2": "#C9922B", "s3": "#4C8C5B", "s4": "#3E7CA6"}
 
 
 def esc(s):
@@ -539,7 +540,7 @@ section.task {{ padding: 3rem 0; border-bottom: 1px solid var(--border); }}
 .sample-prompt {{ font-size: 0.76rem; color: var(--ink-soft); line-height: 1.4; margin: 0 0 0.8rem; max-height: 3em; overflow-y: auto; }}
 .sample-refs {{ display: flex; gap: 0.6rem; margin-bottom: 0.7rem; padding-bottom: 0.7rem; border-bottom: 1px dashed var(--border); }}
 .sample-refs .mcell {{ flex: 0 0 160px; }}
-.sample-models {{ display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 0.6rem; overflow-x: auto; }}
+.sample-models {{ display: grid; grid-template-columns: repeat(6, minmax(120px, 1fr)); gap: 0.6rem; overflow-x: auto; }}
 .mcell {{ display: flex; flex-direction: column; gap: 0.3rem; min-width: 110px; }}
 .mcell-label {{ font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--ink-faint); display: flex; align-items: center; gap: 0.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
 .mcell img {{ width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--surface-alt); border-radius: 6px; border: 1px solid var(--border); }}
@@ -553,9 +554,9 @@ footer.meta p {{ color: var(--ink-faint); font-size: 0.84rem; line-height: 1.7; 
 
 <header class="top">
   <div class="wrap">
-    <p class="kicker">5 models &middot; VBVR-CustomEval &middot; identical SFT recipe, identical 2,000-row training set, identical 400-sample eval</p>
+    <p class="kicker">6 models &middot; VBVR-CustomEval &middot; identical SFT recipe, identical 2,000-row training set, identical 400-sample eval</p>
     <h1>Which pretraining recipe transfers best?</h1>
-    <p class="lede">Five InternVL-U checkpoints &mdash; the plain base checkpoint (no S0&ndash;S3 pretraining at all) plus four independently pretrained on the same ~49k-row S0&ndash;S3 mixed real+synthetic dataset with a different next-frame-prediction recipe each (see the table below) &mdash; were then fine-tuned with an <b>identical</b> SFT recipe (LoRA rank 32, lr 1e-5, batch 16, no-ce, all conditioning images through the ViT) on the <b>same</b> 2,000-row, 4-task target-prediction set (500/task: multi_object_placement, rotation_puzzle, shape_color_then_move, 2d_geometric_transformation). All five are evaluated on the identical 400-sample (4 task &times; 100) eval split, scored twice: once by a deterministic rule-based detector pipeline, once by a Qwen3-VL-30B-fp8 judge.</p>
+    <p class="lede">Six InternVL-U checkpoints &mdash; the plain base checkpoint (no S0&ndash;S4 pretraining at all) plus five independently pretrained on the same ~49k-row S0-S4 mixed real+synthetic dataset with a different next-frame-prediction recipe each (see the table below) &mdash; were then fine-tuned with an <b>identical</b> SFT recipe (LoRA rank 32, lr 1e-5, batch 16, no-ce, all conditioning images through the ViT) on the <b>same</b> 2,000-row, 4-task target-prediction set (500/task: multi_object_placement, rotation_puzzle, shape_color_then_move, 2d_geometric_transformation). All six are evaluated on the identical 400-sample (4 task &times; 100) eval split, scored twice: once by a deterministic rule-based detector pipeline, once by a Qwen3-VL-30B-fp8 judge.</p>
     <table class="recipe-table">
       <thead><tr><th>Setting</th><th>Input</th><th>Target</th><th>Caption</th><th>+Answer</th></tr></thead>
       <tbody>
@@ -564,6 +565,7 @@ footer.meta p {{ color: var(--ink-faint); font-size: 0.84rem; line-height: 1.7; 
         <tr><td class="mono">S1 (V2I-V)</td><td>3 frames</td><td>Variable (next or preceding)</td><td>none</td><td>&mdash;</td></tr>
         <tr><td class="mono">S2 (VC2I-F)</td><td>3 frames + caption</td><td>Fixed (next frame)</td><td>yes</td><td>&mdash;</td></tr>
         <tr><td class="mono">S3 (VC2IA-F)</td><td>3 frames + caption + 4 candidates</td><td>Fixed (next frame)</td><td>yes</td><td>4-way MCQ</td></tr>
+        <tr><td class="mono">S4 (progression)</td><td>3 frames + caption</td><td>Fixed (next frame)</td><td>yes</td><td>progression description + text next-frame prediction</td></tr>
       </tbody>
     </table>
     <div class="legend" style="margin-top:1.4rem">{legend}</div>
@@ -592,7 +594,7 @@ footer.meta p {{ color: var(--ink-faint); font-size: 0.84rem; line-height: 1.7; 
 
 <section class="summary">
   <div class="wrap">
-    <h2>All 4 tasks &times; 5 models</h2>
+    <h2>All 4 tasks &times; 6 models</h2>
     {summary_table()}
   </div>
 </section>
@@ -603,7 +605,7 @@ footer.meta p {{ color: var(--ink-faint); font-size: 0.84rem; line-height: 1.7; 
 
 <footer class="meta">
   <div class="wrap">
-    <p><b>Models:</b> five InternVL-U checkpoints, single-image generation, 512px output; only the pretraining stage (none, for "Base"; S0-S3 otherwise) differs -- the downstream SFT recipe and data are identical across all five. <b>Judge:</b> <code>qwen3-vl-30b-fp8</code>, temperature 0, images downscaled to 512px on the long edge, one call per sample (400 &times; 5 = 2,000 total judge calls across this report; 1 malformed-JSON response each on S1 and Base defaulted to score 0 for that single sample). <b>Sampling:</b> {N_SHARED_PER_TASK} shared test instances per task, Python <code>random.Random({SEED})</code> (<code>rotation_puzzle</code>: {TASK_N["rotation_puzzle"]} instances, re-drawn with seed <code>{TASK_SEED["rotation_puzzle"]}</code> when it moved to the checklist judge), identical ids across all five models, not cherry-picked.</p>
+    <p><b>Models:</b> six InternVL-U checkpoints, single-image generation, 512px output; only the pretraining stage (none, for "Base"; S0-S4 otherwise) differs -- the downstream SFT recipe and data are identical across all six. <b>Judge:</b> <code>qwen3-vl-30b-fp8</code>, temperature 0, images downscaled to 512px on the long edge, one call per sample (400 &times; 6 = 2,400 total judge calls across this report; 1 malformed-JSON response each on S1 and Base defaulted to score 0 for that single sample). <b>Sampling:</b> {N_SHARED_PER_TASK} shared test instances per task, Python <code>random.Random({SEED})</code> (<code>rotation_puzzle</code>: {TASK_N["rotation_puzzle"]} instances, re-drawn with seed <code>{TASK_SEED["rotation_puzzle"]}</code> when it moved to the checklist judge), identical ids across all six models, not cherry-picked.</p>
   </div>
 </footer>
 """

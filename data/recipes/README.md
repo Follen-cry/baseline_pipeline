@@ -19,3 +19,11 @@ real-world sources per S0/S1/S2/S3 setting (full table: `../../PROVENANCE.md` §
 `filter_final_s0s3.py` runs after merging to drop rows referencing missing image files
 (~2.7% loss, confirmed to have run exactly once — see PROVENANCE.md §6.4). Output lands in
 `../datasets/final_s0s3/`.
+
+## `s4_progression/`
+
+S3 with the MCQ dropped, replaced by a progression-description + next-frame text
+prediction trained jointly with the existing image-generation prediction. Built from S2's
+full window set (not S3's MCQ-filtered subset — see this recipe's own README for why those
+differ). Full design/decision log, prompt templates, and verification:
+`s4_progression/README.md`.

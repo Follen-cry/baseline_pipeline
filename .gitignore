@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+
+# S4 pipeline intermediates (reproducible via build_all.sh + label_with_vlm.py +
+# fill_s4_captions.py -- see data/recipes/s4_progression/README.md). Only the
+# final S4_train.jsonl + S4_dropped_ids.txt are committed.
+data/datasets/s4_progression/S4_skeleton.jsonl
+data/datasets/s4_progression/S4_captioning_manifest.jsonl
+data/datasets/s4_progression/manifest_shard*.jsonl
+data/datasets/s4_progression/manifest_retry_epic*.jsonl
+data/datasets/s4_progression/caption_prefixes/
+data/datasets/s4_progression/labels/

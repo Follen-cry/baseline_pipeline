@@ -31,7 +31,7 @@ import sys
 import time
 from collections import defaultdict
 
-SMOKE_DIR = "/scratch/network/ssd2/junlin/ssl_mllm/Evaluation/vbvr"
+SMOKE_DIR = "/scratch/network/ssd2/junlin/ssl_mllm/Evaluation/vbvr_baseline_runners"
 PKG = "/scratch/network/ssd2/junlin/ssl_mllm/Model_Related/InternVLU/InternVL-U"
 
 ID_JSONL = "/scratch/network/ssd2/junlin/ssl_mllm/data/datasets/vbvr_target_pred_id/target_pred_id_eval.jsonl"
