@@ -38,7 +38,9 @@ here yet.
 
 ## Validate-then-run
 
-**Higher risk than RealWorldQA here**: this is the first time this harness's InternVL-U prompt
-handling (`vlmeval/vlm/internvlu.py`'s `build_prompt`) meets SeedBench's option format, which
-may differ from CV-Bench/RealWorldQA's. Run `--data SEEDBench_IMG` against a single checkpoint
-first and manually inspect a few rows of the resulting `.xlsx` before running all six.
+**Confirmed working (2026-09-08, GPU 7)**: a single-sample smoke test against
+`InternVL-U-base-4task500sft` built the dataset (14,232 rows, TSV auto-downloaded), loaded the
+real merged checkpoint, and produced a coherent MCQ answer — the prompt-format risk originally
+flagged here (SeedBench's options differing from CV-Bench/RealWorldQA's) did not materialize.
+Still worth running one checkpoint's full pass before all six, just to catch anything
+sample-count-dependent (rate limits, edge-case images) the single-row test wouldn't surface.

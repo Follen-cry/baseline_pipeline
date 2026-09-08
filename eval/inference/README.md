@@ -45,6 +45,24 @@ disk 2026-09-08). Use *these* six for any RealWorldQA/SeedBench run meant to com
 leftovers from earlier exploratory work, left in place (not deleted) since other things may
 still reference them.
 
+### Import gap fixed: `paths.py`
+
+`vlmeval/vlm/internvlu.py` (and `sensenova_u1.py`, pulled in transitively by `vlmeval/vlm/
+__init__.py`'s unconditional imports) does `from paths import add_internvlu_to_path`, resolving
+3 directories up from its own location — in the old tree that landed on `Evaluation/paths.py`;
+here it resolves to `eval/inference/paths.py`, which didn't exist. Added a trimmed shim there
+(just `add_internvlu_to_path`/`add_sensenova_to_path`, hardcoding the same absolute
+`Model_Related/InternVLU/InternVL-U` path as `suites/magicbrush`/`suites/risebench`/
+`suites/aurorabench`'s inference scripts — same known gap, not fixed generically, just made
+consistent here too). Without it, `import vlmeval` fails outright.
+
+**Verified working end-to-end** (2026-09-08, GPU 7): both `RealWorldQA` (n=765) and
+`SEEDBench_IMG` (n=14,232) build their dataset (auto-downloading the TSV to
+`~/LMUData/`), load `InternVL-U-base-4task500sft` (the real merged S0-S3 baseline checkpoint,
+not a placeholder), build a correctly-formatted MCQ prompt, and generate a coherent answer —
+SeedBench's option format did **not** trip up the prompt adapter (the risk flagged in
+`suites/seedbench/README.md`).
+
 ### SeedBench needed no dataset-side changes
 
 `SEEDBench_IMG` was already a recognized `--data` value (`vlmeval/dataset/image_mcq.py`'s
