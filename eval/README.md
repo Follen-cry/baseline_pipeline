@@ -94,6 +94,15 @@ control-group protocol detail.
   raw data deferred" status as the 5 `data/sources/` — not yet traced against PROVENANCE.md.
 - **Not yet done**: no comparison-report step ported into `eval/suites/vbvr/artifacts/`-style
   reporting yet — `compare_wp.py` (inside the submodule) is the closest existing tool.
+- **Base-checkpoint reference results** (added 2026-09-08, commit `af65e93` inside the
+  submodule): `results/internvlu_base_rerun_4f/{WM,PP}_results.json` (plain accuracy, most
+  complete sample count), `results/internvlu_4f/` (earlier partial run), and
+  `results/control_group/base_{wm,pp}/` (source data for a *different* control-framing F1
+  metric, summarized in `results/CONTROL_MASTER_TABLE.md`/`FULL_BENCHMARK_TABLE.md`) — all for
+  the **raw, untrained InternVL-U snapshot**, not the S0-S3 baseline's `internvlu-base-
+  4task500sft` checkpoint. See `results/BASE_MODEL_PROVENANCE.md` (inside the submodule) for
+  which of the three WM/PP numbers is which — they're different methodologies, not conflicting
+  measurements. No run against any of the actual `-4task500sft` checkpoints exists yet.
 
 ## `suites/realworldqa/` and `suites/seedbench/`
 
