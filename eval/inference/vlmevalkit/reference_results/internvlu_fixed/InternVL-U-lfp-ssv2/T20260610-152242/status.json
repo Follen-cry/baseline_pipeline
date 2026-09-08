@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260610-152242",
+  "created_at": "2026-06-10T15:24:59.221540+01:00",
+  "datasets": {
+    "MMVP": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-lfp-ssv2/T20260610-152242/InternVL-U-lfp-ssv2_MMVP.xlsx",
+      "updated_at": "2026-06-10T15:25:18.552587+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall",
+      "metrics": {
+        "Average": 0.72,
+        "Overall": 0.4533333333333333
+      }
+    },
+    "MMBench_DEV_EN": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-lfp-ssv2/T20260610-152242/InternVL-U-lfp-ssv2_MMBench_DEV_EN.xlsx",
+      "updated_at": "2026-06-10T15:27:12.097141+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "split=dev|Overall",
+      "metrics": {
+        "split=dev|Overall": 0.7577319587628866,
+        "split=dev|AR": 0.8190954773869347,
+        "split=dev|CP": 0.8648648648648649,
+        "split=dev|FP-C": 0.6433566433566433,
+        "split=dev|FP-S": 0.7781569965870307,
+        "split=dev|LR": 0.4830508474576271,
+        "split=dev|RR": 0.7478260869565218,
+        "split=dev|action_recognition": 0.9074074074074074,
+        "split=dev|attribute_comparison": 0.7272727272727273,
+        "split=dev|attribute_recognition": 0.9054054054054054,
+        "split=dev|celebrity_recognition": 0.7575757575757576,
+        "split=dev|function_reasoning": 0.8607594936708861,
+        "split=dev|future_prediction": 0.425,
+        "split=dev|identity_reasoning": 0.9777777777777777,
+        "split=dev|image_emotion": 0.84,
+        "split=dev|image_quality": 0.6226415094339622,
+        "split=dev|image_scene": 0.9807692307692307,
+        "split=dev|image_style": 0.8867924528301887,
+        "split=dev|image_topic": 0.8888888888888888,
+        "split=dev|nature_relation": 0.5833333333333334,
+        "split=dev|object_localization": 0.6172839506172839,
+        "split=dev|ocr": 0.9230769230769231,
+        "split=dev|physical_property_reasoning": 0.68,
+        "split=dev|physical_relation": 0.7916666666666666,
+        "split=dev|social_relation": 0.9069767441860465,
+        "split=dev|spatial_relationship": 0.24444444444444444,
+        "split=dev|structuralized_imagetext_understanding": 0.5128205128205128
+      }
+    }
+  },
+  "model_name": "InternVL-U-lfp-ssv2",
+  "commit": "1ab1aa10",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-base",
+    "InternVL-U-lfp-ssv2",
+    "--data",
+    "MMVP",
+    "MMBench_DEV_EN",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_internvlu_fixed",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 8,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-06-10T15:27:12.094163+01:00"
+}

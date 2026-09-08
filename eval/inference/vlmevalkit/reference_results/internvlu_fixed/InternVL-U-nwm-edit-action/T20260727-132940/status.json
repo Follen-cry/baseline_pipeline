@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260727-132940",
+  "created_at": "2026-07-27T13:29:43.267839+01:00",
+  "datasets": {
+    "SpatialEval": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-nwm-edit-action/T20260727-132940/InternVL-U-nwm-edit-action_SpatialEval.xlsx",
+      "updated_at": "2026-07-27T13:31:54.986656+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.5296655879180151,
+        "split=none|mazenav": 0.586,
+        "split=none|spatialgrid": 0.5006666666666667,
+        "split=none|spatialmap": 0.49933333333333335,
+        "split=none|spatialreal": 0.562962962962963
+      }
+    }
+  },
+  "model_name": "InternVL-U-nwm-edit-action",
+  "commit": "2b907bd1",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-nwm-edit-action",
+    "--data",
+    "SpatialEval",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_internvlu_fixed",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 6,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-07-27T13:31:54.985779+01:00"
+}

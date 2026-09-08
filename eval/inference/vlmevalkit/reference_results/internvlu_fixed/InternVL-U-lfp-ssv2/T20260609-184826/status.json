@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260609-184826",
+  "created_at": "2026-06-09T18:48:29.687513+01:00",
+  "datasets": {
+    "CV-Bench-2D": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-lfp-ssv2/T20260609-184826/InternVL-U-lfp-ssv2_CV-Bench-2D.xlsx",
+      "updated_at": "2026-06-09T18:49:09.692744+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "split=2D|Overall",
+      "metrics": {
+        "split=2D|COCO": 0.7416149068322981,
+        "split=2D|ADE20K": 0.636650868878357,
+        "split=2D|Overall": 0.6891328878553276
+      }
+    },
+    "CV-Bench-3D": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-lfp-ssv2/T20260609-184826/InternVL-U-lfp-ssv2_CV-Bench-3D.xlsx",
+      "updated_at": "2026-06-09T18:49:31.519326+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "split=3D|Overall",
+      "metrics": {
+        "split=3D|Overall": 0.7666666666666667,
+        "split=3D|Depth": 0.81,
+        "split=3D|Distance": 0.7233333333333334
+      }
+    },
+    "RealWorldQA": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-lfp-ssv2/T20260609-184826/InternVL-U-lfp-ssv2_RealWorldQA.xlsx",
+      "updated_at": "2026-06-09T18:49:48.407483+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.5673202614379085
+      }
+    }
+  },
+  "model_name": "InternVL-U-lfp-ssv2",
+  "commit": "1ab1aa10",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-lfp-ssv2",
+    "--data",
+    "CV-Bench-2D",
+    "CV-Bench-3D",
+    "RealWorldQA",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_internvlu_fixed",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 8,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-06-09T18:49:48.407074+01:00"
+}

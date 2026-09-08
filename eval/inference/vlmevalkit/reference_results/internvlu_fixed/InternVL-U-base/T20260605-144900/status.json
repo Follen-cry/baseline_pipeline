@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260605-144900",
+  "created_at": "2026-06-05T14:49:03.779532+01:00",
+  "datasets": {
+    "CV-Bench-2D": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-base/T20260605-144900/InternVL-U-base_CV-Bench-2D.xlsx",
+      "updated_at": "2026-06-05T14:49:45.101965+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "split=2D|Overall",
+      "metrics": {
+        "split=2D|COCO": 0.7478260869565218,
+        "split=2D|ADE20K": 0.6145339652448657,
+        "split=2D|Overall": 0.6811800261006937
+      }
+    },
+    "CV-Bench-3D": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-base/T20260605-144900/InternVL-U-base_CV-Bench-3D.xlsx",
+      "updated_at": "2026-06-05T14:50:07.502779+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "split=3D|Overall",
+      "metrics": {
+        "split=3D|Overall": 0.7525,
+        "split=3D|Depth": 0.7933333333333333,
+        "split=3D|Distance": 0.7116666666666667
+      }
+    },
+    "RealWorldQA": {
+      "status": "done",
+      "prediction_file": "outputs_internvlu_fixed/InternVL-U-base/T20260605-144900/InternVL-U-base_RealWorldQA.xlsx",
+      "updated_at": "2026-06-05T14:50:24.364504+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.5660130718954248
+      }
+    }
+  },
+  "model_name": "InternVL-U-base",
+  "commit": "1ab1aa10",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-base",
+    "InternVL-U-ffs",
+    "InternVL-U-gen1ep",
+    "InternVL-U-gen3ep",
+    "--data",
+    "CV-Bench-2D",
+    "CV-Bench-3D",
+    "RealWorldQA",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_internvlu_fixed",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 8,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-06-05T14:50:24.364073+01:00"
+}

@@ -1,3 +1,6 @@
 [submodule "training/models/internvl-u"]
 	path = training/models/internvl-u
 	url = /scratch/network/ssd2/junlin/ssl_mllm/Model_Related/InternVLU/InternVL
+[submodule "eval/suites/worldprediction"]
+	path = eval/suites/worldprediction
+	url = /scratch/network/ssd2/junlin/ssl_mllm/Evaluation/WorldPrediction
