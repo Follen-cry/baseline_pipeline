@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260908-104210",
+  "created_at": "2026-09-08T10:42:10.362119+01:00",
+  "datasets": {
+    "SEEDBench_IMG": {
+      "status": "done",
+      "prediction_file": "outputs_s0s3_baseline/InternVL-U-base-4task500sft/T20260908-104210/InternVL-U-base-4task500sft_SEEDBench_IMG.xlsx",
+      "updated_at": "2026-09-08T11:10:53.111889+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.7366498032602585,
+        "split=none|Instance Attributes": 0.7608087760808776,
+        "split=none|Instance Identity": 0.7695248498088476,
+        "split=none|Instance Interaction": 0.7319587628865979,
+        "split=none|Instance Location": 0.7034764826175869,
+        "split=none|Instances Counting": 0.6571311810380057,
+        "split=none|Scene Understanding": 0.7840405319822673,
+        "split=none|Spatial Relation": 0.593607305936073,
+        "split=none|Text Understanding": 0.5476190476190477,
+        "split=none|Visual Reasoning": 0.7824773413897281
+      }
+    }
+  },
+  "model_name": "InternVL-U-base-4task500sft",
+  "commit": "783f3476",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-base-4task500sft",
+    "--data",
+    "SEEDBench_IMG",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_s0s3_baseline",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 1,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-09-08T11:10:53.109729+01:00"
+}

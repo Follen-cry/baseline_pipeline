@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260908-104210",
+  "created_at": "2026-09-08T10:42:10.362932+01:00",
+  "datasets": {
+    "RealWorldQA": {
+      "status": "done",
+      "prediction_file": "outputs_s0s3_baseline/InternVL-U-s4-4task500sft/T20260908-104210/InternVL-U-s4-4task500sft_RealWorldQA.xlsx",
+      "updated_at": "2026-09-08T10:44:12.389685+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.5633986928104575
+      }
+    }
+  },
+  "model_name": "InternVL-U-s4-4task500sft",
+  "commit": "783f3476",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-s4-4task500sft",
+    "--data",
+    "RealWorldQA",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_s0s3_baseline",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 1,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-09-08T10:44:12.389216+01:00"
+}
