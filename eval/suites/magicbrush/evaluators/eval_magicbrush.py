@@ -39,12 +39,23 @@ from dataset import load_items, filter_missing  # noqa: E402
 
 # ---- metric primitives (ported verbatim from upstream image_eval.py) ----
 
+RESIZE = 0  # set from --resize; 0 = native resolution (existing behavior)
+
+
+def _open(path):
+    """Open + RGB-convert, optionally prescaling to RESIZE x RESIZE (control setting)."""
+    img = Image.open(path).convert("RGB")
+    if RESIZE:
+        img = img.resize((RESIZE, RESIZE), Image.BICUBIC)
+    return img
+
+
 def eval_distance(image_pairs, metric="l1"):
     criterion = nn.L1Loss() if metric == "l1" else nn.MSELoss()
     eval_score = 0.0
     for gen_path, gt_path in image_pairs:
-        gen_img = Image.open(gen_path).convert("RGB")
-        gt_img = Image.open(gt_path).convert("RGB")
+        gen_img = _open(gen_path)
+        gt_img = _open(gt_path)
         gen_img = gen_img.resize(gt_img.size)
         gen_t = transforms.ToTensor()(gen_img)
         gt_t = transforms.ToTensor()(gt_img)
@@ -65,8 +76,8 @@ def _encode_image(image, model, transform, device, metric):
 def eval_clip_i(image_pairs, model, transform, device, metric="clip_i"):
     eval_score = 0.0
     for gen_path, gt_path in image_pairs:
-        gen_feat = _encode_image(Image.open(gen_path).convert("RGB"), model, transform, device, metric)
-        gt_feat = _encode_image(Image.open(gt_path).convert("RGB"), model, transform, device, metric)
+        gen_feat = _encode_image(_open(gen_path), model, transform, device, metric)
+        gt_feat = _encode_image(_open(gt_path), model, transform, device, metric)
         sim = 1 - spatial.distance.cosine(gen_feat.view(-1), gt_feat.view(-1))
         eval_score += sim
     return eval_score / len(image_pairs)
@@ -78,8 +89,8 @@ def eval_clip_t(image_pairs, captions, model, transform, device):
     gen_score, gt_score = 0.0, 0.0
     for gen_path, gt_path in image_pairs:
         caption = captions[gt_path]
-        gen_feat = _encode_image(Image.open(gen_path).convert("RGB"), model, transform, device, "clip_i")
-        gt_feat = _encode_image(Image.open(gt_path).convert("RGB"), model, transform, device, "clip_i")
+        gen_feat = _encode_image(_open(gen_path), model, transform, device, "clip_i")
+        gt_feat = _encode_image(_open(gt_path), model, transform, device, "clip_i")
         text_tok = _clip.tokenize(caption, truncate=True).to(device)
         with torch.no_grad():
             text_feat = model.encode_text(text_tok).detach().cpu().float()
@@ -90,8 +101,11 @@ def eval_clip_t(image_pairs, captions, model, transform, device):
 
 # ---- pairing: our items already carry exact gen/gt paths, no dir scanning needed ----
 
-def build_pairs(data_root, generated_root):
+def build_pairs(data_root, generated_root, img_ids_file=None):
     items = filter_missing(load_items(data_root))
+    if img_ids_file:
+        allowed = set(json.load(open(img_ids_file))["img_ids"])
+        items = [it for it in items if it.img_id in allowed]
     all_turn_pairs, final_turn_pairs, captions = [], [], {}
     missing = 0
     last_turn_of_session = {}
@@ -125,11 +139,19 @@ def main():
     ap.add_argument("--save_path", required=True)
     ap.add_argument("--device", default="cuda")
     ap.add_argument("--metric", default="l1,l2,clip-i,dino,clip-t")
+    ap.add_argument("--resize", type=int, default=0,
+                     help="if set, prescale both generated and GT images to resize x resize before "
+                          "any metric (control setting; 0 = native resolution, existing behavior)")
+    ap.add_argument("--img_ids_file", default=None,
+                     help="optional JSON file with an 'img_ids' list; restricts items to those sessions")
     args = ap.parse_args()
     metrics = args.metric.split(",")
     device = torch.device(args.device if torch.cuda.is_available() else "cpu")
 
-    all_turn_pairs, final_turn_pairs, captions = build_pairs(args.data_root, args.generated)
+    global RESIZE
+    RESIZE = args.resize
+
+    all_turn_pairs, final_turn_pairs, captions = build_pairs(args.data_root, args.generated, args.img_ids_file)
     print(f"[eval] all_turn pairs: {len(all_turn_pairs)}  final_turn pairs: {len(final_turn_pairs)}", flush=True)
 
     results = {"final_turn": {}, "all_turn": {}}

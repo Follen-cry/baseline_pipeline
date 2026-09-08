@@ -43,7 +43,7 @@ from dataset import load_items, filter_missing, item_key  # noqa: E402
 PKG = "/scratch/network/ssd2/junlin/ssl_mllm/Model_Related/InternVLU/InternVL-U"
 
 DEFAULT_CKPT = (
-    "/homes/55/junlin/.cache/huggingface/hub/models--InternVL-U--InternVL-U/"
+    "/scratch/network/ssd2/junlin/huggingface/hub/models--InternVL-U--InternVL-U/"
     "snapshots/f012d760e69712bb47f7d3d09a24280f346cee01"
 )
 
@@ -57,12 +57,20 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--shard_idx", type=int, default=0)
     ap.add_argument("--num_shards", type=int, default=1)
+    ap.add_argument("--resize", type=int, default=0,
+                     help="if set, prescale the input image to resize x resize before inference "
+                          "(control setting; 0 = native resolution, existing behavior)")
+    ap.add_argument("--img_ids_file", default=None,
+                     help="optional JSON file with an 'img_ids' list; restricts items to those sessions")
     args = ap.parse_args()
 
     sys.path.insert(0, PKG)
     from internvlu import InternVLUPipeline
 
     items = filter_missing(load_items(args.data_root))
+    if args.img_ids_file:
+        allowed = set(json.load(open(args.img_ids_file))["img_ids"])
+        items = [it for it in items if it.img_id in allowed]
     if args.limit:
         items = items[: args.limit]
     items = items[args.shard_idx :: args.num_shards]
@@ -90,6 +98,8 @@ def main():
         os.makedirs(out_dir, exist_ok=True)
         try:
             src = Image.open(it.input_path).convert("RGB")
+            if args.resize:
+                src = src.resize((args.resize, args.resize), Image.BICUBIC)
             with torch.no_grad():
                 result = pipe(
                     prompt=it.instruction,
