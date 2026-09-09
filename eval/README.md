@@ -4,11 +4,13 @@
 suites/<name>/   one eval type per suite — code specific to scoring one kind of task
 ```
 
-Seven suites so far: **`suites/vbvr/`** (migrated from `Evaluation/VBVR-CustomEval/`),
+Ten suites so far: **`suites/vbvr/`** (migrated from `Evaluation/VBVR-CustomEval/`),
 **`suites/magicbrush/`** (migrated from `Evaluation/editing_benchmarks/MagicBrush/`, InternVL-U
-only — see its own README for why), **`suites/risebench/`** / **`suites/aurorabench/`**
-(new, set up directly in this repo, same InternVL-U-only / inference-only scope as magicbrush —
-data freshly downloaded from HF, no evaluator ported yet), **`suites/worldprediction/`**
+only — see its own README for why), **`suites/risebench/`** / **`suites/aurorabench/`** /
+**`suites/imgedit/`** / **`suites/phyeditbench/`** (new, set up directly in this repo, same
+InternVL-U-only / inference-only scope as magicbrush — data freshly downloaded/cloned, official
+scorer ported only for `imgedit`, which ships a redistributable local judge checkpoint; the
+other three document their GPT-based official scorer but don't port it), **`suites/worldprediction/`**
 (a git submodule, not a plain migrated dir — see its own section below), and
 **`suites/realworldqa/`** / **`suites/seedbench/`** (thin wrappers, not standalone kits — both
 just dataset names inside the shared `eval/inference/vlmevalkit/` harness; see its own section
@@ -61,6 +63,26 @@ no GT image, scored upstream by LMM judge / human raters). `extract_from_hf.py` 
 the HF parquet (no stable per-row id) into a json + `images/` layout. Data lives outside the
 repo (third-party licensed) — see the suite's README. Not to be confused with this repo's
 existing custom EPIC-derived AURORA-*style* evals under `results/04_unified_benchmarks/editing/`.
+
+## `suites/imgedit/`
+
+Generation + local-judge scoring: `inference/gen_imgedit_internvlu.py` runs InternVL-U over the
+737-item official ImgEdit-Bench Basic-Bench set (9 edit-type categories; no GT image).
+`evaluators/imgedit_judge.py` + `evaluators/score_imgedit.py` port the official scoring via the
+**local** `ImgEdit_Judge` checkpoint (a redistributable Qwen2.5-VL-7B fine-tune upstream ships as
+a non-API alternative to its GPT-4o judge) — the only inference-only suite here with a ported
+scorer besides `magicbrush`. Data (48M, small enough to vendor whole) and the judge checkpoint
+(16.6GB) both live outside the repo — see the suite's README.
+
+## `suites/phyeditbench/`
+
+Generation-only (inference, no scoring ported yet): `inference/gen_phyeditbench_internvlu.py`
+runs InternVL-U over the 238 real four-state physical-editing trajectories (expanded into 1190
+Type A-E generation tasks per the official protocol) plus 35 synthetic Anti-Physics items from
+[Previsior/PhyEditBench](https://github.com/Previsior/PhyEditBench) — 1225 items total; no GT
+image for most tasks, scored upstream by a GPT-4o judge across 4 dimensions (Consistency,
+Instruction Following, Physical Plausibility, Image Quality). Data (1.3G, plain git clone, not
+Xet-backed) lives outside the repo — see the suite's README.
 
 ## `suites/worldprediction/`
 
