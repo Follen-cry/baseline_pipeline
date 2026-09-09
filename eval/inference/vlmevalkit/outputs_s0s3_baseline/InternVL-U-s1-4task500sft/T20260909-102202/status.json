@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "eval_id": "T20260909-102202",
+  "created_at": "2026-09-09T10:22:02.653320+01:00",
+  "datasets": {
+    "RealWorldQA": {
+      "status": "done",
+      "prediction_file": "outputs_s0s3_baseline/InternVL-U-s1-4task500sft/T20260909-102202/InternVL-U-s1-4task500sft_RealWorldQA.xlsx",
+      "updated_at": "2026-09-09T10:23:57.942836+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.5725490196078431
+      }
+    },
+    "SEEDBench_IMG": {
+      "status": "done",
+      "prediction_file": "outputs_s0s3_baseline/InternVL-U-s1-4task500sft/T20260909-102202/InternVL-U-s1-4task500sft_SEEDBench_IMG.xlsx",
+      "updated_at": "2026-09-09T10:50:35.734480+01:00",
+      "judge_model": "exact_matching",
+      "reuse_aux": "all",
+      "primary_metric": "Overall Acc",
+      "metrics": {
+        "split=none|Overall": 0.739460370994941,
+        "split=none|Instance Attributes": 0.7633899763389976,
+        "split=none|Instance Identity": 0.7760786455488804,
+        "split=none|Instance Interaction": 0.7216494845360825,
+        "split=none|Instance Location": 0.7034764826175869,
+        "split=none|Instances Counting": 0.6624438087454025,
+        "split=none|Scene Understanding": 0.7875237492083598,
+        "split=none|Spatial Relation": 0.5859969558599696,
+        "split=none|Text Understanding": 0.5119047619047619,
+        "split=none|Visual Reasoning": 0.7854984894259819
+      }
+    }
+  },
+  "model_name": "InternVL-U-s1-4task500sft",
+  "commit": "ab47d83c",
+  "argv": [
+    "run.py",
+    "--model",
+    "InternVL-U-s1-4task500sft",
+    "--data",
+    "RealWorldQA",
+    "SEEDBench_IMG",
+    "--judge",
+    "exact_matching",
+    "--work-dir",
+    "outputs_s0s3_baseline",
+    "--verbose"
+  ],
+  "api_mode": false,
+  "world_size": 1,
+  "pred_format": "xlsx",
+  "eval_format": "csv",
+  "mode": "all",
+  "reuse": false,
+  "reuse_aux": "all",
+  "updated_at": "2026-09-09T10:50:35.733083+01:00"
+}
