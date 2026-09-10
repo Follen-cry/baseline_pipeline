@@ -126,7 +126,9 @@ control-group protocol detail.
   precisely because of this ambiguity — see `BASELINE_COMPARISON.md`'s naming note). See
   `results/BASE_MODEL_PROVENANCE.md` (inside the submodule) for
   which of the three WM/PP numbers is which — they're different methodologies, not conflicting
-  measurements. No run against any of the actual `-4task500sft` checkpoints exists yet.
+  measurements. All six `-4task500sft` checkpoints have since been run (see
+  `../BASELINE_COMPARISON.md`), which also folds this untrained-model reference point into one
+  combined table alongside them.
 
 ## `suites/realworldqa/` and `suites/seedbench/`
 
