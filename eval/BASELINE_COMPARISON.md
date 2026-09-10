@@ -1,16 +1,24 @@
 # S0-S3(-S4) baseline — full 6-checkpoint comparison
 
 RealWorldQA, SeedBench, and WorldPrediction (WM+PP), run against all six S0-S3(-S4) baseline
-stage-2 (`-4task500sft-merged`) checkpoints: `base` (no stage-1 pretrain, control),
-`s0`/`s1`/`s2`/`s3` run 2026-09-09 sequentially on a single free GPU (idx 7), `base`/`s4` run
-2026-09-08 concurrently on two GPUs (idx 6/7) — see `inference/README.md` /
-`suites/worldprediction/README.md` for how each was run, and the "Known run-quality notes"
-section below for the base/s4 concurrent-run race condition that S0-S3 avoided by running
-strictly sequentially.
+stage-2 (`-4task500sft-merged`) checkpoints: `vbvr-4task-sft-base` (no stage-1 pretrain,
+control — **not** the untrained InternVL-U model; see the naming note below),
+`s0`/`s1`/`s2`/`s3` run 2026-09-09 sequentially on a single free GPU (idx 7),
+`vbvr-4task-sft-base`/`s4` run 2026-09-08 concurrently on two GPUs (idx 6/7) — see
+`inference/README.md` / `suites/worldprediction/README.md` for how each was run, and the
+"Known run-quality notes" section below for the concurrent-run race condition that S0-S3
+avoided by running strictly sequentially.
+
+**Naming note**: the checkpoint called `vbvr-4task-sft-base` here is the stage-2
+target_pred-SFT checkpoint trained *from* the base InternVL-U snapshot (no stage-1
+pretrain — vbvr's own "control"). It is not the untrained base model itself. This repo
+tracks that separately (correctly still labeled `base`) at
+`suites/worldprediction/results/internvlu_base_rerun_4f/` and
+`suites/worldprediction/results/control_group/base_{wm,pp}/` — don't confuse the two.
 
 | Checkpoint | RealWorldQA (n=765) | SeedBench (n=14,232) | WorldPrediction-WM (n=612) | WorldPrediction-PP (n=390) |
 |---|--:|--:|--:|--:|
-| base | 56.34% | 73.66% | 37.6% (230/612) | 27.7% (108/390) |
+| vbvr-4task-sft-base | 56.34% | 73.66% | 37.6% (230/612) | 27.7% (108/390) |
 | s0 | 56.99% | 73.71% | 36.3% (222/612) | 29.5% (115/390) |
 | s1 | 57.25% | 73.95% | **38.7%** (237/612) | 27.9% (109/390) |
 | s2 | 56.73% | 73.62% | 36.3% (222/612) | 29.2% (114/390) |
@@ -30,8 +38,8 @@ WorldPrediction (temporal/procedural: pick the action, or ordered action sequenc
 explains a state transition) tells a real, different story:
 
 - **WM declines from s1 onward**: 38.7% (s1, the peak) → 36.3% (s2) → 28.3% (s3) → **17.8%**
-  (s4) — more than halved from peak to s4. s0 (36.3%) and base (37.6%) sit close together near
-  the top, so the decline isn't purely "more stages = worse" (s0→s1 actually improves slightly)
+  (s4) — more than halved from peak to s4. s0 (36.3%) and vbvr-4task-sft-base (37.6%) sit close
+  together near the top, so the decline isn't purely "more stages = worse" (s0→s1 actually improves slightly)
   — it looks more like a late-stage (s2 onward) degradation that compounds sharply at s4.
 - **PP is much flatter**: 27.4–29.5% across s0-s3 (no clear trend), only dropping at s4
   (24.9%) — the same late/final-stage pattern as WM, just much less severe.
@@ -47,18 +55,20 @@ ability.
 
 ## Source files
 
-- RealWorldQA / SeedBench: `inference/vlmevalkit/outputs_s0s3_baseline/InternVL-U-{base,s0,s1,
-  s2,s3,s4}-4task500sft/InternVL-U-{...}-4task500sft_{RealWorldQA,SEEDBench_IMG}_acc.csv`
-- WorldPrediction: `suites/worldprediction/results/internvlu_{base,s0,s1,s2,s3,s4}_4task500sft_
-  4f/{WM,PP}_results.json` (`mean_accuracy` field)
+- RealWorldQA / SeedBench: `inference/vlmevalkit/outputs_s0s3_baseline/InternVL-U-
+  {vbvr-4task-sft-base,s0,s1,s2,s3,s4}-4task500sft/InternVL-U-{...}-4task500sft_
+  {RealWorldQA,SEEDBench_IMG}_acc.csv`
+- WorldPrediction: `suites/worldprediction/results/internvlu_{vbvr-4task-sft-base,s0,s1,s2,s3,
+  s4}_4task500sft_4f/{WM,PP}_results.json` (`mean_accuracy` field)
 
 ## Known run-quality notes
 
 - A handful of WorldPrediction samples were skipped for **every** checkpoint identically (same
   missing COIN videos `LYJNYfwKc5o.mp4`/`OaTttCmD_RM.mp4`, same corrupt EPIC-KITCHENS packet in
   `P30_08.MP4`) — affects all six checkpoints equally, not a confound between them.
-- `base` and `s4` were run **concurrently** (different GPUs, shared image cache) and hit a
-  write race on VLMEvalKit's `~/LMUData/images/` cache — base's SeedBench and s4's RealWorldQA
-  each failed on a corrupted/truncated cached image on the first attempt, both cleanly rerun
-  individually afterward. `s0`-`s3` were run strictly **sequentially** on one GPU specifically
-  to avoid a repeat of this race, and had no such failures.
+- `vbvr-4task-sft-base` and `s4` were run **concurrently** (different GPUs, shared image
+  cache) and hit a write race on VLMEvalKit's `~/LMUData/images/` cache —
+  vbvr-4task-sft-base's SeedBench and s4's RealWorldQA each failed on a corrupted/truncated
+  cached image on the first attempt, both cleanly rerun individually afterward. `s0`-`s3` were
+  run strictly **sequentially** on one GPU specifically to avoid a repeat of this race, and had
+  no such failures.

@@ -121,8 +121,10 @@ control-group protocol detail.
   complete sample count), `results/internvlu_4f/` (earlier partial run), and
   `results/control_group/base_{wm,pp}/` (source data for a *different* control-framing F1
   metric, summarized in `results/CONTROL_MASTER_TABLE.md`/`FULL_BENCHMARK_TABLE.md`) — all for
-  the **raw, untrained InternVL-U snapshot**, not the S0-S3 baseline's `internvlu-base-
-  4task500sft` checkpoint. See `results/BASE_MODEL_PROVENANCE.md` (inside the submodule) for
+  the **raw, untrained InternVL-U snapshot**, not the S0-S3 baseline's `internvlu-
+  vbvr-4task-sft-base-4task500sft` checkpoint (that plain "base"-sounding name was retired
+  precisely because of this ambiguity — see `BASELINE_COMPARISON.md`'s naming note). See
+  `results/BASE_MODEL_PROVENANCE.md` (inside the submodule) for
   which of the three WM/PP numbers is which — they're different methodologies, not conflicting
   measurements. No run against any of the actual `-4task500sft` checkpoints exists yet.
 

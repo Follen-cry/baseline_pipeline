@@ -37,10 +37,13 @@ these are in scope for this repo's InternVL-U-only suites.
 `internvlu-invdyn-*`, etc.) — none of these appear in `../../Model_Related/InternVLU/
 CHECKPOINTS.md` (not vendored into this repo's `training/` yet — see that file directly in the
 old tree) and none are the S0-S3 baseline's actual object of comparison. **Added** a new block
-of 6 entries at the end of that dict — `InternVL-U-{base,s0,s1,s2,s3,s4}-4task500sft` —
-pointing at the real stage-2 `target_pred` checkpoints
+of 6 entries at the end of that dict — `InternVL-U-{vbvr-4task-sft-base,s0,s1,s2,s3,s4}-
+4task500sft` — pointing at the real stage-2 `target_pred` checkpoints
 (`/scratch/network/ssd/junlin/models/internvlu-{name}-4task500sft-merged`, verified to exist on
-disk 2026-09-08). Use *these* six for any RealWorldQA/SeedBench run meant to compare against
+disk 2026-09-08). The first one is deliberately *not* called plain "base": it's the stage-2
+target_pred-SFT checkpoint trained from the base snapshot (no stage-1 pretrain — vbvr's own
+"control"), not the untrained InternVL-U model itself, and "base" alone reads as the latter.
+Use *these* six for any RealWorldQA/SeedBench run meant to compare against
 `../suites/vbvr/`'s results — the pre-existing entries above them in the dict are unrelated
 leftovers from earlier exploratory work, left in place (not deleted) since other things may
 still reference them.
@@ -58,7 +61,7 @@ consistent here too). Without it, `import vlmeval` fails outright.
 
 **Verified working end-to-end** (2026-09-08, GPU 7): both `RealWorldQA` (n=765) and
 `SEEDBench_IMG` (n=14,232) build their dataset (auto-downloading the TSV to
-`~/LMUData/`), load `InternVL-U-base-4task500sft` (the real merged S0-S3 baseline checkpoint,
+`~/LMUData/`), load `InternVL-U-vbvr-4task-sft-base-4task500sft` (the real merged S0-S3 baseline checkpoint,
 not a placeholder), build a correctly-formatted MCQ prompt, and generate a coherent answer —
 SeedBench's option format did **not** trip up the prompt adapter (the risk flagged in
 `suites/seedbench/README.md`).
@@ -74,7 +77,7 @@ both `suites/realworldqa/` and `suites/seedbench/`.
 
 ```bash
 cd eval/inference/vlmevalkit
-MODELS="InternVL-U-base-4task500sft InternVL-U-s0-4task500sft InternVL-U-s1-4task500sft \
+MODELS="InternVL-U-vbvr-4task-sft-base-4task500sft InternVL-U-s0-4task500sft InternVL-U-s1-4task500sft \
         InternVL-U-s2-4task500sft InternVL-U-s3-4task500sft InternVL-U-s4-4task500sft" \
 DATA="RealWorldQA" \
 bash scripts/run_internvlu.sh

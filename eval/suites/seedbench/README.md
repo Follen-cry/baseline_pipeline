@@ -4,7 +4,7 @@
 — SeedBench isn't its own benchmark repo here, just the `SEEDBench_IMG` `--data` value inside
 the shared harness at `../../inference/vlmevalkit/`. See `../../inference/README.md` for what's
 vendored there and the checkpoint-registry fix that makes the S0-S3 baseline checkpoints
-selectable (`InternVL-U-{base,s0,s1,s2,s3,s4}-4task500sft`).
+selectable (`InternVL-U-{vbvr-4task-sft-base,s0,s1,s2,s3,s4}-4task500sft`).
 
 ## What it is
 
@@ -24,7 +24,7 @@ outputs_*`). First real run here is the harness's first SeedBench run for this m
 
 ```bash
 cd ../../inference/vlmevalkit
-MODELS="InternVL-U-base-4task500sft InternVL-U-s0-4task500sft InternVL-U-s1-4task500sft \
+MODELS="InternVL-U-vbvr-4task-sft-base-4task500sft InternVL-U-s0-4task500sft InternVL-U-s1-4task500sft \
         InternVL-U-s2-4task500sft InternVL-U-s3-4task500sft InternVL-U-s4-4task500sft" \
 DATA="SEEDBench_IMG" \
 WORK_DIR="outputs_s0s3_baseline" \
@@ -39,7 +39,7 @@ here yet.
 ## Validate-then-run
 
 **Confirmed working (2026-09-08, GPU 7)**: a single-sample smoke test against
-`InternVL-U-base-4task500sft` built the dataset (14,232 rows, TSV auto-downloaded), loaded the
+`InternVL-U-vbvr-4task-sft-base-4task500sft` built the dataset (14,232 rows, TSV auto-downloaded), loaded the
 real merged checkpoint, and produced a coherent MCQ answer — the prompt-format risk originally
 flagged here (SeedBench's options differing from CV-Bench/RealWorldQA's) did not materialize.
 Still worth running one checkpoint's full pass before all six, just to catch anything

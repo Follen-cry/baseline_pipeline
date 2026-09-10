@@ -5,7 +5,7 @@
 inside the shared harness at `../../inference/vlmevalkit/`, which already has an InternVL-U
 model adapter (`vlmeval/vlm/internvlu.py`) wired up. See `../../inference/README.md` for what's
 vendored there and the checkpoint-registry fix that makes the S0-S3 baseline checkpoints
-selectable (`InternVL-U-{base,s0,s1,s2,s3,s4}-4task500sft`).
+selectable (`InternVL-U-{vbvr-4task-sft-base,s0,s1,s2,s3,s4}-4task500sft`).
 
 ## What it is
 
@@ -24,7 +24,7 @@ exploratory checkpoints**, not the baseline's actual `-4task500sft` checkpoints.
 
 ```bash
 cd ../../inference/vlmevalkit
-MODELS="InternVL-U-base-4task500sft InternVL-U-s0-4task500sft InternVL-U-s1-4task500sft \
+MODELS="InternVL-U-vbvr-4task-sft-base-4task500sft InternVL-U-s0-4task500sft InternVL-U-s1-4task500sft \
         InternVL-U-s2-4task500sft InternVL-U-s3-4task500sft InternVL-U-s4-4task500sft" \
 DATA="RealWorldQA" \
 WORK_DIR="outputs_s0s3_baseline" \

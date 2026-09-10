@@ -2655,8 +2655,9 @@ internvlu_series = {
     # actual object of comparison (see ../../../../PROVENANCE.md SS5, CHECKPOINTS.md).
     # Paths verified to exist on disk 2026-09-08; none of the entries above this line are
     # these checkpoints, despite similar naming (e.g. plain "InternVL-U-base" above is the
-    # untrained base snapshot, not the base-4task500sft *trained* control).
-    "InternVL-U-base-4task500sft": _partial_iu(vlm.InternVLU, model_path="/scratch/network/ssd/junlin/models/internvlu-base-4task500sft-merged"),
+    # untrained base snapshot -- "vbvr-4task-sft-base" below is the *trained* control, from
+    # that base snapshot but with no stage-1 pretrain; not the same model).
+    "InternVL-U-vbvr-4task-sft-base-4task500sft": _partial_iu(vlm.InternVLU, model_path="/scratch/network/ssd/junlin/models/internvlu-base-4task500sft-merged"),
     "InternVL-U-s0-4task500sft":   _partial_iu(vlm.InternVLU, model_path="/scratch/network/ssd/junlin/models/internvlu-s0-4task500sft-merged"),
     "InternVL-U-s1-4task500sft":   _partial_iu(vlm.InternVLU, model_path="/scratch/network/ssd/junlin/models/internvlu-s1-4task500sft-merged"),
     "InternVL-U-s2-4task500sft":   _partial_iu(vlm.InternVLU, model_path="/scratch/network/ssd/junlin/models/internvlu-s2-4task500sft-merged"),

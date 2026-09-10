@@ -5,7 +5,7 @@
   "datasets": {
     "SEEDBench_IMG": {
       "status": "done",
-      "prediction_file": "outputs_s0s3_baseline/InternVL-U-base-4task500sft/T20260908-104210/InternVL-U-base-4task500sft_SEEDBench_IMG.xlsx",
+      "prediction_file": "outputs_s0s3_baseline/InternVL-U-vbvr-4task-sft-base-4task500sft/T20260908-104210/InternVL-U-vbvr-4task-sft-base-4task500sft_SEEDBench_IMG.xlsx",
       "updated_at": "2026-09-08T11:10:53.111889+01:00",
       "judge_model": "exact_matching",
       "reuse_aux": "all",
@@ -24,12 +24,12 @@
       }
     }
   },
-  "model_name": "InternVL-U-base-4task500sft",
+  "model_name": "InternVL-U-vbvr-4task-sft-base-4task500sft",
   "commit": "783f3476",
   "argv": [
     "run.py",
     "--model",
-    "InternVL-U-base-4task500sft",
+    "InternVL-U-vbvr-4task-sft-base-4task500sft",
     "--data",
     "SEEDBench_IMG",
     "--judge",
