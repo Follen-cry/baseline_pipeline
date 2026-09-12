@@ -2,7 +2,7 @@
 
 ```
 sources/<name>/    one dir per data source (code + a raw/ pointer), e.g. vbvr, epic_kitchens,
-                   nwm, panda70m_epic, panda70m_v1 — see each one's README
+                   nwm, panda70m_epic, panda70m_v1, worldprediction — see each one's README
 common/            cross-source processing code (used by more than one source)
 recipes/<name>/    assembly code that mixes pre-split source outputs into one final dataset
 meta/              InternVL-trainer-format meta jsons pointing at datasets/
