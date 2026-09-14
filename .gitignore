@@ -17,6 +17,11 @@ data/datasets/s4_progression/labels/
 # (e.g. epic_kitchens' frame jpgs live entirely outside this repo). Only the
 # jsonl/meta that reference these paths are committed.
 data/datasets/worldprediction/frames/
+data/datasets/worldprediction/frames_8f/
+
+# data/sources/worldprediction/processing/build_worldprediction_wm.py's own
+# run logs -- not committed, same reasoning as eval/**/*.log above.
+data/sources/worldprediction/processing/*.log
 
 # eval/: generated report pages are pure presentation, 100% regenerable from the
 # matching gen_*.py / *_artifact.py script plus the (tracked) run-result JSON they

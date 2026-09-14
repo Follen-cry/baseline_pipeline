@@ -7,20 +7,24 @@ at ../../../eval/suites/worldprediction/) by data source:
     (EgoExo4D excluded: no local video root, gated dataset -- see
      eval/suites/worldprediction/data/video_roots.py)
 
-Every action clip (a candidate's video segment) is turned into exactly 4 frames
-using the SAME function the InternVL-U WorldPrediction adapter calls at
-inference time -- eval/suites/worldprediction/data/load_frames.py::collect_frames,
-called with the same (model_max_frames=4, desired_fps=5.0) as
-eval/suites/worldprediction/configs/vlm/internvlu/InternVL-U-4f.json. No new
-sampling logic is written here; this script only imports and calls the
-existing function so offline (train) and on-the-fly (eval) frame extraction
-are provably identical.
+Every action clip (a candidate's video segment) is turned into exactly
+`--frames` frames (default 4) using the SAME function the InternVL-U
+WorldPrediction adapter calls at inference time --
+eval/suites/worldprediction/data/load_frames.py::collect_frames, called with
+the same desired_fps=5.0 as eval/suites/worldprediction/configs/vlm/internvlu/
+InternVL-U-{4,8}f.json (model_max_frames must match --frames on the eval-side
+config too -- see MAINTENANCE note). No new sampling logic is written here;
+this script only imports and calls the existing function so offline (train)
+and on-the-fly (eval) frame extraction are provably identical.
 
 collect_frames() only guarantees exactly `model_max_frames` frames when
-duration >= model_max_frames/desired_fps (0.8s); shorter clips fall back to an
-fps-based path that can yield fewer frames. To make "always exactly 4 frames"
+duration >= model_max_frames/desired_fps; shorter clips fall back to an
+fps-based path that can yield fewer frames. To make "always exactly N frames"
 an invariant rather than a best-effort, any sample with a candidate clip
-shorter than 0.8s is dropped entirely (applied identically to train and eval).
+shorter than model_max_frames/desired_fps is dropped entirely (applied
+identically to train and eval) -- this threshold scales with --frames (0.8s
+at 4 frames, 1.6s at 8 frames), so a re-run at a different frame count is not
+guaranteed to keep/drop the same set of samples.
 
 The MCQ prompt (initial/final state images + 4 lettered candidate actions +
 answer format) is a deliberate near-verbatim port of
@@ -34,7 +38,8 @@ function -- if that prompt template ever changes, this port needs a manual
 re-sync (see MAINTENANCE note below).
 
 Usage:
-    python build_worldprediction_wm.py --task WM
+    python build_worldprediction_wm.py --task WM               # 4 frames (default), writes wm_train.jsonl/wm_eval.jsonl/frames/
+    python build_worldprediction_wm.py --task WM --frames 8     # writes wm_train_8f.jsonl/wm_eval_8f.jsonl/frames_8f/
 """
 from __future__ import annotations
 
@@ -47,7 +52,6 @@ from pathlib import Path
 REPO_ROOT = "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline"
 SUITE_DIR = f"{REPO_ROOT}/eval/suites/worldprediction"
 OUT_DIR = f"{REPO_ROOT}/data/datasets/worldprediction"
-FRAMES_DIR = f"{OUT_DIR}/frames"
 
 # MAINTENANCE: keep in sync with eval/suites/worldprediction/data/video_roots.py
 VIDEO_ROOTS = {
@@ -60,10 +64,14 @@ EVAL_DATASETS = {"COIN"}
 TRAIN_DATASETS = {"CrossTask", "EPIC-KITCHENS-100", "IKEAASM"}
 # EgoExo4D intentionally excluded: gated dataset, no local video root.
 
-MODEL_MAX_FRAMES = 4
-DESIRED_FPS = 5.0
-MIN_CLIP_DURATION = MODEL_MAX_FRAMES / DESIRED_FPS  # 0.8s -- see collect_frames branch
+DESIRED_FPS = 5.0  # matches configs/vlm/internvlu/InternVL-U-{4,8}f.json's desired_fps
 OPTIONS_ID = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+# Set by main() from --frames. Module-level so process_sample() (called with
+# no extra args by main()'s loop) can see it without threading it through
+# every call -- this script is single-run-per-process, never imported.
+MODEL_MAX_FRAMES = 4
+MIN_CLIP_DURATION = MODEL_MAX_FRAMES / DESIRED_FPS  # see collect_frames branch
 
 sys.path.insert(0, SUITE_DIR)
 from data.load_frames import collect_frames, get_frames_from_video  # noqa: E402
@@ -209,16 +217,31 @@ def process_sample(dataset_name, sample_uid, sample_info, video_root, frames_out
 
 
 def main():
+    global MODEL_MAX_FRAMES, MIN_CLIP_DURATION
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", default="WM", choices=["WM"])
+    parser.add_argument("--frames", type=int, default=4,
+                         help="frames per action clip (model_max_frames). Default 4 writes the "
+                              "original unsuffixed paths (wm_train.jsonl/frames/); any other "
+                              "value writes frames_{n}f/ and wm_{train,eval}_{n}f.jsonl instead, "
+                              "so a re-run never clobbers the 4-frame build.")
     parser.add_argument("--limit", type=int, default=None, help="cap samples per dataset, for smoke testing")
     args = parser.parse_args()
+
+    MODEL_MAX_FRAMES = args.frames
+    MIN_CLIP_DURATION = MODEL_MAX_FRAMES / DESIRED_FPS
+
+    suffix = "" if args.frames == 4 else f"_{args.frames}f"
+    frames_dir = os.path.join(OUT_DIR, f"frames{suffix}")
+    train_path = os.path.join(OUT_DIR, f"wm_train{suffix}.jsonl")
+    eval_path = os.path.join(OUT_DIR, f"wm_eval{suffix}.jsonl")
 
     ann_path = f"{SUITE_DIR}/data/WorldPrediction-{args.task}.json"
     data = json.load(open(ann_path))
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    os.makedirs(FRAMES_DIR, exist_ok=True)
+    os.makedirs(frames_dir, exist_ok=True)
 
     train_rows, eval_rows = [], []
     skip_counts = {}
@@ -226,7 +249,7 @@ def main():
         if dataset_name not in EVAL_DATASETS and dataset_name not in TRAIN_DATASETS:
             continue  # EgoExo4D
         video_root = VIDEO_ROOTS[dataset_name]
-        frames_out_dir = os.path.join(FRAMES_DIR, dataset_name)
+        frames_out_dir = os.path.join(frames_dir, dataset_name)
         items = list(samples.items())
         if args.limit:
             items = items[: args.limit]
@@ -245,8 +268,6 @@ def main():
                 train_rows.append(row)
         print(f"[{dataset_name}] kept {n_ok}/{len(items)}, skipped {n_skip}")
 
-    train_path = os.path.join(OUT_DIR, "wm_train.jsonl")
-    eval_path = os.path.join(OUT_DIR, "wm_eval.jsonl")
     with open(train_path, "w") as f:
         for row in train_rows:
             f.write(json.dumps(row) + "\n")

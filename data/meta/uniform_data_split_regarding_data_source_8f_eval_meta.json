@@ -1,0 +1,11 @@
+{
+  "uniform_data_split_regarding_data_source_8f_eval": {
+    "root": "/",
+    "annotation": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/datasets/uniform_data_split_regarding_data_source_8f/eval.jsonl",
+    "data_augment": false,
+    "max_dynamic_patch": 1,
+    "repeat_time": 1,
+    "length": 120,
+    "task_type": "understanding"
+  }
+}
