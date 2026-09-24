@@ -1,0 +1,8 @@
+You are given two frames of a 2D shape transformation sequence, arranged as the top-left and bottom-right cells of an otherwise-empty 2x2 grid: the top-left cell is the FIRST frame (starting state) and the bottom-right cell is the FINAL frame (ending state). Infer the intermediate transformation steps that connect them, then generate the two missing intermediate frames and output a single complete 2x2 grid image with this exact layout:
+  - top-left: the given first frame (reproduce it unchanged)
+  - top-right: the first inferred intermediate frame
+  - bottom-left: the second inferred intermediate frame
+  - bottom-right: the given final frame (reproduce it unchanged)
+The four cells must read in temporal order top-left -> top-right -> bottom-left -> bottom-right, showing the transformation progressing smoothly and consistently with the rule described below. Do not alter the given first and final frames, do not add gutters/labels beyond the four frames, and output only the single 2x2 grid image.
+
+Task: The scene shows a colored 2D polygon, a rotation center marked by a small circular marker, and a dashed target outline indicating the final orientation. Only orientation changes. Rotate the polygon in the counterclockwise direction. First note the polygon’s initial orientation and the marked center, then read the dashed outline to know the target orientation. Rotate the polygon counterclockwise around the center until it completely overlaps the dashed outline with no offset. Keep size unchanged, keep a line to the center, and end with the polygon exactly matching the dashed outline.

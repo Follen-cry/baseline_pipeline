@@ -1,0 +1,43 @@
+{
+  "sample_id": "01",
+  "task": "2d_geometric_transformation",
+  "format": "intermediate_grid",
+  "source_raw_dir": "/scratch/network/ssd2/junlin/ssl_mllm/Evaluation/VBVR-CustomEval/eval_samples/raw/2d_geometric_transformation/transformation_worlds_2d_geometric_transformation_task/transformation_worlds_2d_geometric_transformation_00000001",
+  "generator_repo": "https://github.com/VBVR-DataFactory/O-6_2d_geometric_transformation_data-generator",
+  "generator_commit": "df58760e54b61be4d8f9c77bb58565e0de8acc51",
+  "parameters": {
+    "shape_type": "arrow",
+    "rotation_angle": 91,
+    "rotation_direction": "clockwise",
+    "initial_angle": 354,
+    "objects": [
+      {
+        "symbol": "arrow",
+        "center": [
+          795,
+          475
+        ],
+        "color": [
+          69,
+          135,
+          76
+        ],
+        "initial_angle": 354,
+        "rotation_angle": 91
+      }
+    ]
+  },
+  "intermediate_progress": [
+    0.3333333333333333,
+    0.6666666666666666
+  ],
+  "grid_layout": {
+    "top_left": "first_frame",
+    "top_right": "intermediate_1",
+    "bottom_left": "intermediate_2",
+    "bottom_right": "final_frame",
+    "cell_size": 512,
+    "grid_size": 1024
+  },
+  "fidelity_check": "re-rendered first frame byte-matches original first_frame.png"
+}

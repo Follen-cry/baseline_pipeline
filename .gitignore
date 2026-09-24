@@ -42,3 +42,13 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
+
+# VBVR composed-intermediate (2x2 grid) datasets: generator raw output and the
+# rendered input/target PNGs are regenerable from the seeded builders in
+# data/sources/vbvr/processing/build_*_composed_intermediate*.py (SEED 20260916 /
+# 20260918) -- same policy as worldprediction's frames. Only jsonl/meta/README
+# are committed.
+data/sources/vbvr/raw/
+data/datasets/*_Composed_intermediate*/images/
+# one-off local gallery viewer for eyeballing generations, not pipeline code
+data/sources/vbvr/processing/_gallery_fix/

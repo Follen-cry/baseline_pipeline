@@ -31,7 +31,24 @@ Scripts that turn generator output into training rows:
 `vbvr_next_frame_make_dual.py` (S3's MCQ construction + the actual train/eval window split).
 `vbvr_task_presets.py` defines the `pilot5` task list these scripts read.
 
+**Composed-intermediate (2x2 grid) builders** — a separate stage-2 task family, not part of
+S0-S3: `build_{2d_geo_trans,multi_object_placement,rotation_puzzle,shape_color_then_move}_composed_intermediate.py`
+and `build_multi_object_placement_composed_intermediate_cross.py`. Each generates fresh seeded
+samples with the vendored generator, re-renders the 2 intermediate frames (fidelity-checked
+against the generator's own first/final frames), and writes
+`../../datasets/<task>_Composed_intermediate*/` + `../../meta/<task>_Composed_intermediate*_meta.json`.
+Per-dataset details live in each dataset dir's README.
+
+## `pilots/`
+
+- `pilots/intermediate_grid/` — the original 10-sample `2d_geometric_transformation`
+  intermediate-grid probe (first + final frame → 2x2 grid) that the composed-intermediate
+  datasets grew out of. See its README.
+
 ## `raw/` — not migrated yet
+
+(Exception: the composed-intermediate builders write their own generator output to
+`raw/<task>/` inside this repo; it's gitignored and regenerable from the builders' seeds.)
 
 Raw generator output (videos + sampled frame windows) lives outside this repo, on a different
 volume than the rest of this pipeline:
