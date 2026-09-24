@@ -11,6 +11,14 @@ again.
 PROVENANCE.md is the record of *what actually happened* and *why it's organized this way*.
 When the two disagree, trust PROVENANCE.md.
 
+## Versions
+
+- **v1** — S0-S4 series and everything built on it; frozen at git tag `v1`, files at their
+  original paths. [`docs/v1.md`](docs/v1.md)
+- **v2** — T0-T4 temporal SSL; purely additive, every v2 path contains `v2`. [`docs/v2.md`](docs/v2.md)
+
+Overview and path map: [`docs/VERSIONS.md`](docs/VERSIONS.md).
+
 ## Layout
 
 ```
