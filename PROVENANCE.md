@@ -11,6 +11,13 @@ source registry. Stage-1 (S0-S3) training data mixes VBVR with 4 natural-video s
 
 All paths below are relative to `/scratch/network/ssd2/junlin/ssl_mllm/` unless marked otherwise.
 
+> **2026-09-24 layout note:** when the repo was split into v1/v2 (`docs/VERSIONS.md`),
+> everything this document calls `baseline_pipeline/data/<layer>/...` moved to
+> `baseline_pipeline/data/v1/<layer>/...`, and the submodule launchers moved from
+> `shell/internvlu/{sft,orchestration}/` to `.../{sft,orchestration}/v1/`. Repo-internal
+> references below have been updated. Paths into the original `ssl_mllm/` tree
+> (`data/datasets/epic_ssl`, `Model_Related/...`) are unchanged, because those locations did not move.
+
 ## 1. Data generation (raw) — which VBVR-DataFactory generators feed S0-S3
 
 Only **5 of the 16** `VBVR-DataFactory/*` generators feed the S0-S3 merged dataset — the
@@ -36,14 +43,14 @@ part of S0-S3; exclude from the S0-S3 provenance when migrating.
 Confirmed pool size: **5 tasks × 5,000 windows = 25,000 rows**, shared verbatim across
 S0/S1/S2/S3, per `data/datasets/vbvr_next_frame/sampling_summary.json` and its README.
 
-`data/meta/final_S{0,1,2,3}_meta.json` (+ `final_S3_eval_meta.json`) each point to one
-`data/datasets/final_s0s3/S{N}_{train,eval}.jsonl` file (`task_type: "imgen"`), row counts:
+`data/v1/meta/final_S{0,1,2,3}_meta.json` (+ `final_S3_eval_meta.json`) each point to one
+`data/v1/datasets/final_s0s3/S{N}_{train,eval}.jsonl` file (`task_type: "imgen"`), row counts:
 49,113 / 49,113 / 49,113 / 47,770 (train) + 2,075 (S3 eval).
 
 - `data/scripts/filter_final_s0s3.py` — post-merge cleanup: drops rows in
   `final_s0s3/*.jsonl` referencing missing image files (~2.7% loss, from
   `build_panda70m_epic_ssl.py`'s cv2 seek failures), rewrites files in place with a `.bak`
-  backup, updates the `length` field in each `data/meta/final_S{N}*_meta.json`.
+  backup, updates the `length` field in each `data/v1/meta/final_S{N}*_meta.json`.
 - `data/scripts/merge_final_s0s3.py` — the actual dataset assembler. Merges VBVR + 4
   real-world sources per setting:
 
@@ -54,7 +61,7 @@ S0/S1/S2/S3, per `data/datasets/vbvr_next_frame/sampling_summary.json` and its R
   | S2 | `vbvr_S2_train.jsonl` | `epic_gen_action/*_train.jsonl` | `nwm_gen_action/*_train.jsonl` | `panda70m_gen_S2/*_train.jsonl` | `panda70m_v1_gen_S2/*_train.jsonl` |
   | S3 train/eval | `vbvr_S3_{train,eval}.jsonl` | `epic_dual_action/*_{train,eval}.jsonl` | `nwm_dual_action/*_{train,eval}.jsonl` | `panda70m_dual_noaction/*_{train,eval}.jsonl` | `panda3dsr_dual_noaction/*_{train,eval}.jsonl` |
 
-  All paths rooted at `data/datasets/`. Row `source`/`orig_id` stamped by
+  All paths rooted at `data/v1/datasets/`. Row `source`/`orig_id` stamped by
   `load_and_tag`/`write_merged`. `max_dynamic_patch=3` for S0/S1/S2, `7` for S3 (3 ctx + 4 MCQ
   options).
 
@@ -111,7 +118,7 @@ S0/S1/S2/S3, per `data/datasets/vbvr_next_frame/sampling_summary.json` and its R
   train, so no eval image ever leaks into a training row (even as a wrong MCQ option). The
   same convention (paired `_train.jsonl`/`_eval.jsonl`) applies to the 4 real-world sources'
   `_dual_action`/`_dual_noaction` builders for S3.
-- Confirmed on-disk contents of `data/datasets/final_s0s3/`: `S0_train.jsonl` (49,113 rows),
+- Confirmed on-disk contents of `data/v1/datasets/final_s0s3/`: `S0_train.jsonl` (49,113 rows),
   `S1_train.jsonl` (49,113), `S2_train.jsonl` (49,113), `S3_train.jsonl` (47,770),
   `S3_eval.jsonl` (2,075) — counts already reflect `filter_final_s0s3.py`'s post-merge drop
   (~2.7% loss concentrated in `panda70m_epic_ssl` rows).
@@ -126,21 +133,21 @@ chains from another stage's output (confirmed: the orchestrator never overrides
 
 - `BASE_SNAPSHOT` (all 4):
   `/scratch/network/ssd2/junlin/huggingface/hub/models--InternVL-U--InternVL-U/snapshots/f012d760e69712bb47f7d3d09a24280f346cee01`
-- `run_s0_gen_sft.sh`: `META_PATH=data/meta/final_S0_meta.json`,
+- `run_s0_gen_sft.sh`: `META_PATH=data/v1/meta/final_S0_meta.json`,
   `OUTPUT_DIR=/scratch/network/ssd2/junlin/models/internvlu-s0-gen` (+`-merged`),
   `LM_LOSS_WEIGHT=0.0` (no-caption → text-CE carries no signal), `GEN_LOSS_WEIGHT=0.5`
   (warmup 20), `IMGEN_RATIO=1.0`, `GEN_IMAGE_SIZE=512`, `LORA_RANK=32`, `BATCH_SIZE=16`,
   `EPOCHS=1`, `LR=1e-5`, `INTERNVLU_VAE_COND=1`.
-- `run_s1_gen_sft.sh`: same recipe, `META_PATH=data/meta/final_S1_meta.json`,
+- `run_s1_gen_sft.sh`: same recipe, `META_PATH=data/v1/meta/final_S1_meta.json`,
   `OUTPUT_DIR=.../internvlu-s1-gen`, `LM_LOSS_WEIGHT=0.0`.
-- `run_s2_gen_sft.sh`: `META_PATH=data/meta/final_S2_meta.json`,
+- `run_s2_gen_sft.sh`: `META_PATH=data/v1/meta/final_S2_meta.json`,
   `OUTPUT_DIR=.../internvlu-s2-gen`, **`LM_LOSS_WEIGHT=0.0`** (confirmed by full read — same
   default as S0/S1; S2's caption sits in the masked human turn, the supervised GPT turn is
   still the fixed phrase, so 0.0 is correct despite S2 having real caption text). All other
   values (GPUS=8, EPOCHS=1, LR=1e-5, LORA_RANK=32, BATCH_SIZE=16, GEN_IMAGE_SIZE=512,
   GEN_LOSS_WEIGHT=0.5/warmup 20, IMGEN_RATIO=1.0, INTERNVLU_VAE_COND=1) are identical across
   S0/S1/S2.
-- `run_s3_gen_sft.sh`: `META_PATH=data/meta/final_S3_meta.json`,
+- `run_s3_gen_sft.sh`: `META_PATH=data/v1/meta/final_S3_meta.json`,
   `OUTPUT_DIR=.../internvlu-s3-gen`, **`LM_LOSS_WEIGHT=0.5`** (S3's MCQ answer-letter CE is
   real supervision, unlike S0-S2). **Doc/code mismatch, flag for the new repo**: S0/S1/S2's
   own script comments claim "S3 keeps LM_LOSS_WEIGHT=1.0"; the actual `run_s3_gen_sft.sh`
@@ -185,8 +192,8 @@ per-job logs):
   — stage-2 continuation SFT. Default
   `META_PATH=data/meta/vbvr_target_pred_id_mop_meta.json`, but per `CHECKPOINTS.md` the actual
   stage-2 4-task runs override
-  `META_PATH=data/meta/vbvr_target_pred_4task_meta.json` (→
-  `data/datasets/vbvr_target_pred_4task/target_pred_4task_train_no_ce.jsonl`, 2,000 rows = 4
+  `META_PATH=data/v1/meta/vbvr_target_pred_4task_meta.json` (→
+  `data/v1/datasets/vbvr_target_pred_4task/target_pred_4task_train_no_ce.jsonl`, 2,000 rows = 4
   tasks × 500). `INTERNVLU_CKPT` set per-run to each `internvlu-s{N}-gen-merged` (read-only,
   script refuses if `OUTPUT_DIR == INTERNVLU_CKPT`). `LM_LOSS_WEIGHT=0.0`, `LORA_RANK=32`,
   `LR=1e-5`, `BATCH_SIZE=16`, 1 epoch.
@@ -200,7 +207,7 @@ per-job logs):
   `{base,s0,s1,s2,s3}_{sft,infer,score_rule,score_judge}.log`). Confirmed pattern: each
   `run_target_pred_mop_sft.sh` invocation sets `model_name_or_path=<internvlu-s{N}-gen-merged>`
   (or the raw `BASE_SNAPSHOT` for `base`, i.e. no stage-1 pretrain), `output_dir` the matching
-  `internvlu-s{N}-4task500sft`, `meta_path=data/meta/vbvr_target_pred_4task_meta.json`,
+  `internvlu-s{N}-4task500sft`, `meta_path=data/v1/meta/vbvr_target_pred_4task_meta.json`,
   `num_train_epochs=1`, `learning_rate=1e-5`, `use_llm_lora=32` — otherwise identical across
   all 5 runs. `pipeline.log` also documents real hiccups worth knowing about if this path is
   re-run: an `s1` pretrain-dependency wait (blocked on the buggy first stage-1 orchestrator
@@ -241,7 +248,7 @@ per-job logs):
    `next_frame_train_no_ce.jsonl` — 100,000 rows on disk — not this file — confirmed 25,000
    rows, 5-task pool). The path was evidently reused/overwritten by the S0-S3 pilot5 pool
    after that report's prose was written and the prose was never updated. No code anywhere
-   `open()`s this file today. **Confirmed excludable** from `data/sources/vbvr/`.
+   `open()`s this file today. **Confirmed excludable** from `data/v1/sources/vbvr/`.
 4. **`.bak` mtime forensics: high-confidence single run.** Mtimes cluster in one tight,
    monotonic ~20-second window on 2026-08-31 (`S0_train.jsonl.bak` 12:00:28.30 →
    `S0_train.jsonl` 12:00:40.99 → `S1...` → `S2...` → `S3_train...` → `S3_eval...`,
@@ -256,11 +263,11 @@ per-job logs):
    per-source detail — raw data locations, stage structure, train/eval split mechanism, output
    files, sizes — now in §7 below.
 
-## 7. Real-world source registry (`data/sources/` candidates beyond `vbvr`)
+## 7. Real-world source registry (`data/v1/sources/` candidates beyond `vbvr`)
 
 Stage-1 (S0-S3) training data is **not VBVR-only** — every one of `merge_final_s0s3.py`'s
 S0/S1/S2/S3 settings mixes the VBVR pilot5 pool with 4 natural-video sources. These are
-first-class citizens of the new repo's `data/sources/` registry, same detail level as VBVR.
+first-class citizens of the new repo's `data/v1/sources/` registry, same detail level as VBVR.
 
 ### `epic_kitchens` — `data/scripts/build_epic_ssl.py`
 - **Raw data**: source MP4s (116 videos, EPIC-KITCHENS-100 validation split) live only on

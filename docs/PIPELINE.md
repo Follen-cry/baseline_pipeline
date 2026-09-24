@@ -5,7 +5,7 @@ document is the story; that one is the evidence.
 
 ## 1. Data generation
 
-Five VBVR synthetic-task generators (`data/sources/vbvr/generators/`) each produce raw videos.
+Five VBVR synthetic-task generators (`data/v1/sources/vbvr/generators/`) each produce raw videos.
 In parallel, four real-world sources — `epic_kitchens`, `nwm`, `panda70m_epic`, `panda70m_v1` —
 each pull from their own raw footage (three of them via their own `anchors`/`splits`-style
 stage, panda70m_v1 sharing a module with panda70m_epic's sibling driver).
@@ -16,7 +16,7 @@ Every source turns its raw footage into rows of a specific shape (context frames
 + prompt text), **and decides its own train/eval split at this stage** — VBVR splits by sample
 window, epic_kitchens by video, nwm by trajectory, both panda70m sources by clip. All five use a
 seeded RNG and hold out a disjoint pool before any row-level construction happens, so eval rows
-never share source footage with train rows. `data/common/build_real_video_extra_settings.py`
+never share source footage with train rows. `data/v1/common/build_real_video_extra_settings.py`
 fills in some of the real-world sources' settings (S1 for all three, plus panda70m_epic's S2)
 that their own source-specific builders don't natively produce.
 
@@ -26,10 +26,10 @@ paired train/eval files).
 
 ## 3. Recipe assembly
 
-`data/recipes/s0s3_baseline/merge_final_s0s3.py` takes the pre-split per-source files for a
+`data/v1/recipes/s0s3_baseline/merge_final_s0s3.py` takes the pre-split per-source files for a
 given setting and interleaves them into one jsonl per setting, tagging each row with its
 `source` and `orig_id`. `filter_final_s0s3.py` then drops rows whose referenced images turned
-out missing (a real, if small, gap in the raw pipeline). Output: `data/datasets/final_s0s3/`.
+out missing (a real, if small, gap in the raw pipeline). Output: `data/v1/datasets/final_s0s3/`.
 
 ## 4. Training — stage 1 (S0-S3 gen-SFT)
 
@@ -42,7 +42,7 @@ its LoRA into a `-merged` checkpoint when done.
 
 Each stage-1 merged checkpoint (plus a no-pretrain `base` control) gets a second SFT pass
 (`run_target_pred_mop_sft.sh`) on a small 4-task, 500-example curated set
-(`data/datasets/vbvr_target_pred_4task/`). This is the actual object of comparison — stage-1
+(`data/v1/datasets/vbvr_target_pred_4task/`). This is the actual object of comparison — stage-1
 checkpoints are not separately evaluated.
 
 ## 6. Evaluation

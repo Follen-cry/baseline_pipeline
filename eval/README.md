@@ -113,7 +113,7 @@ control-group protocol detail.
 - **Not yet done**: evaluation data. `run_internvlu.sh` reads `data/WorldPrediction-{WM,PP}.json`
   plus the video sources those reference (COIN, CrossTask, IKEA-ASM — `download_*.py`/`.sh`
   scripts exist for these but haven't been re-run/verified from this repo). Same "code migrated,
-  raw data deferred" status as the 5 `data/sources/` — not yet traced against PROVENANCE.md.
+  raw data deferred" status as the 5 `data/v1/sources/` — not yet traced against PROVENANCE.md.
 - **Not yet done**: no comparison-report step ported into `eval/suites/vbvr/artifacts/`-style
   reporting yet — `compare_wp.py` (inside the submodule) is the closest existing tool.
 - **Base-checkpoint reference results** (added 2026-09-08, commit `af65e93` inside the

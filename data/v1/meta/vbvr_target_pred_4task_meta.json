@@ -1,0 +1,11 @@
+{
+  "vbvr_target_pred_4task_train_no_ce": {
+    "root": "/",
+    "annotation": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/v1/datasets/vbvr_target_pred_4task/target_pred_4task_train_no_ce.jsonl",
+    "data_augment": false,
+    "max_dynamic_patch": 1,
+    "repeat_time": 1,
+    "length": 2000,
+    "task_type": "imgen"
+  }
+}

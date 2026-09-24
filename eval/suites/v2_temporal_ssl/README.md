@@ -2,7 +2,7 @@
 
 Planned: held-out eval for T0-T4 on the v2 window pool's eval split.
 
-- Text answers: GAP / ORDER / MISSING accuracy, parsed with `data/common/v2/prompts.py`.
+- Text answers: GAP / ORDER / MISSING accuracy, parsed with `data/v2/common/prompts.py`.
 - Images: PSNR / SSIM / LPIPS / DINO similarity to ground truth, broken down by Δt and missing position k.
 - Every T model also runs the shared T0 forecasting eval, as a common yardstick.
 

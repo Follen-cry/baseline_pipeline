@@ -2,26 +2,26 @@ __pycache__/
 *.pyc
 
 # S4 pipeline intermediates (reproducible via build_all.sh + label_with_vlm.py +
-# fill_s4_captions.py -- see data/recipes/s4_progression/README.md). Only the
+# fill_s4_captions.py -- see data/v1/recipes/s4_progression/README.md). Only the
 # final S4_train.jsonl + S4_dropped_ids.txt are committed.
-data/datasets/s4_progression/S4_skeleton.jsonl
-data/datasets/s4_progression/S4_captioning_manifest.jsonl
-data/datasets/s4_progression/manifest_shard*.jsonl
-data/datasets/s4_progression/manifest_retry_epic*.jsonl
-data/datasets/s4_progression/caption_prefixes/
-data/datasets/s4_progression/labels/
+data/v1/datasets/s4_progression/S4_skeleton.jsonl
+data/v1/datasets/s4_progression/S4_captioning_manifest.jsonl
+data/v1/datasets/s4_progression/manifest_shard*.jsonl
+data/v1/datasets/s4_progression/manifest_retry_epic*.jsonl
+data/v1/datasets/s4_progression/caption_prefixes/
+data/v1/datasets/s4_progression/labels/
 
 # worldprediction: extracted action-clip frame PNGs are a regenerable processing
-# artifact (rebuild via data/sources/worldprediction/processing/build_worldprediction_wm.py),
+# artifact (rebuild via data/v1/sources/worldprediction/processing/build_worldprediction_wm.py),
 # not source-of-truth -- same policy as every other source's raw/extracted media
 # (e.g. epic_kitchens' frame jpgs live entirely outside this repo). Only the
 # jsonl/meta that reference these paths are committed.
-data/datasets/worldprediction/frames/
-data/datasets/worldprediction/frames_8f/
+data/v1/datasets/worldprediction/frames/
+data/v1/datasets/worldprediction/frames_8f/
 
-# data/sources/worldprediction/processing/build_worldprediction_wm.py's own
+# data/v1/sources/worldprediction/processing/build_worldprediction_wm.py's own
 # run logs -- not committed, same reasoning as eval/**/*.log above.
-data/sources/worldprediction/processing/*.log
+data/v1/sources/worldprediction/processing/*.log
 
 # eval/: generated report pages are pure presentation, 100% regenerable from the
 # matching gen_*.py / *_artifact.py script plus the (tracked) run-result JSON they
@@ -45,10 +45,10 @@ venv/
 
 # VBVR composed-intermediate (2x2 grid) datasets: generator raw output and the
 # rendered input/target PNGs are regenerable from the seeded builders in
-# data/sources/vbvr/processing/build_*_composed_intermediate*.py (SEED 20260916 /
+# data/v1/sources/vbvr/processing/build_*_composed_intermediate*.py (SEED 20260916 /
 # 20260918) -- same policy as worldprediction's frames. Only jsonl/meta/README
 # are committed.
-data/sources/vbvr/raw/
-data/datasets/*_Composed_intermediate*/images/
+data/v1/sources/vbvr/raw/
+data/v1/datasets/*_Composed_intermediate*/images/
 # one-off local gallery viewer for eyeballing generations, not pipeline code
-data/sources/vbvr/processing/_gallery_fix/
+data/v1/sources/vbvr/processing/_gallery_fix/

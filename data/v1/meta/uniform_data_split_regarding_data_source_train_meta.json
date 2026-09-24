@@ -1,0 +1,11 @@
+{
+  "uniform_data_split_regarding_data_source_train": {
+    "root": "/",
+    "annotation": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/v1/datasets/uniform_data_split_regarding_data_source/train.jsonl",
+    "data_augment": false,
+    "max_dynamic_patch": 1,
+    "repeat_time": 1,
+    "length": 483,
+    "task_type": "understanding"
+  }
+}
