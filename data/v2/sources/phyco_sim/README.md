@@ -1,5 +1,8 @@
 # `data/v2/sources/phyco_sim/` — PhyCo-Sim (v2 source)
 
+> **Not used in the v2 window pool** (dropped by the user on 2026-09-26). Manifest and loader
+> (`recipes/temporal_ssl/clip_sources.py`) are kept in case it is added back.
+
 - **Repo:** [`nnsriram97/phyco_kubric`](https://huggingface.co/datasets/nnsriram97/phyco_kubric)
   (CC-BY-ND-4.0). The repo is **gated**: the HF account whose token is used (`foolen`) must click
   "request access" on the repo page first (auto-approved). Until then downloads return 403.

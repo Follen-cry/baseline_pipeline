@@ -1,5 +1,8 @@
 # `data/v2/sources/panda70m/` — Panda-70M physics clips (v2 source)
 
+> **Not used in the v2 window pool** (dropped by the user on 2026-09-26). Manifest and loader
+> (`recipes/temporal_ssl/clip_sources.py`) are kept in case it is added back.
+
 - **Source:** [snap-research/Panda-70M](https://github.com/snap-research/Panda-70M) (CVPR 2024),
   YouTube clips with auto-generated captions. Clips are fetched from YouTube; the dataset
   only ships metadata.
@@ -118,29 +121,42 @@ One row per downloaded clip, in download order:
 video time), `caption`, `matching_score`, `category`, `judge` (full judge JSON), `fps`,
 `num_frames` (decoded), `duration_s`, `width`, `height`, `video` (absolute mp4 path).
 
-## Status (2026-09-25): judging done, download paused at 1,204 / 5,000 (YouTube bot-check)
+## Status (2026-09-25): final, 2,397 clips (download stopped at 2,397 / 5,000)
+
+The user chose to stop here and use the 2,397 clips already downloaded rather than wait out the
+YouTube block. The 1,429 clips with `visual.pass == true` are the stricter subset. The file
+keeps its planned name, `selection_5k.jsonl`, but holds 2,397 rows. The details below record
+how the download went.
 
 - **Judge:** complete for both tiers. Tier A: 6,787 / 80,449 passed (8.4%). Tier B: 2,401 /
   20,135 passed (11.9%). **Total pool: 9,188** (`pool_passed.jsonl`). By category:
   fire_smoke_explosion 3,114, fluid_flow 2,604, collision_impact 743, projectile 620,
   wind_driven 559, splash_pour 498, deformation_breaking 288, rotation_oscillation 280,
   falling 242, rolling_sliding 147, other_physics 93.
-- **Download:**
-  - **Result:** 1,204 clips succeeded, all tier A, 943 MB in `videos/`. Failures were 51
-    unavailable, 43 errors and 42 cut failures. Clips are mostly 640×360 at 30 fps, with a
-    median length of 6.6 s.
-  - **Block:** YouTube's bot-check ("Sign in to confirm you're not a bot") began intermittently
-    around attempt 390 and became a full block around 1,200 successes. The circuit breaker
-    stopped the run on 2026-09-25 00:20.
-  - **Retry routes:** every yt-dlp client (android, tv_simply, ios, web_safari, mweb, tv) was
-    blocked, on torrnode11 and on torrnode7. torrnode7 has a different egress IP
-    (129.67.94.121 vs 129.67.94.83, shared by torrnode8/12).
-  - **To resume:** `python download_panda70m.py --target 5000 --workers 2 --cookies <cookies.txt>`.
-    Use a cookies.txt exported from a logged-in YouTube browser session, or rerun without
-    cookies once the block lifts. The download is resumable; blocked attempts are retried.
-- **Visual check** (`verify_panda70m.py`, stored as `visual` in `selection_5k.jsonl`): 735 of
-  1,204 clips pass (61%), and 1 errored. Use it as a soft score, since it agrees with a manual
-  label on only 17/24 clips.
+- **Downloaded: 2,397 clips.**
+  - All are tier A, from 2,345 distinct YouTube videos, 1.9 GB in `videos/`.
+  - Duration p10 / p50 / p90 = 4.1 / 6.7 / 20.0 s. Mostly 640×360 at 30 fps.
+  - Categories: fire_smoke_explosion 385, fluid_flow 366, collision_impact 247, wind_driven 240,
+    projectile 236, splash_pour 229, deformation_breaking 200, rotation_oscillation 172,
+    falling 150, rolling_sliding 108, other_physics 64.
+- **How the download went:**
+  1. *No cookies, 2026-09-24 18:00 to 09-25 02:31:* 2,009 successes. YouTube's bot-check
+     ("Sign in to confirm you're not a bot") came and went, and the circuit breaker paused and
+     resumed several times before it stopped the run.
+  2. *Other routes after that block:* every yt-dlp client (android, tv_simply, ios, web_safari,
+     mweb, tv) was blocked, on torrnode11 and on torrnode7. torrnode7 has a different egress IP
+     (129.67.94.121 vs 129.67.94.83, which torrnode8/12 share).
+  3. *With the user's logged-in cookies (`--cookies`), 09-25 06:25 to 08:32:* 388 more (a
+     30-clip pilot, then 358). After that the cookie session was bot-checked as well.
+  - **At 08:40, both routes were still blocked**, with and without cookies.
+  - With cookies, only yt-dlp's default and mweb clients work. `download_panda70m.py` switches
+    to them automatically and gives every attempt its own copy of the cookie file, because
+    yt-dlp rewrites it.
+  - **To resume later, if more clips are needed:** `python download_panda70m.py --target 5000 --workers 2 --jitter 3
+    [--cookies <fresh cookies.txt>]`. It is resumable, and blocked attempts are retried.
+- **Visual check** (`verify_panda70m.py`, stored as `visual` in `selection_5k.jsonl`): all
+  2,397 clips annotated, **1,429 pass (60%)**. Use it as a soft score, since it agrees with a
+  manual label on only 17/24 clips.
 
 ## Notes for building v2 windows
 

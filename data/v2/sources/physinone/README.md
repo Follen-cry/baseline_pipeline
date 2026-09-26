@@ -1,5 +1,8 @@
 # `data/v2/sources/physinone/` — PhysInOne (v2 source)
 
+> **v2 pool (2026-09-26):** all 5,000 scenes are candidates; frames read from `rgb/` at 30 fps.
+> Caption = `caption.txt`, verbatim (outcome descriptions are wanted).
+
 - **Source:** [vLAR-group/PhysInOne](https://github.com/vLAR-group/PhysInOne) (CVPR 2026),
   CC BY-NC-SA 4.0. Synthetic UE-rendered scenes covering 71 physical phenomena.
 - **Hosting:** 16 HF dataset repos `PhysInOneP01/PhysInOneP01` … `P16` (~111 TB). One zip per

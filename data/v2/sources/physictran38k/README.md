@@ -1,5 +1,9 @@
 # `data/v2/sources/physictran38k/` — PhysicTran38K (v2 source)
 
+> **v2 pool (2026-09-26):** all 10,000 clips of `selection_10k.jsonl` are candidates (no trim to
+> 5K, no moving-list exclusion); static windows are dropped by the pool's motion filter. Caption =
+> the full `prompt`, verbatim (outcome descriptions are wanted).
+
 - **Repo:** [`metazlb/PhysicTran38K`](https://huggingface.co/datasets/metazlb/PhysicTran38K)
   (same content is mirrored at `diffusion-cot/PhysicTran38K`), Apache-2.0, ~98 GB total.
 - **What it is:** **model-generated** videos of physical state transitions (from PhysicEdit,

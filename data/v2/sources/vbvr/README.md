@@ -1,5 +1,8 @@
 # `data/v2/sources/vbvr/` — VBVR synthetic task videos (v2 source)
 
+> **v2 pool (2026-09-26):** candidates = `split == "train"` rows, task-stratified (per task a
+> seeded prefix of a fixed shuffle, sized to the quota). Caption = generator `prompt`, verbatim.
+
 - **Raw videos (not copied):** `/scratch/network/ssd/junlin/vbvr_next_frame/raw/<task>/<chunk>/<prefix>_task/<task_id>/`
   with `ground_truth.mp4`, `first_frame.png`, `final_frame.png`, `metadata.json`, `prompt.txt`.
   This is the pool v1's S0-S3 next-frame data was built from: 14 tasks, 138,000 samples,

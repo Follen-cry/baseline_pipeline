@@ -1,5 +1,8 @@
 # `data/v2/sources/ssv2/` — Something-Something v2 (v2 source)
 
+> **v2 pool (2026-09-26):** all 10,000 clips of `selection_10k.jsonl` are candidates (no trim to
+> 5K). Caption = `label`, verbatim.
+
 ## Filtering & sampling summary
 
 **Category-stratified (24 physics templates).**

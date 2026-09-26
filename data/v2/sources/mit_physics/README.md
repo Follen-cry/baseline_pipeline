@@ -1,5 +1,10 @@
 # `data/v2/sources/mit_physics/` — Moments in Time, physics classes (v2 source)
 
+> **v2 pool (2026-09-26):** caption = the Qwen3-VL `caption` from `vlm.jsonl` (via
+> `selection_5k.jsonl`), minus watermark / "N sequential frames" remarks. The stock-footage title
+> in the file name (getty / vb, 2,152 clips) is kept in `source_meta.filename_title` only: on a
+> sampled comparison it described the whole stock video and often missed the physical process.
+
 - **Data:** Moments in Time v2 raw release (`Moments_in_Time_Raw_v2.zip`), fetched from the
   ungated HF mirror [`Pai3dot14/Moments_in_Time_Raw_v2_hf`](https://huggingface.co/datasets/Pai3dot14/Moments_in_Time_Raw_v2_hf)
   (7 byte-parts, 294.7 GB, zip64).
@@ -50,13 +55,12 @@ video (filename stem) is used at most once across classes.
    frame-widths/s, `obj_motion_max` ≥ 0.02.
 4. `../../common/vlm_check.py` (Qwen3-VL-8B-Instruct, 4 frames + class name) → `vlm.jsonl`;
    require `shows_label` and `real_footage`; clips without `heavy_text` are preferred.
-   It also writes a candidate `caption` (the MiT caption policy is still open).
+   It also writes a `caption`, which the v2 pool uses as MiT's caption (see the note at the top).
 5. `../../common/trim_selection.py` → **`selection_5k.jsonl`**, water-filled over the 24 classes
    (seed 42). The chain is `raw/mit_physics/run_pool_pipeline.sh`.
 
 ## Caveats for building v2 windows
 
 - **3 s clips:** 4 frames span 3Δt, so Δt ≤ ~0.95 s (Δt = 1.0 s needs ≥ 91 frames at 30 fps).
-- **Caption:** none in the raw data. Options: class-name template, the VLM candidate caption
-  from `vlm.jsonl`, or Spoken Moments in Time (separate request form).
+- **Caption:** none in the raw data (class label only) → decided: the VLM caption (note at the top).
 - Getty/videoblocks watermarks are common even among `heavy_text = false` clips.

@@ -1,5 +1,8 @@
 # `data/v2/sources/baai_physics/` — BAAI Physics-aware videos (v2 source)
 
+> **v2 pool (2026-09-26):** all 5,000 clips of `selection_5k.jsonl` are candidates. Caption =
+> dataset `caption`, verbatim.
+
 - **Repo:** [`BAAI-DataCube/Physics-aware-videos`](https://huggingface.co/datasets/BAAI-DataCube/Physics-aware-videos)
   (org is **BAAI-DataCube**, not `BAAI`), CC-BY-NC-4.0, ungated.
 - **What it is:** **real-world**, **fixed-camera** clips of physical processes (falling, rolling,
