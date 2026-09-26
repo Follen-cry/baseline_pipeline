@@ -1,0 +1,11 @@
+{
+  "v2_main_T2_eval": {
+    "root": "/",
+    "annotation": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/v2/datasets/temporal_ssl/settings/main/T2_eval.jsonl",
+    "data_augment": false,
+    "max_dynamic_patch": 3,
+    "repeat_time": 1,
+    "length": 750,
+    "task_type": "imgen"
+  }
+}

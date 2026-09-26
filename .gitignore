@@ -55,3 +55,5 @@ data/v1/sources/vbvr/processing/_gallery_fix/
 
 # v2 window pools: regenerable from manifests + merge_pools.py (seed 42), absolute paths to frames outside the repo; keep only summary.json
 data/v2/datasets/temporal_ssl/pools/*/*.jsonl
+# v2 T0-T4 rows: regenerable with derive_settings.py; keep only summary.json
+data/v2/datasets/temporal_ssl/settings/*/*.jsonl
