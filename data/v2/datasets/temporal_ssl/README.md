@@ -6,7 +6,21 @@
   Only `summary.json` is committed: the jsonl files are gitignored (absolute paths to frames
   outside the repo); rebuild them with `recipes/temporal_ssl/merge_pools.py --stage all [--name <run>]`
   (deterministic, seed 42) and compare against the committed `summary.json`.
-- `T{0..4}_{train,eval}.jsonl` — planned, derived from the pool.
+- `settings/<run>/T{0..4}_{train,eval}.jsonl` — trainer rows derived from the pool by
+  `recipes/temporal_ssl/derive_settings.py` (gitignored like the pools; `settings/<run>/summary.json`
+  holds counts, balance and a sha256 prefix per file). Row fields:
+
+| Field | Meaning |
+|---|---|
+| `id` | `<variant>__<pool window id>` |
+| `setting`, `variant` | `T0`..`T4`; variant `T4A` / `T4B` for T4 rows |
+| `task_type` | `imgen` (multimodal imgen reader in the trainer) |
+| `source`, `window_id`, `clip_id`, `split`, `caption`, `gap_s`, `stalled` | copied from the pool window |
+| `image` | the 3 input frame paths, in prompt order (F-order or A, B, C) |
+| `target_image`, `cond_image` | generated frame; VAE condition = nearest shown frame (tie → earlier) |
+| `layout` | ordered: `shown` F-names; shuffled: `labels` {A/B/C: F-name}; plus `target`, `cond` |
+| `answer` | ground truth: `gap`, `order`, `missing` as applicable; `order_equiv` = label pairs whose order is indistinguishable (identical adjacent frames) |
+| `conversations` | human prompt (`common/prompts.py`) and gpt answer (`{json}\n<img>` or `<img>`) |
 
 Pool row (one per window; `frames`, `frame_idx`, `timestamps` are chronological and aligned with
 `order` = `["F0","F1","F2","F3"]`):

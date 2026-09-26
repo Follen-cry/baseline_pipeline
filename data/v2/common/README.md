@@ -28,7 +28,7 @@ Code shared by every v2 source and the v2 recipe:
   |Δ| > 25) vs F0 and between adjacent frames; `is_static` = max change vs F0 < 0.1%.
 - `window_schema.py` (planned) — canonical window-pool row: source, clip_id, split, Δt, F0..F3
   paths, caption.
-- `prompts.py` (planned) — T0-T4 prompt templates and the GAP / ORDER / MISSING answer grammar (the v2
+- `prompts.py` — T0-T4 prompt templates and the GAP / ORDER / MISSING answer grammar (the v2
   eval parser uses the same file).
 
 Captions come with each source's raw data, so there is no captioning stage. See `docs/v2.md`.

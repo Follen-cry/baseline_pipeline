@@ -26,9 +26,11 @@ Full, reproducible description of the pool: `docs/v2.md`, "Window pool: how to r
     `datasets/temporal_ssl/pools/<name>/`. `<work>` = `/scratch/network/ssd/junlin/v2_frames/_work/temporal_ssl/`.
   - Extra single-source set, same eval as `main`, disjoint from `main`'s train windows:
     `python merge_pools.py --stage all --name physinone_extra --sources physinone --quota physinone=10000 --eval-from main --exclude-from main`
-- `derive_settings.py` (planned) — seeded pool → `T{0..4}_{train,eval}.jsonl` (ordering, masking,
-  shuffling, T4-A/B assignment, `cond_image` = observed frame nearest the target).
-- `validate.py` (planned) — label-balance checks (GAP, the 6 ORDER permutations, MISSING k).
+- `derive_settings.py` — pool → `../../datasets/temporal_ssl/settings/<run>/T{0..4}_{train,eval}.jsonl`
+  + `../../meta/<run>/T{N}_{split}_meta.json`: prompts from `common/prompts.py`, balanced seeded
+  ORDER / MISSING / T4-variant assignment, `cond_image` = nearest shown frame (tie → earlier), row
+  validation (image count, single trailing `<img>`, target not an input, `--check-files`). Run:
+  `python derive_settings.py --run main --check-files` (~30 s).
 
 Output: `../../datasets/temporal_ssl/pools/<run>/<src>_{train,eval}.jsonl` + `pools/<run>/summary.json`.
 Setting definitions and decisions: `docs/v2.md`.

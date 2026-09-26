@@ -1,0 +1,292 @@
+{
+ "run": "main",
+ "seed": 42,
+ "pool": "datasets/temporal_ssl/pools/main",
+ "settings": {
+  "T0_train": {
+   "rows": 60000,
+   "by_source": {
+    "baai_physics": 10588,
+    "mit_physics": 7059,
+    "physictran38k": 14118,
+    "physinone": 10588,
+    "ssv2": 7059,
+    "vbvr": 10588
+   },
+   "gap_s": {
+    "0.5": 26954,
+    "1.0": 26400,
+    "2.0": 6646
+   },
+   "variant": {
+    "T0": 60000
+   },
+   "target": {
+    "F3": 60000
+   },
+   "stalled": 6664,
+   "sha256_16": "a0a3fc911ed73618"
+  },
+  "T1_train": {
+   "rows": 60000,
+   "by_source": {
+    "baai_physics": 10588,
+    "mit_physics": 7059,
+    "physictran38k": 14118,
+    "physinone": 10588,
+    "ssv2": 7059,
+    "vbvr": 10588
+   },
+   "gap_s": {
+    "0.5": 26954,
+    "1.0": 26400,
+    "2.0": 6646
+   },
+   "variant": {
+    "T1": 60000
+   },
+   "target": {
+    "F3": 60000
+   },
+   "stalled": 6664,
+   "sha256_16": "2875b07d36d742fb"
+  },
+  "T2_train": {
+   "rows": 60000,
+   "by_source": {
+    "baai_physics": 10588,
+    "mit_physics": 7059,
+    "physictran38k": 14118,
+    "physinone": 10588,
+    "ssv2": 7059,
+    "vbvr": 10588
+   },
+   "gap_s": {
+    "0.5": 26954,
+    "1.0": 26400,
+    "2.0": 6646
+   },
+   "variant": {
+    "T2": 60000
+   },
+   "target": {
+    "F1": 20002,
+    "F2": 19999,
+    "F3": 19999
+   },
+   "stalled": 6664,
+   "sha256_16": "a9e03232a41f7bc7"
+  },
+  "T3_train": {
+   "rows": 60000,
+   "by_source": {
+    "baai_physics": 10588,
+    "mit_physics": 7059,
+    "physictran38k": 14118,
+    "physinone": 10588,
+    "ssv2": 7059,
+    "vbvr": 10588
+   },
+   "gap_s": {
+    "0.5": 26954,
+    "1.0": 26400,
+    "2.0": 6646
+   },
+   "variant": {
+    "T3": 60000
+   },
+   "target": {
+    "F3": 60000
+   },
+   "stalled": 6664,
+   "order": {
+    "A B C": 10002,
+    "A C B": 10002,
+    "B A C": 10002,
+    "B C A": 9997,
+    "C A B": 10000,
+    "C B A": 9997
+   },
+   "order_equiv_rows": 4272,
+   "sha256_16": "58858f20237c8dac"
+  },
+  "T4_train": {
+   "rows": 60000,
+   "by_source": {
+    "baai_physics": 10588,
+    "mit_physics": 7059,
+    "physictran38k": 14118,
+    "physinone": 10588,
+    "ssv2": 7059,
+    "vbvr": 10588
+   },
+   "gap_s": {
+    "0.5": 26954,
+    "1.0": 26400,
+    "2.0": 6646
+   },
+   "variant": {
+    "T4A": 30001,
+    "T4B": 29999
+   },
+   "target": {
+    "F1": 10002,
+    "F2": 10000,
+    "F3": 39998
+   },
+   "stalled": 6664,
+   "order": {
+    "A B C": 5004,
+    "A C B": 5002,
+    "B A C": 4999,
+    "B C A": 4998,
+    "C A B": 4998,
+    "C B A": 4998
+   },
+   "order_equiv_rows": 1988,
+   "sha256_16": "c86f743d0c32ecbe"
+  },
+  "T0_eval": {
+   "rows": 750,
+   "by_source": {
+    "baai_physics": 125,
+    "mit_physics": 125,
+    "physictran38k": 125,
+    "physinone": 125,
+    "ssv2": 125,
+    "vbvr": 125
+   },
+   "gap_s": {
+    "0.5": 322,
+    "1.0": 322,
+    "2.0": 106
+   },
+   "variant": {
+    "T0": 750
+   },
+   "target": {
+    "F3": 750
+   },
+   "stalled": 85,
+   "sha256_16": "91a421e06bf2dd22"
+  },
+  "T1_eval": {
+   "rows": 750,
+   "by_source": {
+    "baai_physics": 125,
+    "mit_physics": 125,
+    "physictran38k": 125,
+    "physinone": 125,
+    "ssv2": 125,
+    "vbvr": 125
+   },
+   "gap_s": {
+    "0.5": 322,
+    "1.0": 322,
+    "2.0": 106
+   },
+   "variant": {
+    "T1": 750
+   },
+   "target": {
+    "F3": 750
+   },
+   "stalled": 85,
+   "sha256_16": "b5a429a24c11996c"
+  },
+  "T2_eval": {
+   "rows": 750,
+   "by_source": {
+    "baai_physics": 125,
+    "mit_physics": 125,
+    "physictran38k": 125,
+    "physinone": 125,
+    "ssv2": 125,
+    "vbvr": 125
+   },
+   "gap_s": {
+    "0.5": 322,
+    "1.0": 322,
+    "2.0": 106
+   },
+   "variant": {
+    "T2": 750
+   },
+   "target": {
+    "F1": 252,
+    "F2": 252,
+    "F3": 246
+   },
+   "stalled": 85,
+   "sha256_16": "5b7f076390c00e5e"
+  },
+  "T3_eval": {
+   "rows": 750,
+   "by_source": {
+    "baai_physics": 125,
+    "mit_physics": 125,
+    "physictran38k": 125,
+    "physinone": 125,
+    "ssv2": 125,
+    "vbvr": 125
+   },
+   "gap_s": {
+    "0.5": 322,
+    "1.0": 322,
+    "2.0": 106
+   },
+   "variant": {
+    "T3": 750
+   },
+   "target": {
+    "F3": 750
+   },
+   "stalled": 85,
+   "order": {
+    "A B C": 126,
+    "A C B": 126,
+    "B A C": 126,
+    "B C A": 126,
+    "C A B": 126,
+    "C B A": 120
+   },
+   "order_equiv_rows": 56,
+   "sha256_16": "7f49dedf6c5f9f50"
+  },
+  "T4_eval": {
+   "rows": 750,
+   "by_source": {
+    "baai_physics": 125,
+    "mit_physics": 125,
+    "physictran38k": 125,
+    "physinone": 125,
+    "ssv2": 125,
+    "vbvr": 125
+   },
+   "gap_s": {
+    "0.5": 322,
+    "1.0": 322,
+    "2.0": 106
+   },
+   "variant": {
+    "T4B": 750
+   },
+   "target": {
+    "F1": 252,
+    "F2": 252,
+    "F3": 246
+   },
+   "stalled": 85,
+   "order": {
+    "A B C": 126,
+    "A C B": 126,
+    "B A C": 126,
+    "B C A": 126,
+    "C A B": 126,
+    "C B A": 120
+   },
+   "order_equiv_rows": 44,
+   "sha256_16": "68f029874ea1db32"
+  }
+ }
+}
