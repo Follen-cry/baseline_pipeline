@@ -3,6 +3,9 @@
 - `pools/<run>/<source>_{train,eval}.jsonl` — 4-frame window pools, built by
   `recipes/temporal_ssl/merge_pools.py` (`main` = the 60K mix; other runs e.g. extra single-source
   sets); `pools/<run>/summary.json` has the run config, per-source counts and Δt mix.
+  Only `summary.json` is committed: the jsonl files are gitignored (absolute paths to frames
+  outside the repo); rebuild them with `recipes/temporal_ssl/merge_pools.py --stage all [--name <run>]`
+  (deterministic, seed 42) and compare against the committed `summary.json`.
 - `T{0..4}_{train,eval}.jsonl` — planned, derived from the pool.
 
 Pool row (one per window; `frames`, `frame_idx`, `timestamps` are chronological and aligned with

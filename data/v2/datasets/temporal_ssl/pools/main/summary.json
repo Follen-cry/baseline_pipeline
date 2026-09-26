@@ -1,0 +1,189 @@
+{
+ "sources": {
+  "physinone": {
+   "extract_status": {
+    "ok": 4884
+   },
+   "train_quota": 10588,
+   "train": {
+    "windows": 10588,
+    "clips": 4759,
+    "gap_s": {
+     "0.5": 5033,
+     "1.0": 4511,
+     "2.0": 1044
+    },
+    "stalled": 1977,
+    "distinct_captions": 4759
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "0.5": 42,
+     "1.0": 42,
+     "2.0": 41
+    },
+    "stalled": 22,
+    "distinct_captions": 125
+   }
+  },
+  "physictran38k": {
+   "extract_status": {
+    "ok": 9771
+   },
+   "train_quota": 14118,
+   "train": {
+    "windows": 14118,
+    "clips": 9646,
+    "gap_s": {
+     "0.5": 7061,
+     "1.0": 7057
+    },
+    "stalled": 2145,
+    "distinct_captions": 9644
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "0.5": 63,
+     "1.0": 62
+    },
+    "stalled": 16,
+    "distinct_captions": 125
+   }
+  },
+  "vbvr": {
+   "extract_status": {
+    "ok": 10713
+   },
+   "train_quota": 10588,
+   "train": {
+    "windows": 10588,
+    "clips": 10588,
+    "gap_s": {
+     "0.5": 4252,
+     "1.0": 4251,
+     "2.0": 2085
+    },
+    "stalled": 1648,
+    "distinct_captions": 3387
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "0.5": 51,
+     "1.0": 51,
+     "2.0": 23
+    },
+    "stalled": 26,
+    "distinct_captions": 69
+   }
+  },
+  "baai_physics": {
+   "extract_status": {
+    "ok": 5000
+   },
+   "train_quota": 10588,
+   "train": {
+    "windows": 10588,
+    "clips": 4875,
+    "gap_s": {
+     "0.5": 3553,
+     "1.0": 3553,
+     "2.0": 3482
+    },
+    "stalled": 357,
+    "distinct_captions": 4725
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "0.5": 42,
+     "1.0": 42,
+     "2.0": 41
+    },
+    "stalled": 7,
+    "distinct_captions": 125
+   }
+  },
+  "mit_physics": {
+   "extract_status": {
+    "ok": 4994
+   },
+   "train_quota": 7059,
+   "train": {
+    "windows": 7059,
+    "clips": 4869,
+    "gap_s": {
+     "0.5": 3543,
+     "1.0": 3516
+    },
+    "stalled": 342,
+    "distinct_captions": 4839
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "0.5": 62,
+     "1.0": 63
+    },
+    "stalled": 11,
+    "distinct_captions": 125
+   }
+  },
+  "ssv2": {
+   "extract_status": {
+    "ok": 7184
+   },
+   "train_quota": 7059,
+   "train": {
+    "windows": 7059,
+    "clips": 7059,
+    "gap_s": {
+     "0.5": 3512,
+     "1.0": 3512,
+     "2.0": 35
+    },
+    "stalled": 195,
+    "distinct_captions": 5026
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "0.5": 62,
+     "1.0": 62,
+     "2.0": 1
+    },
+    "stalled": 3,
+    "distinct_captions": 122
+   }
+  }
+ },
+ "name": "main",
+ "quotas": {
+  "physinone": 10588,
+  "physictran38k": 14118,
+  "vbvr": 10588,
+  "baai_physics": 10588,
+  "mit_physics": 7059,
+  "ssv2": 7059
+ },
+ "eval_clips": 125,
+ "eval_from": null,
+ "exclude_from": [],
+ "seed": 42,
+ "static_thr": 0.001,
+ "train_windows": 60000,
+ "eval_windows": 750,
+ "train_gap_s": {
+  "0.5": 26954,
+  "1.0": 26400,
+  "2.0": 6646
+ }
+}

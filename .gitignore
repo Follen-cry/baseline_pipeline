@@ -52,3 +52,6 @@ data/v1/sources/vbvr/raw/
 data/v1/datasets/*_Composed_intermediate*/images/
 # one-off local gallery viewer for eyeballing generations, not pipeline code
 data/v1/sources/vbvr/processing/_gallery_fix/
+
+# v2 window pools: regenerable from manifests + merge_pools.py (seed 42), absolute paths to frames outside the repo; keep only summary.json
+data/v2/datasets/temporal_ssl/pools/*/*.jsonl
