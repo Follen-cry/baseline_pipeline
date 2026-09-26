@@ -27,8 +27,10 @@ evaluated exactly as it was trained:
    `MultimodalImgenLazyDataset.eval_item` (no CFG dropout, errors raise instead of silently
    swapping rows).
 3. The decoder is conditioned like `_compute_gen_loss` (VLM hidden states + VAE latent of the
-   oracle `cond_image`) and sampled with the pipeline scheduler, CFG 1, 20 steps, 512²,
-   seed = crc32(row id).
+   oracle `cond_image`) and sampled with the pipeline scheduler, CFG 1, 20 steps, seed =
+   crc32(row id), at the size training resizes that row's target to (`--gen-resize-mode
+   keep_aspect`, default: its aspect ratio, long side ≤ `--gen-image-size` 1024, sides ×16;
+   `square` = v1's S×S squash).
 
 Predictions: `<out>/<T>/preds.jsonl` lines `{"id", "response", "image"}` + `images/`,
 `per_row.jsonl`, `summary.json`.
@@ -60,7 +62,9 @@ python score.py --eval <T3_evalmini.jsonl> --oracle copy --out results/T3_copy  
   (T1, T4-B), `order_exact` (swaps of `answer.order_equiv` pairs accepted) and `order_pair`
   (T3, T4-B), `missing_acc` and `all_correct` (T4-B). A parse failure scores 0 everywhere.
   Chance: order 1/6, missing 1/3, gap = majority-class share (stored in `summary.json`).
-- **Image**, at S×S (S = `--size` = `gen_image_size`; training squashes targets to a square):
+- **Image**, at each row's training target size (`--resize keep_aspect --size 1024`, the defaults,
+  = `gen_resize_mode` / `gen_image_size`; `--resize square --size 512` = the v1 squash; results
+  under `results/base_zeroshot/` predate the switch and were scored at 512² square):
   `psnr`, `ssim`, `mae` vs target; the same for the copy-`cond_image` baseline (`*_copy`);
   `dpsnr` / `dssim` (gain over copy); `beat_copy` (share of rows with lower MSE than copy);
   `motion_psnr` / `dmotion_psnr` on pixels where target and `cond_image` differ by > 0.1.

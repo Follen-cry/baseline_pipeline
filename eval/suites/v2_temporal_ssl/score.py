@@ -19,8 +19,10 @@ Text (settings with a JSON answer line; grammar = data/v2/common/prompts.py pars
   all_correct   order_exact and gap and missing                                (T4-B)
   An unparsable answer scores 0 on every text metric (parse failures are not dropped).
 
-Image (prediction, target and cond_image all resized to S x S with bicubic, S = --size, like training's
-_make_vae_target_transform, which squashes every target to gen_image_size^2)
+Image (prediction, target and cond_image all resized, bicubic, to the grid training puts that row's target
+on -- gen_target_hw below, = dataset_unified.gen_target_hw: --resize keep_aspect (default, v2 training) keeps
+the target's aspect ratio with the long side capped at --size (1024), sides rounded to x16; --resize square
+squashes to --size x --size, the v1 recipe)
   psnr, ssim, mae           prediction vs target
   *_copy                    cond_image vs target: the copy-nearest-observed-frame baseline
   dpsnr, dssim              prediction minus copy baseline (> 0 = better than copying)
@@ -106,8 +108,26 @@ def score_text(row, response):
 
 
 # ---------------------------------------------------------------- image
-def load(path, size):
-    im = Image.open(path).convert("RGB").resize((size, size), Image.BICUBIC)  # = training target transform
+RESIZE_MODES = ("square", "keep_aspect")
+GEN_SIZE_FACTOR = 16
+
+
+def gen_target_hw(height, width, size, resize):
+    """Mirror of internvl_chat/internvl/train/dataset_unified.py gen_target_hw (keep in sync)."""
+    if resize == "square":
+        return size, size
+    if resize != "keep_aspect":
+        raise ValueError(f"resize must be one of {RESIZE_MODES}, got {resize!r}")
+    scale = min(1.0, size / max(height, width))
+    f = GEN_SIZE_FACTOR
+    return max(f, round(height * scale / f) * f), max(f, round(width * scale / f) * f)
+
+
+def load(path, hw):
+    h, w = hw
+    im = Image.open(path).convert("RGB")
+    if im.size != (w, h):
+        im = im.resize((w, h), Image.BICUBIC)  # = training target transform
     return np.asarray(im, dtype=np.float64) / 255.0
 
 
@@ -128,14 +148,16 @@ def ssim(a, b):
 
 
 def score_image(args):
-    row, pred_path, size, motion_thr, min_motion_frac = args
+    row, pred_path, size, resize, motion_thr, min_motion_frac = args
     if not pred_path or not os.path.exists(pred_path):
         return {"img_missing": 1.0}
+    with Image.open(row["target_image"]) as im:
+        hw = gen_target_hw(im.height, im.width, size, resize)
     try:
-        p = load(pred_path, size)
+        p = load(pred_path, hw)
     except Exception:  # noqa: BLE001
         return {"img_missing": 1.0}
-    t, c = load(row["target_image"], size), load(row["cond_image"], size)
+    t, c = load(row["target_image"], hw), load(row["cond_image"], hw)
     mse, mse_c = float(((p - t) ** 2).mean()), float(((c - t) ** 2).mean())
     o = {"img_missing": 0.0, "psnr": psnr_from_mse(mse), "psnr_copy": psnr_from_mse(mse_c),
          "ssim": ssim(p, t), "ssim_copy": ssim(c, t), "mae": float(np.abs(p - t).mean()),
@@ -193,8 +215,9 @@ def oracle_preds(rows, kind):
     return {r["id"]: {"response": IMG, "image": r["cond_image"]} for r in rows}
 
 
-def score(rows, preds, size=512, motion_thr=0.1, min_motion_frac=0.002, workers=8):
-    jobs = [(r, (preds.get(r["id"]) or {}).get("image"), size, motion_thr, min_motion_frac) for r in rows]
+def score(rows, preds, size=1024, resize="keep_aspect", motion_thr=0.1, min_motion_frac=0.002, workers=8):
+    jobs = [(r, (preds.get(r["id"]) or {}).get("image"), size, resize, motion_thr, min_motion_frac)
+            for r in rows]
     if workers <= 1:  # in-process (e.g. inside a training job, where forking is unwelcome)
         img = [score_image(j) for j in jobs]
     else:
@@ -219,7 +242,9 @@ def main():
     src.add_argument("--pred")
     src.add_argument("--oracle", choices=["gt", "copy"])
     ap.add_argument("--out", required=True)
-    ap.add_argument("--size", type=int, default=512, help="compare at SIZE x SIZE (= gen_image_size)")
+    ap.add_argument("--size", type=int, default=1024,
+                    help="= gen_image_size: max long side (keep_aspect) or side (square)")
+    ap.add_argument("--resize", choices=RESIZE_MODES, default="keep_aspect", help="= gen_resize_mode")
     ap.add_argument("--motion-thr", type=float, default=0.1)
     ap.add_argument("--min-motion-frac", type=float, default=0.002)
     ap.add_argument("--workers", type=int, default=8)
@@ -232,13 +257,13 @@ def main():
         unknown = set(preds) - {r["id"] for r in rows}
         if unknown:
             print(f"[score] warning: {len(unknown)} predictions for ids not in --eval", file=sys.stderr)
-    scored, summary = score(rows, preds, a.size, a.motion_thr, a.min_motion_frac, a.workers)
+    scored, summary = score(rows, preds, a.size, a.resize, a.motion_thr, a.min_motion_frac, a.workers)
     os.makedirs(a.out, exist_ok=True)
     with open(os.path.join(a.out, "per_row.jsonl"), "w") as f:
         for s in scored:
             f.write(json.dumps(s, ensure_ascii=False) + "\n")
     meta = {"eval": os.path.abspath(a.eval), "pred": a.pred and os.path.abspath(a.pred), "oracle": a.oracle,
-            "size": a.size, "motion_thr": a.motion_thr, "min_motion_frac": a.min_motion_frac,
+            "size": a.size, "resize": a.resize, "motion_thr": a.motion_thr, "min_motion_frac": a.min_motion_frac,
             "chance": {"gap_acc_majority": max(collections.Counter(r["gap_s"] for r in rows).values()) / len(rows),
                        "order_exact": 1 / 6, "missing_acc": 1 / 3, "gaps": list(GAPS)}}
     with open(os.path.join(a.out, "summary.json"), "w") as f:
