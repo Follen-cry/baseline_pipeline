@@ -20,9 +20,9 @@ Text (settings with a JSON answer line; grammar = data/v2/common/prompts.py pars
   An unparsable answer scores 0 on every text metric (parse failures are not dropped).
 
 Image (prediction, target and cond_image all resized, bicubic, to the grid training puts that row's target
-on -- gen_target_hw below, = dataset_unified.gen_target_hw: --resize keep_aspect (default, v2 training) keeps
-the target's aspect ratio with the long side capped at --size (1024), sides rounded to x16; --resize square
-squashes to --size x --size, the v1 recipe)
+on -- gen_target_hw below, = dataset_unified.gen_target_hw: --resize area (default, v2 training) keeps the
+target's aspect ratio at area ~ --size^2 (512), sides rounded to x16; --resize keep_aspect keeps the aspect
+ratio with the long side capped at --size; --resize square squashes to --size x --size, the v1 recipe)
   psnr, ssim, mae           prediction vs target
   *_copy                    cond_image vs target: the copy-nearest-observed-frame baseline
   dpsnr, dssim              prediction minus copy baseline (> 0 = better than copying)
@@ -108,7 +108,7 @@ def score_text(row, response):
 
 
 # ---------------------------------------------------------------- image
-RESIZE_MODES = ("square", "keep_aspect")
+RESIZE_MODES = ("square", "keep_aspect", "area")
 GEN_SIZE_FACTOR = 16
 
 
@@ -116,9 +116,9 @@ def gen_target_hw(height, width, size, resize):
     """Mirror of internvl_chat/internvl/train/dataset_unified.py gen_target_hw (keep in sync)."""
     if resize == "square":
         return size, size
-    if resize != "keep_aspect":
+    if resize not in RESIZE_MODES:
         raise ValueError(f"resize must be one of {RESIZE_MODES}, got {resize!r}")
-    scale = min(1.0, size / max(height, width))
+    scale = size / math.sqrt(height * width) if resize == "area" else min(1.0, size / max(height, width))
     f = GEN_SIZE_FACTOR
     return max(f, round(height * scale / f) * f), max(f, round(width * scale / f) * f)
 
@@ -215,7 +215,7 @@ def oracle_preds(rows, kind):
     return {r["id"]: {"response": IMG, "image": r["cond_image"]} for r in rows}
 
 
-def score(rows, preds, size=1024, resize="keep_aspect", motion_thr=0.1, min_motion_frac=0.002, workers=8):
+def score(rows, preds, size=512, resize="area", motion_thr=0.1, min_motion_frac=0.002, workers=8):
     jobs = [(r, (preds.get(r["id"]) or {}).get("image"), size, resize, motion_thr, min_motion_frac)
             for r in rows]
     if workers <= 1:  # in-process (e.g. inside a training job, where forking is unwelcome)
@@ -242,9 +242,9 @@ def main():
     src.add_argument("--pred")
     src.add_argument("--oracle", choices=["gt", "copy"])
     ap.add_argument("--out", required=True)
-    ap.add_argument("--size", type=int, default=1024,
-                    help="= gen_image_size: max long side (keep_aspect) or side (square)")
-    ap.add_argument("--resize", choices=RESIZE_MODES, default="keep_aspect", help="= gen_resize_mode")
+    ap.add_argument("--size", type=int, default=512,
+                    help="= gen_image_size: sqrt of area (area), max long side (keep_aspect), side (square)")
+    ap.add_argument("--resize", choices=RESIZE_MODES, default="area", help="= gen_resize_mode")
     ap.add_argument("--motion-thr", type=float, default=0.1)
     ap.add_argument("--min-motion-frac", type=float, default=0.002)
     ap.add_argument("--workers", type=int, default=8)
