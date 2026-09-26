@@ -1,0 +1,3 @@
+# generated images and wandb run dirs are regenerable/large; keep metrics, preds and logs
+*/*/images/
+*/wandb/
