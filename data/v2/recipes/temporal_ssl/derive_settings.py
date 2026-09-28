@@ -15,6 +15,15 @@ Prompts and answer grammar: common/prompts.py. Per window:
   T4   50% T4-A (= T0) / 50% T4-B: drop Fk, shuffle the rest as A B C, no GAP / MISSING
        -> {"order", "gap", "missing"} + Fk.  T4_eval holds T4-B rows only (T4-A eval = T0 eval).
 
+Extra settings (not in every pool -- pass e.g. --settings T2.1 or --settings T5,T6):
+  T2.1 same as T2, restricted to windows with gap_s in {1.0, 2.0} (drops gap_s == 0.5), and
+       cond_image forced to F0 instead of the nearest shown frame. Derived from the same
+       ("main") pool as T0-T4, so it only makes sense with --run main.
+  T5   same shape as T0 (F0 F1 F2 + GAP -> F3), cond_image forced to F0. Meant for a
+       single-Δt, single-source pool (e.g. --run phystran_g1), where GAP is a constant.
+  T6   same shape as T2 (drop Fk, GAP + MISSING -> Fk), cond_image forced to F0. Meant for
+       the same single-Δt, single-source pool as T5.
+
 Assignments (seeded, SEED = 42): within each (split, source), windows are ordered by a seeded
 shuffle and the i-th window gets choice i mod n, so every choice is equally frequent per source:
 permutation of A B C (6), missing k (3), T4 variant (2). Each factor uses its own shuffle, so the
@@ -79,25 +88,28 @@ def base_row(w, setting, variant=None):
             "stalled": w["motion"]["stalled"]}
 
 
-def ordered_row(w, setting, kind, variant=None):
-    """T0 / T1 / T4-A: F0 F1 F2 in order -> F3."""
+def ordered_row(w, setting, kind, variant=None, cond0=False):
+    """T0 / T1 / T4-A / T5: F0 F1 F2 in order -> F3.
+    cond0: VAE-condition on F0 instead of F2 (T5)."""
     f = w["frames"]
     r = base_row(w, setting, variant)
     ans = {"gap": w["gap_s"]} if kind == "T1" else None
-    r.update(image=f[:3], target_image=f[3], cond_image=f[2],
-             layout={"shown": ["F0", "F1", "F2"], "target": "F3", "cond": "F2"},
+    cond = 0 if cond0 else 2
+    r.update(image=f[:3], target_image=f[3], cond_image=f[cond],
+             layout={"shown": ["F0", "F1", "F2"], "target": "F3", "cond": FRAMES[cond]},
              answer=ans or {},
              conversations=[{"from": "human", "value": human_prompt(kind, w["caption"], ["F0", "F1", "F2"], gap=w["gap_s"])},
                             {"from": "gpt", "value": gpt_response(ans)}])
     return r
 
 
-def missing_row(w, k):
-    """T2: drop Fk, others in order, GAP + MISSING given."""
+def missing_row(w, k, setting="T2", cond0=False):
+    """T2 / T2.1 / T6: drop Fk, others in order, GAP + MISSING given.
+    cond0: VAE-condition on F0 instead of the nearest shown frame (T2.1, T6)."""
     f = w["frames"]
     shown = [i for i in range(4) if i != k]
-    c = nearest_shown(k, shown)
-    r = base_row(w, "T2")
+    c = 0 if cond0 else nearest_shown(k, shown)
+    r = base_row(w, setting)
     r.update(image=[f[i] for i in shown], target_image=f[k], cond_image=f[c],
              layout={"shown": [FRAMES[i] for i in shown], "target": FRAMES[k], "cond": FRAMES[c]},
              answer={},
@@ -128,27 +140,40 @@ def shuffled_row(w, setting, kind, shown, perm, variant=None, k=None):
     return r
 
 
-def derive(windows, split, source):
+def derive(windows, split, source, wanted):
     t = f"{split}:{source}"
     perm3 = cycle_assign(windows, 6, f"T3perm:{t}")
     k2 = cycle_assign(windows, 3, f"T2k:{t}")
+    k6 = cycle_assign(windows, 3, f"T6k:{t}")
     var4 = cycle_assign(windows, 2, f"T4var:{t}")
     b = [w for w in windows if var4[w["id"]] == 1]
     perm4, k4 = cycle_assign(b, 6, f"T4perm:{t}"), cycle_assign(b, 3, f"T4k:{t}")
     out = collections.defaultdict(list)
     for w in windows:
-        out["T0"].append(ordered_row(w, "T0", "T0"))
-        out["T1"].append(ordered_row(w, "T1", "T1"))
-        out["T2"].append(missing_row(w, 1 + k2[w["id"]]))
-        out["T3"].append(shuffled_row(w, "T3", "T3", [0, 1, 2], PERMS[perm3[w["id"]]]))
-        if var4[w["id"]] == 0:
-            if split == "train":
-                out["T4"].append(ordered_row(w, "T4", "T0", variant="T4A"))
-        else:
-            k = 1 + k4[w["id"]]
-            out["T4"].append(shuffled_row(w, "T4", "T4B", [i for i in range(4) if i != k],
-                                          PERMS[perm4[w["id"]]], variant="T4B", k=k))
-    if split == "eval":  # T4 eval = T4-B for every eval window (T4-A eval is the T0 eval)
+        if "T0" in wanted:
+            out["T0"].append(ordered_row(w, "T0", "T0"))
+        if "T1" in wanted:
+            out["T1"].append(ordered_row(w, "T1", "T1"))
+        if "T2" in wanted:
+            out["T2"].append(missing_row(w, 1 + k2[w["id"]]))
+        if "T2.1" in wanted and w["gap_s"] in (1.0, 2.0):
+            # same k assignment as T2 on the same window; only the gap filter + cond0 differ
+            out["T2.1"].append(missing_row(w, 1 + k2[w["id"]], setting="T2.1", cond0=True))
+        if "T3" in wanted:
+            out["T3"].append(shuffled_row(w, "T3", "T3", [0, 1, 2], PERMS[perm3[w["id"]]]))
+        if "T5" in wanted:
+            out["T5"].append(ordered_row(w, "T5", "T0", cond0=True))
+        if "T6" in wanted:
+            out["T6"].append(missing_row(w, 1 + k6[w["id"]], setting="T6", cond0=True))
+        if "T4" in wanted:
+            if var4[w["id"]] == 0:
+                if split == "train":
+                    out["T4"].append(ordered_row(w, "T4", "T0", variant="T4A"))
+            else:
+                k = 1 + k4[w["id"]]
+                out["T4"].append(shuffled_row(w, "T4", "T4B", [i for i in range(4) if i != k],
+                                              PERMS[perm4[w["id"]]], variant="T4B", k=k))
+    if split == "eval" and "T4" in wanted:  # T4 eval = T4-B for every eval window (T4-A eval is the T0 eval)
         out["T4"] = []
         pe, ke = cycle_assign(windows, 6, f"T4perm:{t}:all"), cycle_assign(windows, 3, f"T4k:{t}:all")
         for w in windows:
@@ -194,20 +219,27 @@ def stats(rows):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", default="main")
+    ap.add_argument("--settings", default=",".join(SETTINGS),
+                    help="comma list of settings to derive, e.g. 'T2.1' (--run main) or 'T5,T6' "
+                         "(--run phystran_g1); default is the T0-T4 set")
     ap.add_argument("--check-files", action="store_true", help="stat every frame path (slow)")
     a = ap.parse_args()
+    wanted = set(a.settings.split(","))
     pool_dir, out_dir, meta_dir = (os.path.join(POOLS, a.run), os.path.join(SETS, a.run),
                                    os.path.join(META, a.run))
     os.makedirs(out_dir, exist_ok=True)
     os.makedirs(meta_dir, exist_ok=True)
-    summary = {"run": a.run, "seed": SEED, "pool": os.path.relpath(pool_dir, V2), "settings": {}}
+    sum_path = os.path.join(out_dir, "summary.json")
+    summary = json.load(open(sum_path)) if os.path.exists(sum_path) else {"settings": {}}
+    summary.update(run=a.run, seed=SEED, pool=os.path.relpath(pool_dir, V2))
+    summary.setdefault("settings", {})
     for split in ("train", "eval"):
         acc = collections.defaultdict(list)
         for p in sorted(glob.glob(os.path.join(pool_dir, f"*_{split}.jsonl"))):
             src = os.path.basename(p)[: -len(f"_{split}.jsonl")]
-            for st, rows in derive(read_jsonl(p), split, src).items():
+            for st, rows in derive(read_jsonl(p), split, src, wanted).items():
                 acc[st] += rows
-        for st in SETTINGS:
+        for st in sorted(wanted):
             rows = sorted(acc[st], key=lambda r: r["id"])
             errs = validate(rows, a.check_files)
             if errs:
@@ -226,7 +258,7 @@ def main():
                 sha = hashlib.sha256(f.read()).hexdigest()[:16]
             summary["settings"][f"{st}_{split}"] = {**stats(rows), "sha256_16": sha}
             print(f"[derive] {a.run} {st}_{split}: {len(rows)} rows", flush=True)
-    with open(os.path.join(out_dir, "summary.json"), "w") as f:
+    with open(sum_path, "w") as f:
         json.dump(summary, f, indent=1)
 
 

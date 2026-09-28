@@ -47,6 +47,12 @@ Usage:
     # 20K more PhysInOne windows as a separate set: same eval clips as main, no main train window
     python merge_pools.py --stage all --name physinone_extra --sources physinone \\
         --quota physinone=20000 --eval-from main --exclude-from main
+    # single-Δt, single-source set (e.g. T5/T6): --dt restricts candidate windows to one Δt;
+    # --eval-clips-from reuses another run's eval CLIP IDS (not its exact windows -- each clip
+    # still contributes its own window under this run's --dt filter, so it works even when the
+    # other run picked a different Δt for that clip)
+    python merge_pools.py --stage all --name phystran_g1 --sources physictran38k \\
+        --dt 1.0 --quota physictran38k=9634 --eval-clips-from main
 """
 import argparse, collections, json, os, random, subprocess, sys
 from multiprocessing import Pool
@@ -76,14 +82,17 @@ EXTRACT = os.path.join(V2, "common", "extract_frames.py")
 
 
 class Run:
-    """One pool: name, per-source train quota, eval clips, runs to take eval from / exclude."""
+    """One pool: name, per-source train quota, eval clips, runs to take eval from / exclude,
+    optional Δt restriction."""
 
     def __init__(self, name="main", quotas=None, total=TOTAL, eval_clips=EVAL_CLIPS,
-                 eval_from=None, exclude_from=()):
+                 eval_from=None, exclude_from=(), dt=None, eval_clips_from=None):
         self.name, self.total, self.eval_clips = name, total, eval_clips
         self.quotas = {s: round(total * sh) for s, sh in SHARES.items()}
         self.quotas.update(quotas or {})
         self.eval_from, self.exclude_from = eval_from, list(exclude_from)
+        self.eval_clips_from = eval_clips_from
+        self.dt = set(dt) if dt else None
         self.work = os.path.join(WORK, "runs", name)
         self.pools = os.path.join(POOLS, name)
 
@@ -92,8 +101,9 @@ class Run:
 
     def config(self):
         return {"name": self.name, "quotas": self.quotas, "eval_clips": self.eval_clips,
-                "eval_from": self.eval_from, "exclude_from": self.exclude_from, "seed": SEED,
-                "static_thr": STATIC_THR}
+                "eval_from": self.eval_from, "eval_clips_from": self.eval_clips_from,
+                "exclude_from": self.exclude_from, "dt": sorted(self.dt) if self.dt else None,
+                "seed": SEED, "static_thr": STATIC_THR}
 
 
 def read_jsonl(p):
@@ -254,6 +264,8 @@ def plan(src, run):
         n_all += len(ws)
         keep = [{**w, "_score": sc[(w["dt"], w["k"])]} for w in ws if not is_static(sc[(w["dt"], w["k"])])]
         n_static += len(ws) - len(keep)
+        if run.dt:
+            keep = [w for w in keep if w["dt"] in run.dt]
         if keep:
             clips.append({**c, "_len": S, "_ws": keep})
     order = interleave(clips, rng)
@@ -269,6 +281,23 @@ def plan(src, run):
         if len(eval_clips) != len(ev):
             print(f"[plan] WARNING {src}: {len(ev) - len(eval_clips)} eval clips of '{run.eval_from}' "
                   f"are not candidates here", flush=True)
+    elif run.eval_clips_from:
+        # Reuse another run's eval CLIP IDS only (not its exact windows): each clip picks its own
+        # window from this run's (possibly --dt-restricted) candidates, via the usual dt-balance
+        # rule. Use this instead of --eval-from when this run's Δt differs from the other run's.
+        ev_ids = set(_run_windows(run.eval_clips_from, src, "eval"))
+        if not ev_ids:
+            raise SystemExit(f"{src}: run '{run.eval_clips_from}' has no eval plan")
+        eval_clips = [c for c in order if c["clip_id"] in ev_ids]
+        if len(eval_clips) != len(ev_ids):
+            print(f"[plan] WARNING {src}: {len(ev_ids) - len(eval_clips)} eval clips of "
+                  f"'{run.eval_clips_from}' are not candidates here (excluded by --dt or static filter)",
+                  flush=True)
+        dt_eval = collections.Counter()
+        for c in eval_clips:
+            w = _pick(c["_ws"], [], dt_eval, {d: 1.0 for d in (0.5, 1.0, 2.0)}, rng)
+            picked[c["clip_id"]].append(w)
+            dt_eval[w["dt"]] += 1
     else:
         eval_clips = order[:run.eval_clips]
         dt_eval = collections.Counter()
@@ -432,18 +461,24 @@ def main():
                     help="override one source's train quota (repeatable)")
     ap.add_argument("--eval-clips", type=int, default=EVAL_CLIPS)
     ap.add_argument("--eval-from", help="reuse this run's eval clips + windows (keeps eval identical)")
+    ap.add_argument("--eval-clips-from", help="reuse this run's eval CLIP IDS only (each clip picks "
+                    "its own window here); use instead of --eval-from when --dt differs from that run")
     ap.add_argument("--exclude-from", action="append", default=[],
                     help="never reuse this run's train windows (repeatable)")
+    ap.add_argument("--dt", help="restrict candidate windows to these Δt values, comma-separated "
+                    "(e.g. 1.0, or 1.0,2.0); default: all of {0.5, 1.0, 2.0}")
     ap.add_argument("--procs", type=int, default=32)
     a = ap.parse_args()
     sources = a.sources.split(",")
     assert set(sources) <= set(SHARES), sources
+    assert not (a.eval_from and a.eval_clips_from), "--eval-from and --eval-clips-from are exclusive"
     quotas = {}
     for q in a.quota:
         s, n = q.split("=")
         assert s in SHARES, s
         quotas[s] = int(n)
-    run = Run(a.name, quotas, a.total, a.eval_clips, a.eval_from, a.exclude_from)
+    dt = {float(x) for x in a.dt.split(",")} if a.dt else None
+    run = Run(a.name, quotas, a.total, a.eval_clips, a.eval_from, a.exclude_from, dt, a.eval_clips_from)
     os.makedirs(run.work, exist_ok=True)
     stages = ["probe", "score", "plan", "extract", "finalize"] if a.stage == "all" else [a.stage]
     for st in stages:

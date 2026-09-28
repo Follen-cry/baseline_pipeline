@@ -2,7 +2,6 @@
  "run": "main",
  "seed": 42,
  "per_source": 13,
- "windows": 78,
  "settings": {
   "T0": {
    "rows": 78,
@@ -109,6 +108,7 @@
    "stalled": 10
   }
  },
+ "windows": 78,
  "window_ids": [
   "baai_physics__baai_physics__a00089__00435__dt1.0__k0",
   "baai_physics__baai_physics__a00103__00453__dt0.5__k2",

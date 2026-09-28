@@ -3,6 +3,56 @@
  "seed": 42,
  "pool": "datasets/temporal_ssl/pools/main",
  "settings": {
+  "T2.1_train": {
+   "rows": 33046,
+   "by_source": {
+    "baai_physics": 7035,
+    "mit_physics": 3516,
+    "physictran38k": 7057,
+    "physinone": 5555,
+    "ssv2": 3547,
+    "vbvr": 6336
+   },
+   "gap_s": {
+    "1.0": 26400,
+    "2.0": 6646
+   },
+   "variant": {
+    "T2.1": 33046
+   },
+   "target": {
+    "F1": 11053,
+    "F2": 11031,
+    "F3": 10962
+   },
+   "stalled": 2597,
+   "sha256_16": "84657465a4017eaa"
+  },
+  "T2.1_eval": {
+   "rows": 428,
+   "by_source": {
+    "baai_physics": 83,
+    "mit_physics": 63,
+    "physictran38k": 62,
+    "physinone": 83,
+    "ssv2": 63,
+    "vbvr": 74
+   },
+   "gap_s": {
+    "1.0": 322,
+    "2.0": 106
+   },
+   "variant": {
+    "T2.1": 428
+   },
+   "target": {
+    "F1": 140,
+    "F2": 153,
+    "F3": 135
+   },
+   "stalled": 39,
+   "sha256_16": "402871072fe97680"
+  },
   "T0_train": {
    "rows": 60000,
    "by_source": {

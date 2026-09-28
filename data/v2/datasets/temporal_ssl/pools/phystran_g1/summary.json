@@ -1,0 +1,51 @@
+{
+ "sources": {
+  "physictran38k": {
+   "extract_status": {
+    "ok": 9759
+   },
+   "train_quota": 9634,
+   "train": {
+    "windows": 9634,
+    "clips": 9634,
+    "gap_s": {
+     "1.0": 9634
+    },
+    "stalled": 1060,
+    "distinct_captions": 9632
+   },
+   "eval": {
+    "windows": 125,
+    "clips": 125,
+    "gap_s": {
+     "1.0": 125
+    },
+    "stalled": 13,
+    "distinct_captions": 125
+   }
+  }
+ },
+ "name": "phystran_g1",
+ "quotas": {
+  "physinone": 10588,
+  "physictran38k": 9634,
+  "vbvr": 10588,
+  "baai_physics": 10588,
+  "mit_physics": 7059,
+  "ssv2": 7059
+ },
+ "eval_clips": 125,
+ "eval_from": null,
+ "eval_clips_from": "main",
+ "exclude_from": [],
+ "dt": [
+  1.0
+ ],
+ "seed": 42,
+ "static_thr": 0.001,
+ "train_windows": 9634,
+ "eval_windows": 125,
+ "train_gap_s": {
+  "1.0": 9634
+ }
+}

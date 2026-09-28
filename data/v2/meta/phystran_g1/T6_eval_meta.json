@@ -1,0 +1,11 @@
+{
+  "v2_phystran_g1_T6_eval": {
+    "root": "/",
+    "annotation": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/v2/datasets/temporal_ssl/settings/phystran_g1/T6_eval.jsonl",
+    "data_augment": false,
+    "max_dynamic_patch": 3,
+    "repeat_time": 1,
+    "length": 125,
+    "task_type": "imgen"
+  }
+}

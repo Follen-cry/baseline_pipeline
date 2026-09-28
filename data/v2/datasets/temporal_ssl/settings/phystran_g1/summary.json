@@ -1,0 +1,79 @@
+{
+ "settings": {
+  "T5_train": {
+   "rows": 9634,
+   "by_source": {
+    "physictran38k": 9634
+   },
+   "gap_s": {
+    "1.0": 9634
+   },
+   "variant": {
+    "T5": 9634
+   },
+   "target": {
+    "F3": 9634
+   },
+   "stalled": 1060,
+   "sha256_16": "8165fa77c8c233ab"
+  },
+  "T6_train": {
+   "rows": 9634,
+   "by_source": {
+    "physictran38k": 9634
+   },
+   "gap_s": {
+    "1.0": 9634
+   },
+   "variant": {
+    "T6": 9634
+   },
+   "target": {
+    "F1": 3212,
+    "F2": 3211,
+    "F3": 3211
+   },
+   "stalled": 1060,
+   "sha256_16": "769892e340e48ed4"
+  },
+  "T5_eval": {
+   "rows": 125,
+   "by_source": {
+    "physictran38k": 125
+   },
+   "gap_s": {
+    "1.0": 125
+   },
+   "variant": {
+    "T5": 125
+   },
+   "target": {
+    "F3": 125
+   },
+   "stalled": 13,
+   "sha256_16": "84211650704c413c"
+  },
+  "T6_eval": {
+   "rows": 125,
+   "by_source": {
+    "physictran38k": 125
+   },
+   "gap_s": {
+    "1.0": 125
+   },
+   "variant": {
+    "T6": 125
+   },
+   "target": {
+    "F1": 42,
+    "F2": 42,
+    "F3": 41
+   },
+   "stalled": 13,
+   "sha256_16": "b1324a00fe930dc6"
+  }
+ },
+ "run": "phystran_g1",
+ "seed": 42,
+ "pool": "datasets/temporal_ssl/pools/phystran_g1"
+}

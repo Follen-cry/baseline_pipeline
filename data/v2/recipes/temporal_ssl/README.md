@@ -26,11 +26,19 @@ Full, reproducible description of the pool: `docs/v2.md`, "Window pool: how to r
     `datasets/temporal_ssl/pools/<name>/`. `<work>` = `/scratch/network/ssd/junlin/v2_frames/_work/temporal_ssl/`.
   - Extra single-source set, same eval as `main`, disjoint from `main`'s train windows:
     `python merge_pools.py --stage all --name physinone_extra --sources physinone --quota physinone=10000 --eval-from main --exclude-from main`
+  - Single-Δt, single-source set (T5/T6's `phystran_g1`, 9,634 train / 125 eval): `--dt` restricts
+    candidate windows to one Δt, `--eval-clips-from` reuses another run's eval CLIP IDS (each clip
+    still picks its own window under this run's `--dt`, unlike `--eval-from`'s exact-window reuse):
+    `python merge_pools.py --stage all --name phystran_g1 --sources physictran38k --dt 1.0 --quota physictran38k=9634 --eval-clips-from main`
 - `derive_settings.py` — pool → `../../datasets/temporal_ssl/settings/<run>/T{0..4}_{train,eval}.jsonl`
   + `../../meta/<run>/T{N}_{split}_meta.json`: prompts from `common/prompts.py`, balanced seeded
   ORDER / MISSING / T4-variant assignment, `cond_image` = nearest shown frame (tie → earlier), row
   validation (image count, single trailing `<img>`, target not an input, `--check-files`). Run:
   `python derive_settings.py --run main --check-files` (~30 s).
+  `--settings` picks which settings to derive (default T0-T4); extra settings T2.1 (gap-stratified
+  T2, `--run main`) and T5/T6 (PhysicTran38K-only, gap=1s-only VC2I-F/VC2I-M, `--run phystran_g1`)
+  reuse `ordered_row`/`missing_row` with a `cond0` flag (VAE-condition on F0). Details: `docs/v2.md`,
+  "Extra settings".
 
 Output: `../../datasets/temporal_ssl/pools/<run>/<src>_{train,eval}.jsonl` + `pools/<run>/summary.json`.
 Setting definitions and decisions: `docs/v2.md`.
