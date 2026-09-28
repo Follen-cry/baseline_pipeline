@@ -1,0 +1,80 @@
+{
+  "_doc": "Single config for this suite. Relative paths are relative to this folder. Every script reads its paths from here.",
+  "manifest": "manifest.jsonl",
+  "outputs_root": "/scratch/network/ssd/junlin/ssl_eval/v2_eval_suite_1_sub/outputs",
+  "results_root": "results",
+
+  "models": {
+    "base": "/scratch/network/ssd2/junlin/huggingface/hub/models--InternVL-U--InternVL-U/snapshots/f012d760e69712bb47f7d3d09a24280f346cee01",
+    "T0": "/scratch/network/ssd/junlin/models/internvlu-v2-t0-gen-merged",
+    "T2": "/scratch/network/ssd/junlin/models/internvlu-v2-t2-gen-merged",
+    "T3": "/scratch/network/ssd/junlin/models/internvlu-v2-t3-gen-merged"
+  },
+  "references": ["copy", "random"],
+  "report_models": ["base", "T0", "T2", "T3"],
+
+  "ft_models": {
+    "_doc": "base/T0/T2/T3 each further fine-tuned on the SAME edit-instruction data (identical recipe, only the starting checkpoint differs): 1,280 rows = 640 MagicBrush *train* turns (osunlp/MagicBrush, disjoint from this suite's MagicBrush test slice, near-dup-checked against every suite input/reference image by dhash) + 640 PICA-100K pairs (Andrew613/PICA-100K, superficial prompt). 2 epochs / 160 steps, v2 T-series recipe (full-unified, LLM-LoRA r32, lr 1e-5, gen_decoder_lr 5e-5, gen_loss_weight 0.5 warmup 20, imgen_ratio 1.0, area-512 targets, global batch 16, lm_loss_weight 0, gen_resize_mode area). Data/training recipe: ../v2_suite_1/diagnosis/edit_sft/build_edit_sft.py + run_edit_sft_probe.sh. report_models unchanged; these are judged and appear in table.csv/scores_item.csv via score.py's auto-detection (any judged system not already in models/references).",
+    "base_ft": {"path": "/scratch/network/ssd/junlin/models/diag_editsft/base-merged", "base_checkpoint": "models.base"},
+    "T0_ft": {"path": "/scratch/network/ssd/junlin/models/diag_editsft/T0-merged", "base_checkpoint": "models.T0"},
+    "T2_ft": {"path": "/scratch/network/ssd/junlin/models/diag_editsft/T2-merged", "base_checkpoint": "models.T2"},
+    "T3_ft": {"path": "/scratch/network/ssd/junlin/models/diag_editsft/T3-merged", "base_checkpoint": "models.T3"}
+  },
+
+  "probe_models": {
+    "_doc": "Lighter sibling of ft_models, paired with THIS 200-item subset manifest rather than v2_suite_1's full 1,210-item one: base/T0/T2/T3 each further fine-tuned on ~800 rows (400 MagicBrush *train* turns + 400 PICA-100K pairs, same 1:1 ratio, seed 20260929, dhash-checked against ../manifest.jsonl's 200 items) for 1 epoch / ~50 steps, otherwise the identical v2 T-series recipe as ft_models (full-unified, LLM-LoRA r32, lr 1e-5, gen_decoder_lr 5e-5, gen_loss_weight 0.5 warmup 20, imgen_ratio 1.0, area-512 targets, global batch 16, lm_loss_weight 0, gen_resize_mode area). Data/training/eval: edit_sft_probe/{build_probe_data.py, run_probe_sft.sh, train_{base,T0,T2,T3}.sh, run_probe_eval.sh}. Not yet trained -- paths below are where merged checkpoints will land. report_models unchanged; once judged, these are picked up by score.py's auto-detection like ft_models.",
+    "base_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/base-merged", "base_checkpoint": "models.base"},
+    "T0_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T0-merged", "base_checkpoint": "models.T0"},
+    "T2_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T2-merged", "base_checkpoint": "models.T2"},
+    "T3_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T3-merged", "base_checkpoint": "models.T3"}
+  },
+
+  "inference": {
+    "internvlu_pkg": "/scratch/network/ssd2/junlin/ssl_mllm/Model_Related/InternVLU/InternVL-U",
+    "generation_mode": "image",
+    "gen_area_side": 512,
+    "round_to": 16,
+    "num_inference_steps": 20,
+    "all_cfg_scale": 4.5,
+    "part_cfg_scale": 2.0,
+    "seed": 42
+  },
+
+  "judge": {
+    "served_name": "qwen3-vl-30b-fp8",
+    "judge_name": "qwen3vl30b_fp8",
+    "weights": "/scratch/network/ssd/junlin/models/judges/Qwen3-VL-30B-A3B-Instruct-FP8",
+    "benchmark_src": "/scratch/network/ssd/junlin/ssl_eval/src",
+    "staged": "/scratch/network/ssd/junlin/ssl_eval/staged",
+    "max_retry": 3,
+    "retry_temperature": 0.7
+  },
+
+  "envs": {
+    "internvlu_python": "/homes/55/junlin/miniconda3/envs/internvlu/bin/python",
+    "vllm_bin": "/homes/55/junlin/miniconda3/envs/vllm/bin/vllm"
+  },
+
+  "sampling": {
+    "seed": 20260928,
+    "rng_rule": "random.Random(f'{seed}:{pool}').sample(sorted(uids of pool), n)",
+    "counts": {"risebench": 60, "phyeditbench": 60, "picabench": 60, "imgedit": 20},
+    "pools": {
+      "risebench": {"bench": "risebench", "group": "A"},
+      "phyeditbench": {"bench": "phyeditbench", "group": "A"},
+      "picabench": {"bench": "picabench", "group": "A"},
+      "imgedit": {"bench": "imgedit_basic", "group": "C"}
+    }
+  },
+
+  "provenance": {
+    "_doc": "Only used by scripts/sample_subset.py and scripts/import_v2_suite_1.py (one-off, already run). Nothing else reads these paths.",
+    "source_suite": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1",
+    "source_manifest": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/pipeline/manifest.jsonl",
+    "source_outputs": "/scratch/network/ssd/junlin/ssl_eval/outputs",
+    "source_judge_raw": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/results/judge_raw/qwen3vl30b_fp8",
+    "systems": ["base", "T0", "T2", "T3", "copy", "random", "gt"]
+  },
+
+  "gallery": {"seed": 20260928, "per_bench": {"risebench": 15, "phyeditbench": 15, "picabench": 15, "imgedit_basic": 15}, "thumb_side": 512, "jpeg_quality": 80}
+}
