@@ -1,0 +1,13 @@
+comparison,other_judge,bench,n_units,exact_agree,within1_agree,spearman,mean_main,mean_other,model_rank_kendall_tau,kappa
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,phyeditbench,384,0.7864583333333334,0.9010416666666666,0.8956848431697781,7.598958333333333,7.59375,0.0,
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,phyedit_anti,32,0.90625,1.0,0.9771288852889078,5.75,5.71875,0.7745966692414834,
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,picabench,268,0.9813432835820896,,,,,0.7999999999999999,0.9602043240674745
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,risebench,160,0.7625,0.925,0.7838274455301675,3.73125,3.75625,0.0,
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,imgedit_basic,20,0.95,1.0,1.0,4.9665,4.9835,1.0,
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,imgedit_uge,8,0.875,0.875,0.8189230248533257,4.0,4.25,0.7999999999999999,
+"same judge, 2nd run",qwen3vl30b_fp8_rerun,magicbrush,8,1.0,1.0,,5.0,5.0,,
+different judge (Qwen3-VL-8B),qwen3vl8b,phyeditbench,384,0.359375,0.6744791666666666,0.6473309925554159,7.598958333333333,6.997395833333333,0.3333333333333334,
+different judge (Qwen3-VL-8B),qwen3vl8b,phyedit_anti,32,0.34375,0.875,0.8475444465289597,5.75,5.46875,-0.912870929175277,
+different judge (Qwen3-VL-8B),qwen3vl8b,picabench,268,0.8134328358208955,,,,,-0.7999999999999999,0.5805159028299525
+different judge (Qwen3-VL-8B),qwen3vl8b,risebench,160,0.6,0.83125,0.588359822582348,3.73125,3.4375,-0.18257418583505539,
+different judge (Qwen3-VL-8B),qwen3vl8b,imgedit_basic,20,0.6,0.85,0.21923815567028088,4.9665,4.5825,-0.7071067811865477,

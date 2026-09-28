@@ -57,3 +57,12 @@ data/v1/sources/vbvr/processing/_gallery_fix/
 data/v2/datasets/temporal_ssl/pools/*/*.jsonl
 # v2 T0-T4 rows: regenerable with derive_settings.py; keep only summary.json
 data/v2/datasets/temporal_ssl/settings/*/*.jsonl
+
+# ssl_physics_suite: generated images live on network storage (eval/outputs is a symlink);
+# ROI crop visualisations and the 14 MB self-contained page are rebuildable
+eval/outputs
+eval/results/pica_viz/
+eval/results/eval_report.html
+eval/results/judge_logs/
+# the page template is source (eval/**/*.html above targets generated reports)
+!eval/results/artifact_template.html

@@ -1,0 +1,53 @@
+group,bench,category,subcategory,n
+A,phyedit_anti,Anti-Physics,Defying_Gravity,7
+A,phyedit_anti,Anti-Physics,Density_rules_inverted,7
+A,phyedit_anti,Anti-Physics,Object_Phasing_and_Surreal_Interactions,7
+A,phyedit_anti,Anti-Physics,Texture_Confusion,7
+A,phyedit_anti,Anti-Physics,Time_Reversal_and_Alteration,7
+A,phyeditbench,Deformation_&_Fracture,brittle_fracture,40
+A,phyeditbench,Deformation_&_Fracture,elasticity,40
+A,phyeditbench,Deformation_&_Fracture,plastic_deformation,40
+A,phyeditbench,Fluid_Dynamics,Buoyancy_&_Tension,40
+A,phyeditbench,Fluid_Dynamics,Pouring_&_Flow,40
+A,phyeditbench,Fluid_Dynamics,Splashing_&_Impact,40
+A,phyeditbench,Rigid_Body_&_Interaction,Collision_&_Chain,40
+A,phyeditbench,Rigid_Body_&_Interaction,Gravity_&_Fall,40
+A,phyeditbench,Rigid_Body_&_Interaction,Rotation_&_Rolling,40
+A,phyeditbench,Rigid_Body_&_Interaction,Stability_&_Balance,40
+A,phyeditbench,State_Change_&_Environment,Diffusion_&_Aerodynamics,40
+A,phyeditbench,State_Change_&_Environment,Phase_Changes,40
+A,picabench,Mechanics,Causality,45
+A,picabench,Mechanics,Deformation,45
+A,picabench,Optics,Light_Propagation,20
+A,picabench,Optics,Light_Source_Effects,20
+A,picabench,Optics,Reflection,20
+A,picabench,Optics,Refraction,20
+A,picabench,State,Global,45
+A,picabench,State,Local,45
+A,risebench,causal_reasoning,Chemical and Biological Transformation,16
+A,risebench,causal_reasoning,Physics Manifestation,13
+A,risebench,causal_reasoning,State Transition,25
+A,risebench,causal_reasoning,Structural Deformation,36
+A,risebench,temporal_reasoning,Environmental Cycles,13
+A,risebench,temporal_reasoning,Life Progression,19
+A,risebench,temporal_reasoning,Material Progression,46
+A,risebench,temporal_reasoning,Societal Transformation,7
+B,risebench,spatial_reasoning,Component Assembly,12
+B,risebench,spatial_reasoning,Layout Reasoning,12
+B,risebench,spatial_reasoning,Object Arrangement,12
+B,risebench,spatial_reasoning,Structural Inference,12
+B,risebench,spatial_reasoning,Viewpoint Generation,12
+C,imgedit_basic,basic,action,12
+C,imgedit_basic,basic,add,12
+C,imgedit_basic,basic,adjust,12
+C,imgedit_basic,basic,background,12
+C,imgedit_basic,basic,compose,12
+C,imgedit_basic,basic,extract,12
+C,imgedit_basic,basic,remove,12
+C,imgedit_basic,basic,replace,12
+C,imgedit_basic,basic,style,12
+C,imgedit_uge,uge,uge,16
+C,magicbrush,magicbrush,turn1,40
+C,risebench,logical_reasoning,Mathematical Derivation,12
+C,risebench,logical_reasoning,Pattern Prediction,12
+C,risebench,logical_reasoning,Puzzle Solving,12

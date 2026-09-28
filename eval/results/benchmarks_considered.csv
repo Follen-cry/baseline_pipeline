@@ -1,0 +1,10 @@
+benchmark,decision,group,why
+PhyEditBench (+Anti-Physics),included,A,"Real 4-state physical trajectories with GT targets; step-wise (A–C), chained (D) and global (E) types; counterfactual rules test prior vs instruction."
+PICABench,included,A,8 physics laws with region-grounded yes/no QA on annotated ROIs; Mechanics/State weighted up.
+RISEBench,included,A/B/C,"Temporal+Causal are target, Spatial secondary, Logical a control; 1–5 rubric and strict all-dims accuracy."
+ImgEdit (Basic + UGE),included,C,9 standard edit types plus hard UGE edits: general editing ability should not drop.
+MagicBrush,included,C,GT targets allow judge-free L1 / CLIP-I / DINO checks.
+KRIS-Bench,skipped,,Knowledge-based editing; its physics/temporal subsets overlap RISE Temporal/Causal and PICABench.
+GEdit-Bench,skipped,,General real-user edits; duplicates ImgEdit's role as a control.
+PBench-Edit (ChronoEdit),skipped,,"Video-derived physical edits; overlaps PhyEditBench, which has GT targets and step-wise types."
+AURORA-Bench,skipped,,"Action edits from video incl. SSv2, which is in the T training pool: confounds transfer with domain overlap. Candidate positive control."

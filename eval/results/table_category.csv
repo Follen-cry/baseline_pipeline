@@ -1,0 +1,401 @@
+model,bench,category,subcategory,metric,value,n
+base,imgedit_basic,basic,action,score (1-5),4.778333333333333,12
+base,imgedit_basic,basic,add,score (1-5),4.860833333333333,12
+base,imgedit_basic,basic,adjust,score (1-5),4.555833333333333,12
+base,imgedit_basic,basic,background,score (1-5),5.0,12
+base,imgedit_basic,basic,compose,score (1-5),4.389166666666667,12
+base,imgedit_basic,basic,extract,score (1-5),4.694166666666667,12
+base,imgedit_basic,basic,remove,score (1-5),4.833333333333333,12
+base,imgedit_basic,basic,replace,score (1-5),3.9166666666666665,12
+base,imgedit_basic,basic,style,score (1-5),4.5008333333333335,12
+base,imgedit_uge,uge,uge,score (1-5),4.625,16
+base,magicbrush,magicbrush,turn1,score (1-5),4.769230769230769,40
+base,phyedit_anti,Anti-Physics,Defying_Gravity,overall (1-10),8.071428571428571,7
+base,phyedit_anti,Anti-Physics,Density_rules_inverted,overall (1-10),4.0285714285714285,7
+base,phyedit_anti,Anti-Physics,Object_Phasing_and_Surreal_Interactions,overall (1-10),6.328571428571428,7
+base,phyedit_anti,Anti-Physics,Texture_Confusion,overall (1-10),5.157142857142857,7
+base,phyedit_anti,Anti-Physics,Time_Reversal_and_Alteration,overall (1-10),8.628571428571428,7
+base,phyeditbench,Deformation_&_Fracture,brittle_fracture,overall (1-10),6.305,40
+base,phyeditbench,Deformation_&_Fracture,elasticity,overall (1-10),6.7575,40
+base,phyeditbench,Deformation_&_Fracture,plastic_deformation,overall (1-10),6.8500000000000005,40
+base,phyeditbench,Fluid_Dynamics,Buoyancy_&_Tension,overall (1-10),7.3325000000000005,40
+base,phyeditbench,Fluid_Dynamics,Pouring_&_Flow,overall (1-10),8.26,40
+base,phyeditbench,Fluid_Dynamics,Splashing_&_Impact,overall (1-10),7.529999999999999,40
+base,phyeditbench,Rigid_Body_&_Interaction,Collision_&_Chain,overall (1-10),6.8725000000000005,40
+base,phyeditbench,Rigid_Body_&_Interaction,Gravity_&_Fall,overall (1-10),7.232500000000001,40
+base,phyeditbench,Rigid_Body_&_Interaction,Rotation_&_Rolling,overall (1-10),7.385000000000001,40
+base,phyeditbench,Rigid_Body_&_Interaction,Stability_&_Balance,overall (1-10),6.742500000000001,40
+base,phyeditbench,State_Change_&_Environment,Diffusion_&_Aerodynamics,overall (1-10),7.615,40
+base,phyeditbench,State_Change_&_Environment,Phase_Changes,overall (1-10),7.6450000000000005,40
+base,picabench,Mechanics,Causality,Acc (%),49.19047619047619,45
+base,picabench,Mechanics,Causality,Con PSNR (dB),14.393464662811972,45
+base,picabench,Mechanics,Deformation,Acc (%),51.547619047619044,45
+base,picabench,Mechanics,Deformation,Con PSNR (dB),16.077958430184257,45
+base,picabench,Optics,Light_Propagation,Acc (%),63.702380952380956,20
+base,picabench,Optics,Light_Propagation,Con PSNR (dB),12.14541823863983,20
+base,picabench,Optics,Light_Source_Effects,Acc (%),70.83333333333333,20
+base,picabench,Optics,Light_Source_Effects,Con PSNR (dB),14.528375124931335,20
+base,picabench,Optics,Reflection,Acc (%),54.61904761904762,20
+base,picabench,Optics,Reflection,Con PSNR (dB),16.38098876476288,20
+base,picabench,Optics,Refraction,Acc (%),73.29166666666667,20
+base,picabench,Optics,Refraction,Con PSNR (dB),15.336392211914063,20
+base,picabench,State,Global,Acc (%),69.54497354497356,45
+base,picabench,State,Global,Con PSNR (dB),9.848819644827591,45
+base,picabench,State,Local,Acc (%),50.94708994708994,45
+base,picabench,State,Local,Con PSNR (dB),14.829654993012895,45
+base,risebench,causal_reasoning,Chemical and Biological Transformation,Acc (%),18.75,16
+base,risebench,causal_reasoning,Chemical and Biological Transformation,Score (1-5),3.1875,16
+base,risebench,causal_reasoning,Physics Manifestation,Acc (%),7.6923076923076925,13
+base,risebench,causal_reasoning,Physics Manifestation,Score (1-5),2.246153846153846,13
+base,risebench,causal_reasoning,State Transition,Acc (%),16.0,25
+base,risebench,causal_reasoning,State Transition,Score (1-5),3.8,25
+base,risebench,causal_reasoning,Structural Deformation,Acc (%),16.666666666666664,36
+base,risebench,causal_reasoning,Structural Deformation,Score (1-5),2.961111111111111,36
+base,risebench,logical_reasoning,Mathematical Derivation,Acc (%),0.0,12
+base,risebench,logical_reasoning,Mathematical Derivation,Score (1-5),1.4916666666666665,12
+base,risebench,logical_reasoning,Pattern Prediction,Acc (%),8.333333333333332,12
+base,risebench,logical_reasoning,Pattern Prediction,Score (1-5),1.3499999999999999,12
+base,risebench,logical_reasoning,Puzzle Solving,Acc (%),8.333333333333332,12
+base,risebench,logical_reasoning,Puzzle Solving,Score (1-5),1.3499999999999999,12
+base,risebench,spatial_reasoning,Component Assembly,Acc (%),8.333333333333332,12
+base,risebench,spatial_reasoning,Component Assembly,Score (1-5),3.35,12
+base,risebench,spatial_reasoning,Layout Reasoning,Acc (%),25.0,12
+base,risebench,spatial_reasoning,Layout Reasoning,Score (1-5),3.866666666666667,12
+base,risebench,spatial_reasoning,Object Arrangement,Acc (%),0.0,12
+base,risebench,spatial_reasoning,Object Arrangement,Score (1-5),2.266666666666667,12
+base,risebench,spatial_reasoning,Structural Inference,Acc (%),16.666666666666664,12
+base,risebench,spatial_reasoning,Structural Inference,Score (1-5),3.5500000000000003,12
+base,risebench,spatial_reasoning,Viewpoint Generation,Acc (%),25.0,12
+base,risebench,spatial_reasoning,Viewpoint Generation,Score (1-5),3.5333333333333337,12
+base,risebench,temporal_reasoning,Environmental Cycles,Acc (%),0.0,13
+base,risebench,temporal_reasoning,Environmental Cycles,Score (1-5),2.230769230769231,13
+base,risebench,temporal_reasoning,Life Progression,Acc (%),0.0,19
+base,risebench,temporal_reasoning,Life Progression,Score (1-5),2.0,19
+base,risebench,temporal_reasoning,Material Progression,Acc (%),4.3478260869565215,46
+base,risebench,temporal_reasoning,Material Progression,Score (1-5),2.882608695652174,46
+base,risebench,temporal_reasoning,Societal Transformation,Acc (%),0.0,7
+base,risebench,temporal_reasoning,Societal Transformation,Score (1-5),2.1142857142857143,7
+base,phyeditbench,Deformation_&_Fracture,(all),overall (1-10),6.6375,120
+base,phyeditbench,Fluid_Dynamics,(all),overall (1-10),7.707500000000001,120
+base,phyeditbench,Rigid_Body_&_Interaction,(all),overall (1-10),7.058125,160
+base,phyeditbench,State_Change_&_Environment,(all),overall (1-10),7.630000000000001,80
+T0,imgedit_basic,basic,action,score (1-5),4.890000000000001,12
+T0,imgedit_basic,basic,add,score (1-5),4.860833333333333,12
+T0,imgedit_basic,basic,adjust,score (1-5),4.805833333333333,12
+T0,imgedit_basic,basic,background,score (1-5),5.0,12
+T0,imgedit_basic,basic,compose,score (1-5),4.639166666666667,12
+T0,imgedit_basic,basic,extract,score (1-5),4.555,12
+T0,imgedit_basic,basic,remove,score (1-5),4.528333333333333,12
+T0,imgedit_basic,basic,replace,score (1-5),4.305,12
+T0,imgedit_basic,basic,style,score (1-5),4.333333333333333,12
+T0,imgedit_uge,uge,uge,score (1-5),4.375,16
+T0,magicbrush,magicbrush,turn1,score (1-5),4.2631578947368425,40
+T0,phyedit_anti,Anti-Physics,Defying_Gravity,overall (1-10),4.6571428571428575,7
+T0,phyedit_anti,Anti-Physics,Density_rules_inverted,overall (1-10),4.5,7
+T0,phyedit_anti,Anti-Physics,Object_Phasing_and_Surreal_Interactions,overall (1-10),7.142857142857143,7
+T0,phyedit_anti,Anti-Physics,Texture_Confusion,overall (1-10),5.485714285714287,7
+T0,phyedit_anti,Anti-Physics,Time_Reversal_and_Alteration,overall (1-10),7.271428571428571,7
+T0,phyeditbench,Deformation_&_Fracture,brittle_fracture,overall (1-10),6.36,40
+T0,phyeditbench,Deformation_&_Fracture,elasticity,overall (1-10),7.627500000000001,40
+T0,phyeditbench,Deformation_&_Fracture,plastic_deformation,overall (1-10),7.495,40
+T0,phyeditbench,Fluid_Dynamics,Buoyancy_&_Tension,overall (1-10),7.975,40
+T0,phyeditbench,Fluid_Dynamics,Pouring_&_Flow,overall (1-10),8.360000000000001,40
+T0,phyeditbench,Fluid_Dynamics,Splashing_&_Impact,overall (1-10),7.805000000000001,40
+T0,phyeditbench,Rigid_Body_&_Interaction,Collision_&_Chain,overall (1-10),6.5875,40
+T0,phyeditbench,Rigid_Body_&_Interaction,Gravity_&_Fall,overall (1-10),7.4725,40
+T0,phyeditbench,Rigid_Body_&_Interaction,Rotation_&_Rolling,overall (1-10),7.847499999999999,40
+T0,phyeditbench,Rigid_Body_&_Interaction,Stability_&_Balance,overall (1-10),6.9675,40
+T0,phyeditbench,State_Change_&_Environment,Diffusion_&_Aerodynamics,overall (1-10),8.1325,40
+T0,phyeditbench,State_Change_&_Environment,Phase_Changes,overall (1-10),7.8425,40
+T0,picabench,Mechanics,Causality,Acc (%),49.079365079365076,45
+T0,picabench,Mechanics,Causality,Con PSNR (dB),19.903958385640923,45
+T0,picabench,Mechanics,Deformation,Acc (%),42.785714285714285,45
+T0,picabench,Mechanics,Deformation,Con PSNR (dB),21.363869794209798,45
+T0,picabench,Optics,Light_Propagation,Acc (%),68.58333333333333,20
+T0,picabench,Optics,Light_Propagation,Con PSNR (dB),18.209901571273804,20
+T0,picabench,Optics,Light_Source_Effects,Acc (%),59.916666666666664,20
+T0,picabench,Optics,Light_Source_Effects,Con PSNR (dB),23.92581491470337,20
+T0,picabench,Optics,Reflection,Acc (%),51.416666666666664,20
+T0,picabench,Optics,Reflection,Con PSNR (dB),19.672453212738038,20
+T0,picabench,Optics,Refraction,Acc (%),47.70833333333333,20
+T0,picabench,Optics,Refraction,Con PSNR (dB),22.094626092910765,20
+T0,picabench,State,Global,Acc (%),50.158730158730144,45
+T0,picabench,State,Global,Con PSNR (dB),10.953280436365228,45
+T0,picabench,State,Local,Acc (%),45.015873015873005,45
+T0,picabench,State,Local,Con PSNR (dB),22.483699288479116,45
+T0,risebench,causal_reasoning,Chemical and Biological Transformation,Acc (%),12.5,16
+T0,risebench,causal_reasoning,Chemical and Biological Transformation,Score (1-5),2.325,16
+T0,risebench,causal_reasoning,Physics Manifestation,Acc (%),0.0,13
+T0,risebench,causal_reasoning,Physics Manifestation,Score (1-5),1.5230769230769232,13
+T0,risebench,causal_reasoning,State Transition,Acc (%),12.0,25
+T0,risebench,causal_reasoning,State Transition,Score (1-5),3.1919999999999997,25
+T0,risebench,causal_reasoning,Structural Deformation,Acc (%),16.666666666666664,36
+T0,risebench,causal_reasoning,Structural Deformation,Score (1-5),2.644444444444445,36
+T0,risebench,logical_reasoning,Mathematical Derivation,Acc (%),41.66666666666667,12
+T0,risebench,logical_reasoning,Mathematical Derivation,Score (1-5),2.725,12
+T0,risebench,logical_reasoning,Pattern Prediction,Acc (%),0.0,12
+T0,risebench,logical_reasoning,Pattern Prediction,Score (1-5),1.0083333333333333,12
+T0,risebench,logical_reasoning,Puzzle Solving,Acc (%),8.333333333333332,12
+T0,risebench,logical_reasoning,Puzzle Solving,Score (1-5),1.375,12
+T0,risebench,spatial_reasoning,Component Assembly,Acc (%),0.0,12
+T0,risebench,spatial_reasoning,Component Assembly,Score (1-5),2.0333333333333337,12
+T0,risebench,spatial_reasoning,Layout Reasoning,Acc (%),41.66666666666667,12
+T0,risebench,spatial_reasoning,Layout Reasoning,Score (1-5),3.0,12
+T0,risebench,spatial_reasoning,Object Arrangement,Acc (%),8.333333333333332,12
+T0,risebench,spatial_reasoning,Object Arrangement,Score (1-5),2.466666666666667,12
+T0,risebench,spatial_reasoning,Structural Inference,Acc (%),16.666666666666664,12
+T0,risebench,spatial_reasoning,Structural Inference,Score (1-5),3.0000000000000004,12
+T0,risebench,spatial_reasoning,Viewpoint Generation,Acc (%),41.66666666666667,12
+T0,risebench,spatial_reasoning,Viewpoint Generation,Score (1-5),3.3833333333333333,12
+T0,risebench,temporal_reasoning,Environmental Cycles,Acc (%),0.0,13
+T0,risebench,temporal_reasoning,Environmental Cycles,Score (1-5),2.6461538461538465,13
+T0,risebench,temporal_reasoning,Life Progression,Acc (%),5.263157894736842,19
+T0,risebench,temporal_reasoning,Life Progression,Score (1-5),1.6736842105263157,19
+T0,risebench,temporal_reasoning,Material Progression,Acc (%),8.695652173913043,46
+T0,risebench,temporal_reasoning,Material Progression,Score (1-5),2.5434782608695654,46
+T0,risebench,temporal_reasoning,Societal Transformation,Acc (%),0.0,7
+T0,risebench,temporal_reasoning,Societal Transformation,Score (1-5),1.6285714285714286,7
+T0,phyeditbench,Deformation_&_Fracture,(all),overall (1-10),7.160833333333334,120
+T0,phyeditbench,Fluid_Dynamics,(all),overall (1-10),8.046666666666667,120
+T0,phyeditbench,Rigid_Body_&_Interaction,(all),overall (1-10),7.21875,160
+T0,phyeditbench,State_Change_&_Environment,(all),overall (1-10),7.987500000000001,80
+T2,imgedit_basic,basic,action,score (1-5),4.945,12
+T2,imgedit_basic,basic,add,score (1-5),5.0,12
+T2,imgedit_basic,basic,adjust,score (1-5),4.860833333333333,12
+T2,imgedit_basic,basic,background,score (1-5),4.944166666666667,12
+T2,imgedit_basic,basic,compose,score (1-5),4.5275,12
+T2,imgedit_basic,basic,extract,score (1-5),4.638333333333333,12
+T2,imgedit_basic,basic,remove,score (1-5),4.889166666666667,12
+T2,imgedit_basic,basic,replace,score (1-5),4.2225,12
+T2,imgedit_basic,basic,style,score (1-5),4.361666666666667,12
+T2,imgedit_uge,uge,uge,score (1-5),4.5,16
+T2,magicbrush,magicbrush,turn1,score (1-5),4.54054054054054,40
+T2,phyedit_anti,Anti-Physics,Defying_Gravity,overall (1-10),5.385714285714286,7
+T2,phyedit_anti,Anti-Physics,Density_rules_inverted,overall (1-10),4.457142857142857,7
+T2,phyedit_anti,Anti-Physics,Object_Phasing_and_Surreal_Interactions,overall (1-10),7.071428571428572,7
+T2,phyedit_anti,Anti-Physics,Texture_Confusion,overall (1-10),4.871428571428572,7
+T2,phyedit_anti,Anti-Physics,Time_Reversal_and_Alteration,overall (1-10),7.614285714285715,7
+T2,phyeditbench,Deformation_&_Fracture,brittle_fracture,overall (1-10),6.317500000000001,40
+T2,phyeditbench,Deformation_&_Fracture,elasticity,overall (1-10),7.937500000000001,40
+T2,phyeditbench,Deformation_&_Fracture,plastic_deformation,overall (1-10),7.502500000000001,40
+T2,phyeditbench,Fluid_Dynamics,Buoyancy_&_Tension,overall (1-10),7.782500000000001,40
+T2,phyeditbench,Fluid_Dynamics,Pouring_&_Flow,overall (1-10),8.42,40
+T2,phyeditbench,Fluid_Dynamics,Splashing_&_Impact,overall (1-10),7.520000000000001,40
+T2,phyeditbench,Rigid_Body_&_Interaction,Collision_&_Chain,overall (1-10),6.7924999999999995,40
+T2,phyeditbench,Rigid_Body_&_Interaction,Gravity_&_Fall,overall (1-10),7.83,40
+T2,phyeditbench,Rigid_Body_&_Interaction,Rotation_&_Rolling,overall (1-10),7.9475,40
+T2,phyeditbench,Rigid_Body_&_Interaction,Stability_&_Balance,overall (1-10),7.195,40
+T2,phyeditbench,State_Change_&_Environment,Diffusion_&_Aerodynamics,overall (1-10),8.095,40
+T2,phyeditbench,State_Change_&_Environment,Phase_Changes,overall (1-10),8.025,40
+T2,picabench,Mechanics,Causality,Acc (%),50.631393298059955,45
+T2,picabench,Mechanics,Causality,Con PSNR (dB),19.466447158293292,45
+T2,picabench,Mechanics,Deformation,Acc (%),46.41005291005291,45
+T2,picabench,Mechanics,Deformation,Con PSNR (dB),21.39646199544271,45
+T2,picabench,Optics,Light_Propagation,Acc (%),67.03571428571429,20
+T2,picabench,Optics,Light_Propagation,Con PSNR (dB),16.155342388153077,20
+T2,picabench,Optics,Light_Source_Effects,Acc (%),58.416666666666664,20
+T2,picabench,Optics,Light_Source_Effects,Con PSNR (dB),22.695467138290404,20
+T2,picabench,Optics,Reflection,Acc (%),58.01190476190475,20
+T2,picabench,Optics,Reflection,Con PSNR (dB),19.224089169502257,20
+T2,picabench,Optics,Refraction,Acc (%),57.25,20
+T2,picabench,Optics,Refraction,Con PSNR (dB),21.287082815170287,20
+T2,picabench,State,Global,Acc (%),55.74074074074073,45
+T2,picabench,State,Global,Con PSNR (dB),9.96270293311069,45
+T2,picabench,State,Local,Acc (%),43.96560846560846,45
+T2,picabench,State,Local,Con PSNR (dB),22.343154153158498,45
+T2,risebench,causal_reasoning,Chemical and Biological Transformation,Acc (%),6.25,16
+T2,risebench,causal_reasoning,Chemical and Biological Transformation,Score (1-5),2.4,16
+T2,risebench,causal_reasoning,Physics Manifestation,Acc (%),0.0,13
+T2,risebench,causal_reasoning,Physics Manifestation,Score (1-5),1.7538461538461538,13
+T2,risebench,causal_reasoning,State Transition,Acc (%),16.0,25
+T2,risebench,causal_reasoning,State Transition,Score (1-5),3.4399999999999995,25
+T2,risebench,causal_reasoning,Structural Deformation,Acc (%),16.666666666666664,36
+T2,risebench,causal_reasoning,Structural Deformation,Score (1-5),2.661111111111111,36
+T2,risebench,logical_reasoning,Mathematical Derivation,Acc (%),25.0,12
+T2,risebench,logical_reasoning,Mathematical Derivation,Score (1-5),2.0583333333333336,12
+T2,risebench,logical_reasoning,Pattern Prediction,Acc (%),0.0,12
+T2,risebench,logical_reasoning,Pattern Prediction,Score (1-5),1.0166666666666666,12
+T2,risebench,logical_reasoning,Puzzle Solving,Acc (%),16.666666666666664,12
+T2,risebench,logical_reasoning,Puzzle Solving,Score (1-5),1.7000000000000002,12
+T2,risebench,spatial_reasoning,Component Assembly,Acc (%),8.333333333333332,12
+T2,risebench,spatial_reasoning,Component Assembly,Score (1-5),1.9333333333333333,12
+T2,risebench,spatial_reasoning,Layout Reasoning,Acc (%),50.0,12
+T2,risebench,spatial_reasoning,Layout Reasoning,Score (1-5),3.266666666666667,12
+T2,risebench,spatial_reasoning,Object Arrangement,Acc (%),0.0,12
+T2,risebench,spatial_reasoning,Object Arrangement,Score (1-5),1.7333333333333332,12
+T2,risebench,spatial_reasoning,Structural Inference,Acc (%),16.666666666666664,12
+T2,risebench,spatial_reasoning,Structural Inference,Score (1-5),3.266666666666667,12
+T2,risebench,spatial_reasoning,Viewpoint Generation,Acc (%),8.333333333333332,12
+T2,risebench,spatial_reasoning,Viewpoint Generation,Score (1-5),3.2000000000000006,12
+T2,risebench,temporal_reasoning,Environmental Cycles,Acc (%),0.0,13
+T2,risebench,temporal_reasoning,Environmental Cycles,Score (1-5),2.8153846153846156,13
+T2,risebench,temporal_reasoning,Life Progression,Acc (%),0.0,19
+T2,risebench,temporal_reasoning,Life Progression,Score (1-5),1.6947368421052633,19
+T2,risebench,temporal_reasoning,Material Progression,Acc (%),10.869565217391305,46
+T2,risebench,temporal_reasoning,Material Progression,Score (1-5),2.6,46
+T2,risebench,temporal_reasoning,Societal Transformation,Acc (%),0.0,7
+T2,risebench,temporal_reasoning,Societal Transformation,Score (1-5),1.742857142857143,7
+T2,phyeditbench,Deformation_&_Fracture,(all),overall (1-10),7.252500000000001,120
+T2,phyeditbench,Fluid_Dynamics,(all),overall (1-10),7.907500000000001,120
+T2,phyeditbench,Rigid_Body_&_Interaction,(all),overall (1-10),7.44125,160
+T2,phyeditbench,State_Change_&_Environment,(all),overall (1-10),8.06,80
+T3,imgedit_basic,basic,action,score (1-5),4.9725,12
+T3,imgedit_basic,basic,add,score (1-5),4.889166666666667,12
+T3,imgedit_basic,basic,adjust,score (1-5),4.471666666666667,12
+T3,imgedit_basic,basic,background,score (1-5),5.0,12
+T3,imgedit_basic,basic,compose,score (1-5),4.555,12
+T3,imgedit_basic,basic,extract,score (1-5),4.444166666666667,12
+T3,imgedit_basic,basic,remove,score (1-5),4.583333333333333,12
+T3,imgedit_basic,basic,replace,score (1-5),4.666666666666667,12
+T3,imgedit_basic,basic,style,score (1-5),4.5,12
+T3,imgedit_uge,uge,uge,score (1-5),4.5625,16
+T3,magicbrush,magicbrush,turn1,score (1-5),4.487179487179487,40
+T3,phyedit_anti,Anti-Physics,Defying_Gravity,overall (1-10),5.114285714285714,7
+T3,phyedit_anti,Anti-Physics,Density_rules_inverted,overall (1-10),5.4,7
+T3,phyedit_anti,Anti-Physics,Object_Phasing_and_Surreal_Interactions,overall (1-10),6.671428571428572,7
+T3,phyedit_anti,Anti-Physics,Texture_Confusion,overall (1-10),5.071428571428571,7
+T3,phyedit_anti,Anti-Physics,Time_Reversal_and_Alteration,overall (1-10),6.585714285714286,7
+T3,phyeditbench,Deformation_&_Fracture,brittle_fracture,overall (1-10),6.4425,40
+T3,phyeditbench,Deformation_&_Fracture,elasticity,overall (1-10),7.2675,40
+T3,phyeditbench,Deformation_&_Fracture,plastic_deformation,overall (1-10),7.585,40
+T3,phyeditbench,Fluid_Dynamics,Buoyancy_&_Tension,overall (1-10),7.922500000000001,40
+T3,phyeditbench,Fluid_Dynamics,Pouring_&_Flow,overall (1-10),8.2225,40
+T3,phyeditbench,Fluid_Dynamics,Splashing_&_Impact,overall (1-10),7.370000000000001,40
+T3,phyeditbench,Rigid_Body_&_Interaction,Collision_&_Chain,overall (1-10),6.8775,40
+T3,phyeditbench,Rigid_Body_&_Interaction,Gravity_&_Fall,overall (1-10),7.950000000000001,40
+T3,phyeditbench,Rigid_Body_&_Interaction,Rotation_&_Rolling,overall (1-10),7.7749999999999995,40
+T3,phyeditbench,Rigid_Body_&_Interaction,Stability_&_Balance,overall (1-10),7.1825,40
+T3,phyeditbench,State_Change_&_Environment,Diffusion_&_Aerodynamics,overall (1-10),8.084999999999999,40
+T3,phyeditbench,State_Change_&_Environment,Phase_Changes,overall (1-10),7.7175,40
+T3,picabench,Mechanics,Causality,Acc (%),45.52380952380951,45
+T3,picabench,Mechanics,Causality,Con PSNR (dB),19.40872836112976,45
+T3,picabench,Mechanics,Deformation,Acc (%),46.43121693121693,45
+T3,picabench,Mechanics,Deformation,Con PSNR (dB),21.40780586666531,45
+T3,picabench,Optics,Light_Propagation,Acc (%),60.57142857142858,20
+T3,picabench,Optics,Light_Propagation,Con PSNR (dB),18.002979278564453,20
+T3,picabench,Optics,Light_Source_Effects,Acc (%),56.49999999999999,20
+T3,picabench,Optics,Light_Source_Effects,Con PSNR (dB),22.514929723739623,20
+T3,picabench,Optics,Reflection,Acc (%),50.53571428571427,20
+T3,picabench,Optics,Reflection,Con PSNR (dB),20.11771583557129,20
+T3,picabench,Optics,Refraction,Acc (%),55.666666666666664,20
+T3,picabench,Optics,Refraction,Con PSNR (dB),19.155426836013795,20
+T3,picabench,State,Global,Acc (%),50.65608465608465,45
+T3,picabench,State,Global,Con PSNR (dB),11.550795812355844,45
+T3,picabench,State,Local,Acc (%),44.92328042328041,45
+T3,picabench,State,Local,Con PSNR (dB),21.793106101280035,45
+T3,risebench,causal_reasoning,Chemical and Biological Transformation,Acc (%),18.75,16
+T3,risebench,causal_reasoning,Chemical and Biological Transformation,Score (1-5),2.875,16
+T3,risebench,causal_reasoning,Physics Manifestation,Acc (%),0.0,13
+T3,risebench,causal_reasoning,Physics Manifestation,Score (1-5),1.5846153846153848,13
+T3,risebench,causal_reasoning,State Transition,Acc (%),16.0,25
+T3,risebench,causal_reasoning,State Transition,Score (1-5),3.3279999999999994,25
+T3,risebench,causal_reasoning,Structural Deformation,Acc (%),19.444444444444446,36
+T3,risebench,causal_reasoning,Structural Deformation,Score (1-5),2.5444444444444447,36
+T3,risebench,logical_reasoning,Mathematical Derivation,Acc (%),16.666666666666664,12
+T3,risebench,logical_reasoning,Mathematical Derivation,Score (1-5),1.7416666666666671,12
+T3,risebench,logical_reasoning,Pattern Prediction,Acc (%),0.0,12
+T3,risebench,logical_reasoning,Pattern Prediction,Score (1-5),1.0166666666666666,12
+T3,risebench,logical_reasoning,Puzzle Solving,Acc (%),8.333333333333332,12
+T3,risebench,logical_reasoning,Puzzle Solving,Score (1-5),1.3583333333333334,12
+T3,risebench,spatial_reasoning,Component Assembly,Acc (%),8.333333333333332,12
+T3,risebench,spatial_reasoning,Component Assembly,Score (1-5),2.0,12
+T3,risebench,spatial_reasoning,Layout Reasoning,Acc (%),58.333333333333336,12
+T3,risebench,spatial_reasoning,Layout Reasoning,Score (1-5),3.3333333333333335,12
+T3,risebench,spatial_reasoning,Object Arrangement,Acc (%),0.0,12
+T3,risebench,spatial_reasoning,Object Arrangement,Score (1-5),2.5333333333333337,12
+T3,risebench,spatial_reasoning,Structural Inference,Acc (%),33.33333333333333,12
+T3,risebench,spatial_reasoning,Structural Inference,Score (1-5),3.5000000000000004,12
+T3,risebench,spatial_reasoning,Viewpoint Generation,Acc (%),16.666666666666664,12
+T3,risebench,spatial_reasoning,Viewpoint Generation,Score (1-5),2.85,12
+T3,risebench,temporal_reasoning,Environmental Cycles,Acc (%),0.0,13
+T3,risebench,temporal_reasoning,Environmental Cycles,Score (1-5),2.1384615384615384,13
+T3,risebench,temporal_reasoning,Life Progression,Acc (%),5.263157894736842,19
+T3,risebench,temporal_reasoning,Life Progression,Score (1-5),1.9263157894736842,19
+T3,risebench,temporal_reasoning,Material Progression,Acc (%),10.869565217391305,46
+T3,risebench,temporal_reasoning,Material Progression,Score (1-5),2.5347826086956524,46
+T3,risebench,temporal_reasoning,Societal Transformation,Acc (%),0.0,7
+T3,risebench,temporal_reasoning,Societal Transformation,Score (1-5),1.542857142857143,7
+T3,phyeditbench,Deformation_&_Fracture,(all),overall (1-10),7.098333333333334,120
+T3,phyeditbench,Fluid_Dynamics,(all),overall (1-10),7.838333333333334,120
+T3,phyeditbench,Rigid_Body_&_Interaction,(all),overall (1-10),7.44625,160
+T3,phyeditbench,State_Change_&_Environment,(all),overall (1-10),7.901249999999999,80
+copy,imgedit_basic,basic,action,score (1-5),4.6675,12
+copy,imgedit_basic,basic,add,score (1-5),3.0850000000000004,12
+copy,imgedit_basic,basic,adjust,score (1-5),4.5566666666666675,12
+copy,imgedit_basic,basic,background,score (1-5),3.0025,12
+copy,imgedit_basic,basic,compose,score (1-5),3.9725,12
+copy,imgedit_basic,basic,extract,score (1-5),4.639166666666667,12
+copy,imgedit_basic,basic,remove,score (1-5),1.7783333333333333,12
+copy,imgedit_basic,basic,replace,score (1-5),1.8341666666666665,12
+copy,imgedit_basic,basic,style,score (1-5),3.8083333333333336,12
+copy,imgedit_uge,uge,uge,score (1-5),4.25,16
+copy,magicbrush,magicbrush,turn1,score (1-5),1.8108108108108107,40
+copy,phyedit_anti,Anti-Physics,Defying_Gravity,overall (1-10),3.814285714285714,7
+copy,phyedit_anti,Anti-Physics,Density_rules_inverted,overall (1-10),4.357142857142857,7
+copy,phyedit_anti,Anti-Physics,Object_Phasing_and_Surreal_Interactions,overall (1-10),6.728571428571429,7
+copy,phyedit_anti,Anti-Physics,Texture_Confusion,overall (1-10),4.942857142857144,7
+copy,phyedit_anti,Anti-Physics,Time_Reversal_and_Alteration,overall (1-10),6.271428571428572,7
+copy,phyeditbench,Deformation_&_Fracture,brittle_fracture,overall (1-10),6.492500000000001,40
+copy,phyeditbench,Deformation_&_Fracture,elasticity,overall (1-10),8.132499999999999,40
+copy,phyeditbench,Deformation_&_Fracture,plastic_deformation,overall (1-10),8.275,40
+copy,phyeditbench,Fluid_Dynamics,Buoyancy_&_Tension,overall (1-10),8.1275,40
+copy,phyeditbench,Fluid_Dynamics,Pouring_&_Flow,overall (1-10),8.3,40
+copy,phyeditbench,Fluid_Dynamics,Splashing_&_Impact,overall (1-10),7.1075,40
+copy,phyeditbench,Rigid_Body_&_Interaction,Collision_&_Chain,overall (1-10),7.555,40
+copy,phyeditbench,Rigid_Body_&_Interaction,Gravity_&_Fall,overall (1-10),7.785,40
+copy,phyeditbench,Rigid_Body_&_Interaction,Rotation_&_Rolling,overall (1-10),8.39,40
+copy,phyeditbench,Rigid_Body_&_Interaction,Stability_&_Balance,overall (1-10),7.8125,40
+copy,phyeditbench,State_Change_&_Environment,Diffusion_&_Aerodynamics,overall (1-10),7.912500000000001,40
+copy,phyeditbench,State_Change_&_Environment,Phase_Changes,overall (1-10),7.8325000000000005,40
+copy,picabench,Mechanics,Causality,Acc (%),27.825396825396826,45
+copy,picabench,Mechanics,Causality,Con PSNR (dB),47.97811724922874,45
+copy,picabench,Mechanics,Deformation,Acc (%),29.870370370370363,45
+copy,picabench,Mechanics,Deformation,Con PSNR (dB),49.612556881374786,45
+copy,picabench,Optics,Light_Propagation,Acc (%),42.857142857142854,20
+copy,picabench,Optics,Light_Propagation,Con PSNR (dB),46.818081092834475,20
+copy,picabench,Optics,Light_Source_Effects,Acc (%),35.66666666666667,20
+copy,picabench,Optics,Light_Source_Effects,Con PSNR (dB),50.10546226501465,20
+copy,picabench,Optics,Reflection,Acc (%),27.380952380952383,20
+copy,picabench,Optics,Reflection,Con PSNR (dB),45.74383735656738,20
+copy,picabench,Optics,Refraction,Acc (%),32.75,20
+copy,picabench,Optics,Refraction,Con PSNR (dB),49.473697090148924,20
+copy,picabench,State,Global,Acc (%),16.497354497354497,45
+copy,picabench,State,Global,Con PSNR (dB),46.92196956433748,45
+copy,picabench,State,Local,Acc (%),26.523809523809522,45
+copy,picabench,State,Local,Con PSNR (dB),49.83046447399051,45
+copy,risebench,causal_reasoning,Chemical and Biological Transformation,Acc (%),0.0,16
+copy,risebench,causal_reasoning,Chemical and Biological Transformation,Score (1-5),1.1,16
+copy,risebench,causal_reasoning,Physics Manifestation,Acc (%),7.6923076923076925,13
+copy,risebench,causal_reasoning,Physics Manifestation,Score (1-5),1.6,13
+copy,risebench,causal_reasoning,State Transition,Acc (%),8.0,25
+copy,risebench,causal_reasoning,State Transition,Score (1-5),1.4480000000000002,25
+copy,risebench,causal_reasoning,Structural Deformation,Acc (%),5.555555555555555,36
+copy,risebench,causal_reasoning,Structural Deformation,Score (1-5),1.6166666666666665,36
+copy,risebench,logical_reasoning,Mathematical Derivation,Acc (%),25.0,12
+copy,risebench,logical_reasoning,Mathematical Derivation,Score (1-5),2.0750000000000006,12
+copy,risebench,logical_reasoning,Pattern Prediction,Acc (%),0.0,12
+copy,risebench,logical_reasoning,Pattern Prediction,Score (1-5),1.0333333333333332,12
+copy,risebench,logical_reasoning,Puzzle Solving,Acc (%),16.666666666666664,12
+copy,risebench,logical_reasoning,Puzzle Solving,Score (1-5),1.6916666666666667,12
+copy,risebench,spatial_reasoning,Component Assembly,Acc (%),8.333333333333332,12
+copy,risebench,spatial_reasoning,Component Assembly,Score (1-5),1.5999999999999999,12
+copy,risebench,spatial_reasoning,Layout Reasoning,Acc (%),50.0,12
+copy,risebench,spatial_reasoning,Layout Reasoning,Score (1-5),3.466666666666667,12
+copy,risebench,spatial_reasoning,Object Arrangement,Acc (%),8.333333333333332,12
+copy,risebench,spatial_reasoning,Object Arrangement,Score (1-5),2.5333333333333337,12
+copy,risebench,spatial_reasoning,Structural Inference,Acc (%),50.0,12
+copy,risebench,spatial_reasoning,Structural Inference,Score (1-5),3.716666666666667,12
+copy,risebench,spatial_reasoning,Viewpoint Generation,Acc (%),33.33333333333333,12
+copy,risebench,spatial_reasoning,Viewpoint Generation,Score (1-5),2.9166666666666665,12
+copy,risebench,temporal_reasoning,Environmental Cycles,Acc (%),7.6923076923076925,13
+copy,risebench,temporal_reasoning,Environmental Cycles,Score (1-5),2.123076923076923,13
+copy,risebench,temporal_reasoning,Life Progression,Acc (%),5.263157894736842,19
+copy,risebench,temporal_reasoning,Life Progression,Score (1-5),1.4842105263157896,19
+copy,risebench,temporal_reasoning,Material Progression,Acc (%),6.521739130434782,46
+copy,risebench,temporal_reasoning,Material Progression,Score (1-5),1.6695652173913043,46
+copy,risebench,temporal_reasoning,Societal Transformation,Acc (%),0.0,7
+copy,risebench,temporal_reasoning,Societal Transformation,Score (1-5),1.2285714285714284,7
+copy,phyeditbench,Deformation_&_Fracture,(all),overall (1-10),7.633333333333334,120
+copy,phyeditbench,Fluid_Dynamics,(all),overall (1-10),7.845000000000001,120
+copy,phyeditbench,Rigid_Body_&_Interaction,(all),overall (1-10),7.885625,160
+copy,phyeditbench,State_Change_&_Environment,(all),overall (1-10),7.8725,80

@@ -1,0 +1,32 @@
+{
+  "models": {
+    "base": "/scratch/network/ssd2/junlin/huggingface/hub/models--InternVL-U--InternVL-U/snapshots/f012d760e69712bb47f7d3d09a24280f346cee01",
+    "T0": "/scratch/network/ssd/junlin/models/internvlu-v2-t0-gen-merged",
+    "T2": "/scratch/network/ssd/junlin/models/internvlu-v2-t2-gen-merged",
+    "T3": "/scratch/network/ssd/junlin/models/internvlu-v2-t3-gen-merged"
+  },
+  "inference": {
+    "pipeline": "InternVLUPipeline (Model_Related/InternVLU/InternVL-U/internvlu), generation_mode='image', bf16",
+    "resolution": "area ~512x512, input aspect ratio kept, both sides rounded to a multiple of 16 (same rule as v2 training --gen_resize_mode area --gen_image_size 512); the conditioning image is resized (LANCZOS) to the same size",
+    "gen_area_side": 512,
+    "round_to": 16,
+    "num_inference_steps": 20,
+    "sampler": "DPMSolverMultistepScheduler (dpmsolver++, flow_shift 3.0) from each checkpoint's scheduler/ config (identical across the 4)",
+    "all_cfg_scale": 4.5,
+    "part_cfg_scale": 2.0,
+    "seed": 42,
+    "seed_rule": "torch.Generator(cuda).manual_seed(42) re-created for every task",
+    "prompt_template": "the benchmark instruction verbatim, no system prompt override, no prefix/suffix (PhyEditBench TypeD uses the official packed-steps wrapper; PICABench uses superficial_prompt)"
+  },
+  "judge": {
+    "model": "/scratch/network/ssd/junlin/models/judges/Qwen3-VL-30B-A3B-Instruct-FP8 (copy of /scratch/local/ssd/junlin/models/Qwen3-VL-30B-A3B-Instruct-FP8)",
+    "served_name": "qwen3-vl-30b-fp8",
+    "temperature": 0.0,
+    "second_judge": "Qwen/Qwen3-VL-8B-Instruct (HF cache), sanity subset only"
+  },
+  "selection": {
+    "seed": 20260927,
+    "rule": "stratified random, one RNG stream per source: random.Random(f'20260927:<src>')",
+    "script": "build_manifest.py"
+  }
+}

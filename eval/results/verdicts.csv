@@ -1,0 +1,4 @@
+group,verdict
+A,"refutes: T0, T3 significantly below base"
+B,refutes: T2 significantly below base
+C,"inconclusive: no significant loss, but a loss of MDE size is not excluded"

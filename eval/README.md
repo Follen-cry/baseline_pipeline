@@ -30,6 +30,16 @@ vendored snapshot of `Evaluation/VLMEvalKit/` from the old tree.
 Excluded from migration (debug/scratch material, not part of the reproducible pipeline):
 `debug_out/`, `eval_samples/`, `scratch/`.
 
+## `ssl_physics_suite/` (+ `SUITE.md`, `results/`)
+
+Compact 1,210-task evidence suite testing whether v2 video SSL (T0/T2/T3) improves physics-aware
+editing vs base: PhyEditBench (A–E + Anti-Physics), PICABench, RISEBench, ImgEdit Basic/UGE,
+MagicBrush, grouped into target / secondary / control. `build_manifest.py` → `manifest.jsonl`,
+`gen.py` (+ `launch_gen.sh`), `judge.py` (each benchmark's official judge module, only the API client
+swapped to a local Qwen3-VL-30B-A3B-FP8 vLLM endpoint), `rule_metrics.py`, `make_copy_reference.py`,
+`analyze.py`, `agreement.py`, `report.py`; `results/build_artifact.py` builds the shareable page.
+Design and power: [`SUITE.md`](SUITE.md); findings: [`results/REPORT.md`](results/REPORT.md).
+
 ## `suites/vbvr/`
 
 Scores stage-2 target_pred checkpoints (`internvlu-{base,s0,s1,s2,s3}-4task500sft`) via

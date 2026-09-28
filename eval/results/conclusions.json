@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {"group": "A", "paras": [
+      "Pooled over all 950 target tasks, T0 and T3 are significantly below base (T0 {{g:A:T0:delta}} {{g:A:T0:ci}}, T3 {{g:A:T3:delta}} {{g:A:T3:ci}}) and T2 is not distinguishable from it ({{g:A:T2:delta}} {{g:A:T2:ci}}). Under the pre-registered rule this refutes the hypothesis for the current checkpoints.",
+      "PhyEditBench looks like a win at first: overall {{p:phyeditbench:overall:benchmark:all:T2:delta:2}} for T2 with CI {{p:phyeditbench:overall:benchmark:all:T2:ci:2}}, largest on Type E and Deformation. The input-copy reference explains it. Returning the input unchanged scores {{m:copy:PhyEditBench overall (1-10)}} overall, above base ({{m:base:PhyEditBench overall (1-10)}}) and every trained model, and it wins most clearly on Types D and E. With this judge, PhyEditBench rewards leaving the image alone, and the trained models change the input much less (edit magnitude {{m:base:Edit magnitude, all tasks (mean |out-in|, 0-1)}} for base vs {{m:T0:Edit magnitude, all tasks (mean |out-in|, 0-1)}} to {{m:T2:Edit magnitude, all tasks (mean |out-in|, 0-1)}} for T0–T3). The gain comes almost entirely from Consistency ({{p:phyeditbench:consistency:benchmark:all:T2:delta:2}} for T2), so it is not evidence of better physics.",
+      "On the target benchmarks whose judge does penalise copying (PICABench, RISE Temporal/Causal, Anti-Physics; a post-hoc pool), all three trained models are clearly worse than base: T0 {{g:A_copy_sensitive:T0:delta}}, T2 {{g:A_copy_sensitive:T2:delta}}, T3 {{g:A_copy_sensitive:T3:delta}} (copy: {{g:A_copy_sensitive:copy:delta}}). PICABench accuracy drops most in State transitions ({{p:picabench:acc:category:State:T0:delta:3}} for T0) and Refraction. The laws video should help with most, Mechanics/Causality, are flat rather than improved. Meanwhile non-edited-region PSNR rises by {{p:picabench:psnr_nonedit:benchmark:all:T0:delta:1}} dB (T0), the same conservative-editing signature.",
+      "Anti-Physics: trained models follow counterfactual instructions less well (Instruction Following {{p:phyedit_anti:Instruction_Following:benchmark:all:T0:delta:2}} for T0) and land between base and copy. Given the edit-magnitude drop, this reads as editing less, not as a stronger physical prior overriding the instruction."
+    ]},
+    {"group": "B", "paras": [
+      "RISE Spatial drops for all three models (T2 {{g:B:T2:delta}} {{g:B:T2:ci}}, the only Holm-significant one). Note that base's advantage here partly reflects the judge: copy lands at the same level as the trained models."
+    ]},
+    {"group": "C", "paras": [
+      "Controls do not show forgetting. ImgEdit Basic is slightly up (T2 {{p:imgedit_basic:score:benchmark:all:T2:delta:2}}), RISE Logical and UGE are noisy, and MagicBrush GT metrics improve (DINO {{p:magicbrush:dino:benchmark:all:T0:delta:3}} for T0) because its GT edits are small. The pooled CIs ({{g:C:T0:ci}} for T0) do not rule out a loss as large as the planned MDE, so the verdict is inconclusive rather than no harm. The judge clearly separates copy from real edits here ({{g:C:copy:delta}}), so the controls are valid."
+    ]}
+  ],
+  "caveats": [
+    "One judge family. The 30B judge is stable run to run (PICABench κ {{a:qwen3vl30b_fp8_rerun:picabench:kappa}}, PhyEditBench ±1 agreement {{a:qwen3vl30b_fp8_rerun:phyeditbench:within1_agree}}), but a different judge (Qwen3-VL-8B) agrees only moderately (PhyEditBench Spearman {{a:qwen3vl8b:phyeditbench:spearman}}, PICABench κ {{a:qwen3vl8b:picabench:kappa}}) and often ranks the four models differently on the 5% subset. Treat small differences as judge-dependent.",
+    "PhyEditBench with this judge rewards inaction: the copy reference scores highest. Its numbers are reported for completeness and should not be read as physics quality.",
+    "One seed per task at area-512 resolution, the resolution the T models were trained at. Base might do better at its native 1024², but that would break the identical-settings rule.",
+    "The T models were trained on caption + 3 context frames → next frame, never on edit instructions. The comparison measures zero-shot transfer of video SSL into editing, not an edit-tuned model.",
+    "The group-A-without-PhyEditBench pool and the copy reference were added after seeing the results. They are diagnostic, not pre-registered."
+  ],
+  "next": [
+    "Report edit-magnitude-matched comparisons, or add a copy-penalising judge check, before using PhyEditBench as evidence.",
+    "Mix instruction-editing data into T0–T3 training (or add an edit-SFT stage) so the video prior can express itself through edits instead of suppressing them.",
+    "Train T1/T4 and re-run this exact manifest (all scripts are resumable; only new models need generation and judging).",
+    "Add AURORA-Bench (SSv2 slice) as an in-domain positive control, to check that the video signal is learned at all.",
+    "Use a stronger or second judge (e.g. a GPT-class judge, or a Qwen3-VL-235B) on the target group to confirm the direction of the PICABench/RISE drops."
+  ]
+}

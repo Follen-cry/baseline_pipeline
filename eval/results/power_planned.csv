@@ -1,0 +1,9 @@
+scope,n,n_eff,sd_delta,mde_norm,mde_native
+A total,950,720,0.26,0.027,
+A · PhyEditBench overall,480,250,0.25,0.044,0.40 pt (1–10)
+A · PICABench Acc,260,260,0.3,0.052,5.2 pp
+A · RISE Temporal+Causal score,175,175,0.25,0.053,0.21 (1–5)
+A · Anti-Physics,35,35,0.25,0.12,1.1 pt (1–10)
+B RISE Spatial,60,60,0.25,0.09,0.36 (1–5)
+C total,200,200,0.25,0.05,
+C · ImgEdit Basic,108,108,0.25,0.067,0.27 (1–5)
