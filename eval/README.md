@@ -30,15 +30,13 @@ vendored snapshot of `Evaluation/VLMEvalKit/` from the old tree.
 Excluded from migration (debug/scratch material, not part of the reproducible pipeline):
 `debug_out/`, `eval_samples/`, `scratch/`.
 
-## `ssl_physics_suite/` (+ `SUITE.md`, `results/`)
+## `v2_suite_1/`
 
-Compact 1,210-task evidence suite testing whether v2 video SSL (T0/T2/T3) improves physics-aware
-editing vs base: PhyEditBench (A–E + Anti-Physics), PICABench, RISEBench, ImgEdit Basic/UGE,
-MagicBrush, grouped into target / secondary / control. `build_manifest.py` → `manifest.jsonl`,
-`gen.py` (+ `launch_gen.sh`), `judge.py` (each benchmark's official judge module, only the API client
-swapped to a local Qwen3-VL-30B-A3B-FP8 vLLM endpoint), `rule_metrics.py`, `make_copy_reference.py`,
-`analyze.py`, `agreement.py`, `report.py`; `results/build_artifact.py` builds the shareable page.
-Design and power: [`SUITE.md`](SUITE.md); findings: [`results/REPORT.md`](results/REPORT.md).
+Self-contained multi-benchmark evaluation of the v2 temporal-SSL checkpoints (base vs T0/T2/T3):
+1,210 tasks from PhyEditBench, PICABench, RISEBench, ImgEdit and MagicBrush, grouped into
+target / secondary / control evidence, judged with each benchmark's official judge code on a local
+Qwen3-VL-30B-A3B-FP8, plus a diagnosis of why the trained models score below base. Code, results,
+reports and the shareable page all live under it; start at [`v2_suite_1/README.md`](v2_suite_1/README.md).
 
 ## `suites/vbvr/`
 

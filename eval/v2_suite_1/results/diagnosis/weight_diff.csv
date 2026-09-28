@@ -1,0 +1,7 @@
+ckpt,component,n_base,n_ckpt,missing,extra,dtype_changes,rel_change,n_tensors_changed,top_changed,example_missing,example_extra
+base-merged,vlm,658,658,0,0,0,0.0001165534658686508,202,mlp1.0.bias=1.22e-02; mlp1.1.bias=3.70e-03; mlp1.1.weight=2.73e-03,,
+base-merged,generation_decoder,654,654,0,0,36,0.0015517894056109082,568,decoder.time_text_embed.timestep_embedder.linear_2.weight=4.04e-02; decoder.time_text_embed.timestep_embedder.linear_1.weight=2.57e-02; decoder.transformer_blocks.18.attn.to_add_out.bias=2.40e-02,,
+base-merged,vae,194,194,0,0,0,0.0,0,decoder.conv_in.bias=0.00e+00; decoder.conv_in.weight=0.00e+00; decoder.conv_out.bias=0.00e+00,,
+base_null-merged,vlm,658,658,0,0,0,0.0,0,language_model.lm_head.weight=0.00e+00; language_model.model.embed_tokens.weight=0.00e+00; language_model.model.layers.0.input_layernorm.weight=0.00e+00,,
+base_null-merged,generation_decoder,654,654,0,0,36,0.0,0,decoder.img_in.bias=0.00e+00; decoder.img_in.weight=0.00e+00; decoder.norm_out.linear.bias=0.00e+00,,
+base_null-merged,vae,194,194,0,0,0,0.0,0,decoder.conv_in.bias=0.00e+00; decoder.conv_in.weight=0.00e+00; decoder.conv_out.bias=0.00e+00,,

@@ -1,0 +1,490 @@
+{
+ "cause1": [
+  {
+   "kind": "copy_wins",
+   "uid": "phy/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193",
+   "bench": "phyeditbench",
+   "etype": "TypeE",
+   "instruction": "Show the dominoes falling and knocking over the Jenga tower until it collapses completely.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/input/data_193.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/phyeditbench/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/phyeditbench/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/phyeditbench/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/phyeditbench/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193.png",
+    "copy": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/copy/phyeditbench/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193.png",
+    "random": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/random/phyeditbench/Rigid_Body_&_Interaction/Stability_&_Balance/TypeE/193.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/output/data_193.png"
+   },
+   "scores": {
+    "base": 2.6,
+    "T0": 4.0,
+    "T2": 3.1,
+    "T3": 4.0,
+    "copy": 9.9,
+    "random": 1.8,
+    "gt": 9.0
+   },
+   "metric": "PhyEditBench overall (1-10)"
+  },
+  {
+   "kind": "copy_wins",
+   "uid": "phy/State_Change_&_Environment/Phase_Changes/TypeB/219",
+   "bench": "phyeditbench",
+   "etype": "TypeB",
+   "instruction": "Maintain contact until the tip of the wire melts into a liquid bead that adheres to the soldering iron.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/State_Change_&_Environment/Phase_Changes/intermediate_1/data_219.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/phyeditbench/State_Change_&_Environment/Phase_Changes/TypeB/219.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/phyeditbench/State_Change_&_Environment/Phase_Changes/TypeB/219.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/phyeditbench/State_Change_&_Environment/Phase_Changes/TypeB/219.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/phyeditbench/State_Change_&_Environment/Phase_Changes/TypeB/219.png",
+    "copy": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/copy/phyeditbench/State_Change_&_Environment/Phase_Changes/TypeB/219.png",
+    "random": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/random/phyeditbench/State_Change_&_Environment/Phase_Changes/TypeB/219.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/State_Change_&_Environment/Phase_Changes/intermediate_2/data_219.png"
+   },
+   "scores": {
+    "base": 2.5,
+    "T0": 9.3,
+    "T2": 9.3,
+    "T3": 9.3,
+    "copy": 9.5,
+    "random": 5.4,
+    "gt": 9.3
+   },
+   "metric": "PhyEditBench overall (1-10)"
+  },
+  {
+   "kind": "copy_wins",
+   "uid": "phy/Deformation_&_Fracture/plastic_deformation/TypeC/44",
+   "bench": "phyeditbench",
+   "etype": "TypeC",
+   "instruction": "Ram fully compresses bullets, flattening them completely against the base",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_2/data_44.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/phyeditbench/Deformation_&_Fracture/plastic_deformation/TypeC/44.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/phyeditbench/Deformation_&_Fracture/plastic_deformation/TypeC/44.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/phyeditbench/Deformation_&_Fracture/plastic_deformation/TypeC/44.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/phyeditbench/Deformation_&_Fracture/plastic_deformation/TypeC/44.png",
+    "copy": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/copy/phyeditbench/Deformation_&_Fracture/plastic_deformation/TypeC/44.png",
+    "random": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/random/phyeditbench/Deformation_&_Fracture/plastic_deformation/TypeC/44.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Deformation_&_Fracture/plastic_deformation/output/data_44.png"
+   },
+   "scores": {
+    "base": 3.1,
+    "T0": 2.9,
+    "T2": 5.8,
+    "T3": 8.7,
+    "copy": 9.9,
+    "random": 1.5,
+    "gt": 9.3
+   },
+   "metric": "PhyEditBench overall (1-10)"
+  },
+  {
+   "kind": "copy_wins",
+   "uid": "phy/Deformation_&_Fracture/elasticity/TypeA/32",
+   "bench": "phyeditbench",
+   "etype": "TypeA",
+   "instruction": "The table tennis ball flying diagonally toward the paddle, close but not yet making cont",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Deformation_&_Fracture/elasticity/input/data_32.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/phyeditbench/Deformation_&_Fracture/elasticity/TypeA/32.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/phyeditbench/Deformation_&_Fracture/elasticity/TypeA/32.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/phyeditbench/Deformation_&_Fracture/elasticity/TypeA/32.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/phyeditbench/Deformation_&_Fracture/elasticity/TypeA/32.png",
+    "copy": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/copy/phyeditbench/Deformation_&_Fracture/elasticity/TypeA/32.png",
+    "random": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/random/phyeditbench/Deformation_&_Fracture/elasticity/TypeA/32.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Deformation_&_Fracture/elasticity/intermediate_1/data_32.png"
+   },
+   "scores": {
+    "base": 1.5,
+    "T0": 8.2,
+    "T2": 8.0,
+    "T3": 8.0,
+    "copy": 8.2,
+    "random": 4.3,
+    "gt": 7.9
+   },
+   "metric": "PhyEditBench overall (1-10)"
+  },
+  {
+   "kind": "random_scores_high",
+   "uid": "phy/Deformation_&_Fracture/brittle_fracture/TypeC/7",
+   "bench": "phyeditbench",
+   "etype": "TypeC",
+   "instruction": "Fragments scatter widely and settle into a flattened pile of debris",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_2/data_7.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/phyeditbench/Deformation_&_Fracture/brittle_fracture/TypeC/7.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/phyeditbench/Deformation_&_Fracture/brittle_fracture/TypeC/7.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/phyeditbench/Deformation_&_Fracture/brittle_fracture/TypeC/7.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/phyeditbench/Deformation_&_Fracture/brittle_fracture/TypeC/7.png",
+    "copy": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/copy/phyeditbench/Deformation_&_Fracture/brittle_fracture/TypeC/7.png",
+    "random": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/random/phyeditbench/Deformation_&_Fracture/brittle_fracture/TypeC/7.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Deformation_&_Fracture/brittle_fracture/output/data_7.png"
+   },
+   "scores": {
+    "base": 3.8,
+    "T0": 5.1,
+    "T2": 5.8,
+    "T3": 4.9,
+    "copy": 4.5,
+    "random": 10.0,
+    "gt": 9.0
+   },
+   "metric": "PhyEditBench overall (1-10)"
+  },
+  {
+   "kind": "random_scores_high",
+   "uid": "phy/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124",
+   "bench": "phyeditbench",
+   "etype": "TypeC",
+   "instruction": "Position the marble further into the distance along the wooden planks, increasing the depth-of-field blur as it recedes.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_2/data_124.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/phyeditbench/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/phyeditbench/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/phyeditbench/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/phyeditbench/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124.png",
+    "copy": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/copy/phyeditbench/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124.png",
+    "random": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/random/phyeditbench/Rigid_Body_&_Interaction/Collision_&_Chain/TypeC/124.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/phyeditbench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/output/data_124.png"
+   },
+   "scores": {
+    "base": 6.5,
+    "T0": 8.1,
+    "T2": 8.0,
+    "T3": 8.3,
+    "copy": 8.6,
+    "random": 9.9,
+    "gt": 8.6
+   },
+   "metric": "PhyEditBench overall (1-10)"
+  }
+ ],
+ "cause3": [
+  {
+   "kind": "no_edit",
+   "uid": "mb/139306",
+   "bench": "magicbrush",
+   "model": "T3",
+   "instruction": "Dull the knife.",
+   "reason": "The knife is completely missing from the output image, so the requested change to dull it was not made. Instead, the knife has been removed, which is a significant alteration beyond the scope of the instruction. Additionally, the overall image has changed in color and lighting, with a more washed-out and desaturated appearance, indicating global drift.",
+   "base_reason": "The knife in the output image is visibly duller than in the input image, with a less reflective surface and a more worn appearance. The change is clearly made and looks plausible. The rest of the image remains unchanged, so there is no global drift or degradation. The instruction was not ignored, and the temporal direction is not relevant here. The knife is the only object that was edited, and the edit is complete and correct.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/139306/139306-input.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/magicbrush/139306_1.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/magicbrush/139306_1.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/139306/139306-output1.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T3": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "no_edit",
+   "uid": "mb/163897",
+   "bench": "magicbrush",
+   "model": "T0",
+   "instruction": "Fix the fender.",
+   "reason": "The output image is nearly identical to the input, with no visible change to the fender. The damage to the front bumper and fender remains unchanged. However, the output has a noticeable blur and a slight shift in color and contrast, indicating a 'global_drift' in the image quality. The requested edit was not performed.",
+   "base_reason": "The output image shows the fender of the yellow truck repaired, with the previously bent and damaged front bumper now straight and properly aligned. The change is clearly made and looks plausible. The rest of the scene, including the background and the grass, remains unchanged, indicating the edit is focused on the requested area.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/163897/163897-input.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/magicbrush/163897_1.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/magicbrush/163897_1.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/163897/163897-output1.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T0": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "no_edit",
+   "uid": "mb/560472",
+   "bench": "magicbrush",
+   "model": "T0",
+   "instruction": "let there be patties in the pan",
+   "reason": "The output image is identical to the input image. There are no patties in the pan, and the scene remains unchanged. The only difference is a slight shift in lighting and color saturation, which constitutes a minor global drift, but no editing action was performed to fulfill the instruction.",
+   "base_reason": "The model correctly replaced the hot dogs in the red dish with patties, which is the requested change. The patties are clearly visible and look plausible. However, there is a noticeable global drift in the image, as the overall lighting, color saturation, and contrast have been significantly altered, making the scene appear brighter and more saturated than the input. This change in overall appearance is not part of the instruction but is a significant alteration of the image's look.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/560472/560472-input.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/magicbrush/560472_1.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/magicbrush/560472_1.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/560472/560472-output1.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T0": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "partial_edit",
+   "uid": "pica/445",
+   "bench": "picabench",
+   "model": "T2",
+   "instruction": "Change the season from winter to summer.",
+   "reason": "The model has attempted to change the season by replacing the snow with green grass, which is a step toward summer. However, the snow is still present in the background and on the ground, indicating the change is incomplete. Additionally, the overall color palette has shifted dramatically with intense yellow and green hues, and the image has a strong digital artifacting or filter effect, which constitutes global drift. The core structure and framing of the scene remain unchanged.",
+   "base_reason": "The model successfully changed the season from winter to summer by replacing the snow-covered ground and bare trees with lush green grass and leafy trees. The sky is now a clear blue, and the overall lighting is brighter and warmer, consistent with a summer day. The core structure of the house and the person remain unchanged, indicating the requested change was made. However, there is a noticeable global drift in the image's style, which appears more cartoonish and saturated than the original photograph, indicating a change in overall aesthetic beyond the seasonal shift.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/picabench/input_img/445.jpg",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/picabench/445.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/picabench/445.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T2": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "partial_edit",
+   "uid": "rise/causal_reasoning_37",
+   "bench": "risebench",
+   "model": "T0",
+   "instruction": "Draw what it will look like after a strong wind blows through it.",
+   "reason": "The model has made a change to the image, but it is incomplete and not clearly related to the instruction. The grass appears more blurred and has a different color gradient, suggesting a change in lighting or focus, but there is no clear visual evidence of wind, such as leaning or swaying grass. The overall scene has shifted in color and contrast, indicating a global drift, but the requested effect of wind is not properly depicted.",
+   "base_reason": "The output correctly depicts the grass field after a strong wind has blown through it, with the blades visibly bent and swaying in a consistent direction. The change is plausible and directly addresses the instruction. The overall color and lighting have shifted slightly, with a warmer, more golden hue and a softer focus, which can be interpreted as a form of global drift, but the core requested change is clearly and correctly implemented.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/causal_reasoning_images/37.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/causal_reasoning/causal_reasoning_37.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/causal_reasoning/causal_reasoning_37.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T0": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "partial_edit",
+   "uid": "rise/temporal_reasoning_45",
+   "bench": "risebench",
+   "model": "T3",
+   "instruction": "Draw what it will look like after one hour on a hot grill.",
+   "reason": "The model has made a small change by adding a few dark spots to the corn, which is a very weak attempt at showing charring from grilling. However, the change is minimal and does not represent a plausible state after one hour on a hot grill, where the corn would be significantly more charred, the kernels would be more shriveled, and the husks would be blackened and burnt. The overall image still looks very fresh and raw, indicating the edit is incomplete. The lighting and background are also slightly altered, contributing to a minor global drift.",
+   "base_reason": "The model correctly applies the requested change of grilling corn for one hour, showing a charred, browned, and shrunken cob. The visual transformation from fresh to grilled is accurate. However, there is a noticeable global drift in the image's style and framing; the output is a close-up with a different background and lighting, which is a significant change from the original clean, white-background photo. The change is plausible and directly addresses the instruction.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/temporal_reasoning_images/45.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/temporal_reasoning/temporal_reasoning_45.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/risebench/images/temporal_reasoning/temporal_reasoning_45.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T3": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "instruction_ignored",
+   "uid": "mb/416125",
+   "bench": "magicbrush",
+   "model": "T0",
+   "instruction": "Let the sign become a yield sign.",
+   "reason": "The instruction was to change the stop sign into a yield sign. However, the output shows a sign with a 'T' on it, which is not a yield sign. This indicates that the model did not follow the instruction correctly. Additionally, the overall image has undergone significant changes in lighting, shadows, and texture, suggesting a global drift in style and color, even though the image is in black and white. The scene's overall appearance has been altered beyond the requested edit.",
+   "base_reason": "The model successfully changed the stop sign into a yield sign, which is the requested edit. The shape is now an inverted equilateral triangle, and the text has been replaced with a symbol. However, the overall image has undergone significant global drift: the lighting, shadows, and contrast are dramatically altered, and the scene appears more stylized and high-contrast than the original. The sign's texture and the surrounding environment also look different, indicating a change in style beyond the requested modification.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/416125/416125-input.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/magicbrush/416125_1.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/magicbrush/416125_1.png",
+    "gt": "/scratch/network/ssd/junlin/ssl_eval/staged/magicbrush/416125/416125-output1.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T0": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "instruction_ignored",
+   "uid": "rise/logical_reasoning_58",
+   "bench": "risebench",
+   "model": "T0",
+   "instruction": "A WordDescription Search game is shown in the image. \nThe task is to find the given words hidden in the grid. Rules:\n1. Words can be hidden horizontally, vertically, or diagonally.\n2. Words can read forwards or backwards.\n3. Words always follow a straight line (no zigzagging)\n\nCircle the location of \"DONKEY\" with a red marker.",
+   "reason": "The instruction asks to circle the location of \"DONKEY\" with a red marker. However, the output circles the letters \"R K\" in row 4, which is not the word \"DONKEY\". The actual word \"DONKEY\" is not present in the grid, but the word \"DON\" appears in row 2, columns 1-4. The model has made a visible change by circling letters, but it is not the requested word. Therefore, the instruction is ignored.",
+   "base_reason": "The output image shows the word \"DONKEY\" correctly circled in red, located at positions (1,1) to (1,6) in the grid, which is the correct horizontal sequence. The rest of the image remains unchanged, and the editing instruction is fully and accurately followed. The circle is clearly visible and correctly placed. The image is not degraded, and the scene identity is preserved. The instruction is not ignored, and the temporal direction is not reversed. The output is correct.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/logical_reasoning_images/58.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/logical_reasoning/logical_reasoning_58.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/logical_reasoning/logical_reasoning_58.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T0": 0.025
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "instruction_ignored",
+   "uid": "rise/causal_reasoning_6",
+   "bench": "risebench",
+   "model": "T0",
+   "instruction": "Draw what it will look like if it were crumpled into a ball.",
+   "reason": "The instruction was to draw what the paper would look like if it were crumpled into a ball. The output shows a crumpled object, but it is not the paper itself\u2014it is a magenta, shiny, fabric-like ball. The paper remains flat and uncrumpled in the image. This indicates that the model did not apply the edit to the correct object (the paper) and instead replaced it with a different object, which is a clear misinterpretation of the instruction. The change is not just incomplete or weak; it is a substitution, making 'instruction_ignored' the correct primary label. Additionally, the overall scene has undergone a 'global_drift' due to the introduction of a new object with a different color, texture, and material, which alters the visual style and content of the image.",
+   "base_reason": "The instruction was to draw what the paper would look like if it were crumpled into a ball. The output image shows the paper, still attached to the clips, with a crumpled ball of paper superimposed in the center. This is a plausible depiction of the requested state. The paper is not actually crumpled, but the visual representation of a crumpled ball is clearly present, fulfilling the instruction. The overall scene, including the clips and background, remains unchanged, so there is no global drift or degradation. The change is not ignored, and the temporal direction is not reversed. The edit is complete and plausible.",
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/causal_reasoning_images/6.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/causal_reasoning/causal_reasoning_6.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/causal_reasoning/causal_reasoning_6.png"
+   },
+   "scores": {
+    "base": 0.95,
+    "T0": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  }
+ ],
+ "cause2": [
+  {
+   "kind": "gap_closes",
+   "uid": "rise/causal_reasoning_58",
+   "bench": "risebench",
+   "instruction": "Draw the scene after a balloon, rubbed against fabric, is held just above a pile of paper scraps.",
+   "change": 1.283,
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/causal_reasoning_images/58.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "base_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base_editsft/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "T0_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0_editsft/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "T2_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2_editsft/risebench/images/causal_reasoning/causal_reasoning_58.png",
+    "T3_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3_editsft/risebench/images/causal_reasoning/causal_reasoning_58.png"
+   },
+   "scores": {
+    "base": 0.95,
+    "T0": 0.0,
+    "T2": 0.0,
+    "T3": 0.95,
+    "base_editsft": 0.0,
+    "T0_editsft": 0.0,
+    "T2_editsft": 0.95,
+    "T3_editsft": 1.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "gap_closes",
+   "uid": "rise/logical_reasoning_63",
+   "bench": "risebench",
+   "instruction": "Below is a directed graph where each path has a weight. Please draw the path with the maximum total weight from node 0 to node 8.",
+   "change": 1.008,
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/logical_reasoning_images/63.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "base_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base_editsft/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "T0_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0_editsft/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "T2_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2_editsft/risebench/images/logical_reasoning/logical_reasoning_63.png",
+    "T3_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3_editsft/risebench/images/logical_reasoning/logical_reasoning_63.png"
+   },
+   "scores": {
+    "base": 0.7,
+    "T0": 1.0,
+    "T2": 0.0,
+    "T3": 0.025,
+    "base_editsft": 0.025,
+    "T0_editsft": 0.025,
+    "T2_editsft": 1.0,
+    "T3_editsft": 1.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "gap_closes",
+   "uid": "rise/causal_reasoning_70",
+   "bench": "risebench",
+   "instruction": "Draw the result of prolonged sunlight exposure.",
+   "change": 1.0,
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/causal_reasoning_images/70.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "base_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base_editsft/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "T0_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0_editsft/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "T2_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2_editsft/risebench/images/causal_reasoning/causal_reasoning_70.png",
+    "T3_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3_editsft/risebench/images/causal_reasoning/causal_reasoning_70.png"
+   },
+   "scores": {
+    "base": 1.0,
+    "T0": 0.0,
+    "T2": 0.0,
+    "T3": 0.0,
+    "base_editsft": 0.0,
+    "T0_editsft": 0.0,
+    "T2_editsft": 0.0,
+    "T3_editsft": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "gap_widens",
+   "uid": "rise/spatial_reasoning_91",
+   "bench": "risebench",
+   "instruction": "Draw an image showing the scene after placing the three small boxes into the middle box, and the middle box into the large box.",
+   "change": -0.6,
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/spatial_reasoning_images/91.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "base_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base_editsft/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "T0_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0_editsft/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "T2_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2_editsft/risebench/images/spatial_reasoning/spatial_reasoning_91.png",
+    "T3_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3_editsft/risebench/images/spatial_reasoning/spatial_reasoning_91.png"
+   },
+   "scores": {
+    "base": 0.0,
+    "T0": 0.0,
+    "T2": 0.0,
+    "T3": 0.0,
+    "base_editsft": 0.6,
+    "T0_editsft": 0.0,
+    "T2_editsft": 0.0,
+    "T3_editsft": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  },
+  {
+   "kind": "gap_widens",
+   "uid": "rise/temporal_reasoning_58",
+   "bench": "risebench",
+   "instruction": "Draw what it will look like after the seasons have fully cycled twice.",
+   "change": -0.6,
+   "imgs": {
+    "input": "/scratch/network/ssd/junlin/ssl_eval/staged/risebench/data/temporal_reasoning_images/58.png",
+    "base": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "T0": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "T2": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "T3": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "base_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/base_editsft/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "T0_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T0_editsft/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "T2_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T2_editsft/risebench/images/temporal_reasoning/temporal_reasoning_58.png",
+    "T3_editsft": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/eval/v2_suite_1/outputs/T3_editsft/risebench/images/temporal_reasoning/temporal_reasoning_58.png"
+   },
+   "scores": {
+    "base": 0.0,
+    "T0": 0.55,
+    "T2": 0.55,
+    "T3": 0.55,
+    "base_editsft": 0.55,
+    "T0_editsft": 0.55,
+    "T2_editsft": 0.95,
+    "T3_editsft": 0.0
+   },
+   "metric": "normalised primary metric (0-1)"
+  }
+ ]
+}

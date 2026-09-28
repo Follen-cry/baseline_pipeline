@@ -1,0 +1,13 @@
+item,base,base_ft,n
+phyeditbench (normalised),0.7017777777777777,0.7044444444444444,25
+phyedit_anti (normalised),0.52,0.5288888888888887,10
+picabench (normalised),0.6112500000000001,0.5402380952380952,40
+risebench (normalised),0.4286458333333334,0.3645833333333333,48
+imgedit_basic (normalised),0.9383333333333334,0.8393518518518519,27
+PhyEditBench consistency (1-10),7.44,8.04,25
+PhyEditBench instruction following (1-10),7.32,7.44,25
+PhyEditBench physical plausibility (1-10),7.12,6.76,25
+RISE reasoning (1-5),2.7291666666666665,2.3958333333333335,48
+RISE consistency (1-5),3.8297872340425534,4.1063829787234045,47
+no-edit outputs (edit size < 0.03),0.06,0.15333333333333332,150
+median edit size (mean |out - in|),0.17192809283733368,0.11715305969119072,150
