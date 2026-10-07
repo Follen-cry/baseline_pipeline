@@ -56,3 +56,10 @@ Checkpoints themselves are **not** part of this repo (too large, and this repo i
 stays code+small-data only) — they stay wherever they were trained
 (`/scratch/network/ssd2/junlin/models/` for stage 1, `/scratch/network/ssd/junlin/models/` for
 stage 2 — note the two different volumes, see PROVENANCE.md §5).
+
+## `launchers_mirror/` (read-only, for GitHub)
+
+The submodule URL is a local path, so GitHub cannot show the launchers. `launchers_mirror/` is a
+snapshot copy of `shell/internvlu/{sft,orchestration,engine}/` at the pinned submodule commit
+(see its README). It supersedes the "don't duplicate" note above for *viewing only*: the submodule
+stays the source of truth, the copies are not runnable, and `sync_launchers_mirror.sh` refreshes them.
