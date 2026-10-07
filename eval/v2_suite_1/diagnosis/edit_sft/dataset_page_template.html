@@ -1,0 +1,253 @@
+<title>Edit-SFT Probe Set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f4f5f2; --surface:#ffffff; --sunk:#e9ece8; --ink:#1b1f1d; --ink2:#45504b; --muted:#6b7570; --rule:#d6dbd6;
+  --mb:#2a78d6; --mb-soft:#e3eefb; --pc:#eb6834; --pc-soft:#fde9df; --focus:#2a78d6; --warn:#8a5a00; --warn-soft:#f6ecd4;
+  --display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121614; --surface:#1a201d; --sunk:#222a26; --ink:#e6ebe8; --ink2:#b8c2bd; --muted:#8e9994; --rule:#2d3632;
+    --mb:#3987e5; --mb-soft:#16273d; --pc:#d95926; --pc-soft:#3a2016; --focus:#3987e5; --warn:#e0b25a; --warn-soft:#352a12;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121614; --surface:#1a201d; --sunk:#222a26; --ink:#e6ebe8; --ink2:#b8c2bd; --muted:#8e9994; --rule:#2d3632;
+  --mb:#3987e5; --mb-soft:#16273d; --pc:#d95926; --pc-soft:#3a2016; --focus:#3987e5; --warn:#e0b25a; --warn-soft:#352a12;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+header{padding-block:40px 24px;border-bottom:1px solid var(--rule)}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(34px,6vw,56px)/1 var(--display);margin:.3em 0 .25em;letter-spacing:-.015em;text-wrap:balance}
+h2{font:700 26px/1.15 var(--display);margin:0 0 .5em;text-wrap:balance}
+h3{font:600 17px/1.3 var(--body);margin:1.2em 0 .4em}
+p{max-width:72ch;margin:.5em 0}
+.lede{font-size:17px;color:var(--ink2)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font:500 14px var(--mono);color:var(--ink2);font-variant-numeric:tabular-nums}
+.facts b{color:var(--ink);font-weight:500}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);display:flex;gap:4px;flex-wrap:wrap;padding-block:8px}
+nav.toc a{font:500 13px var(--body);color:var(--ink2);text-decoration:none;padding:5px 10px;border-radius:6px}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--sunk);color:var(--ink);outline:none}
+section{padding-block:40px 8px;border-bottom:1px solid var(--rule)}
+a{color:var(--focus)}
+code,.mono{font-family:var(--mono);font-size:.9em}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.src{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.src .tag{display:flex;align-items:center;gap:8px;font:600 18px var(--display)}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block;flex:none}
+dl{display:grid;grid-template-columns:minmax(110px,auto) 1fr;gap:6px 14px;margin:0;font-size:14px}
+dt{color:var(--muted)} dd{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.chart{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;overflow-x:auto}
+.chart svg{display:block;max-width:100%;height:auto}
+.chart text{fill:var(--ink2);font:12px var(--body)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2);margin:6px 0 4px}
+.bars{display:flex;flex-direction:column;gap:6px;font-size:13px}
+.bar{display:grid;grid-template-columns:minmax(140px,190px) 1fr 44px;gap:10px;align-items:center}
+.bar .t{height:12px;border-radius:0 4px 4px 0;background:var(--pc)}
+.bar .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink2)}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0 16px}
+.chipbtn{font:500 13px var(--body);border:1px solid var(--rule);background:var(--surface);color:var(--ink2);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chipbtn:focus-visible,select:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--c)}
+.card.mb{--c:var(--mb)} .card.pc{--c:var(--pc)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio figure{margin:0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.trio img{width:100%;aspect-ratio:1/1;object-fit:contain;background:var(--sunk);border-radius:6px;cursor:zoom-in;border:2px solid transparent}
+.trio img:focus-visible{border-color:var(--focus);outline:none}
+.trio figcaption{font:12px var(--mono);color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.chip{font:500 12px/1 var(--mono);padding:4px 7px;border-radius:999px;background:var(--sunk);color:var(--ink2);white-space:nowrap}
+.chip.mb{background:var(--mb-soft);color:var(--ink)} .chip.pc{background:var(--pc-soft);color:var(--ink)}
+.chip.lo{background:var(--warn-soft);color:var(--warn)}
+.instr{font:500 15.5px/1.45 var(--body);margin:0}
+pre{font:12.5px/1.5 var(--mono);background:var(--sunk);border-radius:8px;padding:10px 12px;margin:0;white-space:pre-wrap;word-break:break-word;overflow-x:auto;color:var(--ink)}
+details summary{cursor:pointer;font-size:13px;color:var(--ink2)}
+details[open] summary{margin-bottom:6px}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 12px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 12px var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+.note{background:var(--warn-soft);border-left:3px solid var(--warn);padding:10px 14px;border-radius:0 6px 6px 0;max-width:80ch}
+.small{font-size:13px;color:var(--muted)}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;z-index:100;padding:24px}
+.lb img{max-width:min(92vw,900px);max-height:80vh;border-radius:6px}
+.lb .cap{color:#fff;font:14px var(--body);text-align:center;max-width:80ch}
+.lb button{font:14px var(--body);background:#fff;color:#111;border:0;border-radius:6px;padding:6px 14px;cursor:pointer}
+@media (max-width:560px){.wrap{padding-inline:16px} .bar{grid-template-columns:110px 1fr 36px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">InternVL-U · v2_suite_1 · Cause-2 diagnostic</div>
+  <h1>Edit-SFT probe set</h1>
+  <p class="lede">The small instruction-editing dataset used to fine-tune base, T0, T2 and T3 with one identical recipe. It tests whether the trained models only lack the editing format. Every pair below is exactly what the trainer saw: the input image, the instruction text and the target image.</p>
+  <div class="facts" id="facts"></div>
+</header>
+<nav class="toc" aria-label="Sections"><a href="#sources">Sources</a><a href="#stats">Statistics</a><a href="#examples">Examples</a><a href="#format">Row format</a><a href="#overlap">Overlap check</a><a href="#use">Use and files</a></nav>
+
+<section id="sources">
+  <h2>Where the pairs come from</h2>
+  <p>No ground truth was created for this probe. Each target is the source dataset's own edited image, used unchanged. Neither source has real-photo targets.</p>
+  <div class="two" id="srccards"></div>
+</section>
+
+<section id="stats">
+  <h2>What the targets ask for</h2>
+  <p>Edit size is the mean absolute pixel change from input to target (RGB in 0–1, both resized to 512×512). The dashed line marks 0.03, the threshold the diagnosis uses to call a model output "no edit".</p>
+  <div class="legend"><span><span class="dot" style="background:var(--mb)"></span>MagicBrush train</span><span><span class="dot" style="background:var(--pc)"></span>PICA-100K</span></div>
+  <div class="two">
+    <div class="chart" id="hist"></div>
+    <div class="chart"><h3 style="margin-top:0">PICA-100K rows by edit operation</h3><div class="bars" id="laws"></div>
+      <p class="small" id="lawnote"></p>
+      <h3>MagicBrush rows by edit turn</h3><div class="bars" id="turns"></div></div>
+  </div>
+  <div class="tbl" style="margin-top:16px"><table id="stattbl"></table></div>
+</section>
+
+<section id="examples">
+  <h2>Examples</h2>
+  <p><span id="exintro"></span> The difference map shows where the target departs from the input (bright = large change). The training prompt is shown exactly as the trainer received it. Click any image to enlarge it.</p>
+  <div class="controls" role="group" aria-label="Filter examples">
+    <button class="chipbtn" type="button" data-f="all" aria-pressed="true" id="f-all">All</button>
+    <button class="chipbtn" type="button" data-f="magicbrush" aria-pressed="false" id="f-mb">MagicBrush</button>
+    <button class="chipbtn" type="button" data-f="pica100k" aria-pressed="false" id="f-pc">PICA-100K</button>
+    <span class="small" id="excount"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="format">
+  <h2>Row format</h2>
+  <p>One JSON line per pair in <code>train.jsonl</code>, in the trainer's image-generation format. The input image fills the <code>&lt;image&gt;</code> slot and is also the VAE pixel condition. The target is generated at the <code>&lt;img&gt;</code> token. The first row of the file:</p>
+  <pre id="rowjson"></pre>
+  <h3>Trainer meta file (<code>meta.json</code>)</h3>
+  <pre id="metajson"></pre>
+</section>
+
+<section id="overlap">
+  <h2>Overlap check against the evaluation</h2>
+  <p id="ovtext"></p>
+  <div class="tbl"><table id="ovtbl"></table></div>
+  <p class="small">A difference hash cannot tell smooth, low-texture images apart well, so several of these are likely false positives. Dropping them is the conservative choice. MagicBrush images used by the evaluation's MagicBrush test slice are also excluded by COCO id.</p>
+</section>
+
+<section id="use">
+  <h2>How it was used, and where the files are</h2>
+  <div class="tbl"><table>
+    <tr><th>Setting</th><th>Value</th></tr>
+    <tr><td>Models fine-tuned</td><td>base, T0, T2, T3 (one run each, identical recipe; only the starting checkpoint differs)</td></tr>
+    <tr><td>Recipe</td><td>v2 T-series recipe: full-unified SFT, LLM LoRA r32, lr 1e-5, generation-decoder lr 5e-5, gen-loss weight 0.5 (warm-up 20), text-loss weight 0, targets at area ≈512² with aspect kept, global batch 16</td></tr>
+    <tr><td>Length</td><td>2 epochs over the rows = 160 optimizer steps</td></tr>
+    <tr><td>Evaluation</td><td>fixed 150-item subset of the suite (MagicBrush excluded, since this set trains on MagicBrush-train)</td></tr>
+  </table></div>
+  <div class="tbl" style="margin-top:12px"><table>
+    <tr><th>What</th><th>Where</th></tr>
+    <tr><td>Rows, meta, overlap report, images (2,560 PNGs)</td><td><code>/scratch/network/ssd/junlin/ssl_eval/diag_sft/data/</code></td></tr>
+    <tr><td>Downloaded source shards (parquet)</td><td><code>/scratch/network/ssd/junlin/ssl_eval/diag_sft/raw/</code></td></tr>
+    <tr><td>Builder and launcher</td><td><code>baseline_pipeline/eval/v2_suite_1/diagnosis/edit_sft/</code> (<code>build_edit_sft.py</code>, <code>run_edit_sft_probe.sh</code>)</td></tr>
+    <tr><td>Training logs</td><td><code>/scratch/network/ssd/junlin/ssl_eval/diag_sft/logs/</code></td></tr>
+    <tr><td>Checkpoints</td><td><code>/scratch/network/ssd/junlin/models/diag_editsft/{base,T0,T2,T3}(-merged)</code></td></tr>
+    <tr><td>Results</td><td><code>eval/v2_suite_1/results/diagnosis/cause2_*.csv</code> and <code>results/DIAGNOSIS.md</code></td></tr>
+  </table></div>
+</section>
+</div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Enlarged image"><img id="lbimg" alt=""><div class="cap" id="lbcap"></div><button type="button" id="lbclose">Close</button></div>
+
+<script>
+const D=/*__DATA__*/null;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const f=(x,d=3)=>Number(x).toFixed(d);
+const pct=x=>Math.round(x*100)+"%";
+const S=D.stats, MB=S.magicbrush, PC=S.pica100k;
+
+$("#facts").innerHTML=`<span><b>${D.n.toLocaleString()}</b> pairs</span><span><b>${MB.n}</b> MagicBrush train</span><span><b>${PC.n}</b> PICA-100K</span><span><b>${D.overlap.n_dropped}</b> dropped for eval overlap</span><span>median edit size <b>${f(MB.edit_median)}</b> vs <b>${f(PC.edit_median)}</b></span>`;
+
+$("#srccards").innerHTML=`
+<div class="src"><div class="tag"><span class="dot" style="background:var(--mb)"></span>MagicBrush · train split</div>
+ <dl>
+  <dt>Dataset</dt><dd><a href="https://huggingface.co/datasets/osunlp/MagicBrush" rel="noopener">osunlp/MagicBrush</a>, 4 of 51 train shards, ${MB.n} turns sampled</dd>
+  <dt>Input image</dt><dd>Turn 1: a real MS-COCO photo. Turns 2–3: the previous turn's edited image, so itself a DALL-E 2 output.</dd>
+  <dt>Instruction</dt><dd>Written by a crowdworker.</dd>
+  <dt>How the target was made</dt><dd>The crowdworker drew a mask and ran DALL-E 2 inpainting, retrying prompts and settings until satisfied; the authors then checked quality by hand. The mask is not used in training.</dd>
+  <dt>Character</dt><dd>Small, local edits: median edit size ${f(MB.edit_median)}, ${pct(MB.below_003)} below the 0.03 no-edit line.</dd>
+  <dt>Paper</dt><dd><a href="https://arxiv.org/abs/2306.10012" rel="noopener">arXiv 2306.10012</a> · CC BY 4.0</dd>
+ </dl></div>
+<div class="src"><div class="tag"><span class="dot" style="background:var(--pc)"></span>PICA-100K</div>
+ <dl>
+  <dt>Dataset</dt><dd><a href="https://huggingface.co/datasets/Andrew613/PICA-100K" rel="noopener">Andrew613/PICA-100K</a>, first of 111 shards, ${PC.n} pairs sampled</dd>
+  <dt>Input image</dt><dd>Synthetic: FLUX.1-Krea-dev, prompted from GPT-5-refined scene descriptions.</dd>
+  <dt>Instruction</dt><dd>Written by GPT-5 in three tiers; training used the short <i>superficial</i> tier (the tier PICABench is scored on).</dd>
+  <dt>How the target was made</dt><dd>Wan2.2-14B image-to-video animated the source image; the last frame of that clip is the target. GPT-5 labelled the pair.</dd>
+  <dt>Character</dt><dd>Large, whole-scene changes: median edit size ${f(PC.edit_median)}, ${pct(PC.below_003)} below 0.03. All rows are law "${esc(PC.laws[0][0])}"${PC.laws.length>1?" and others":""} (weather, time of day, season). Video-derived, like the T-series training data.</dd>
+  <dt>Paper</dt><dd><a href="https://arxiv.org/abs/2510.17681" rel="noopener">arXiv 2510.17681</a> (PICABench)</dd>
+ </dl></div>`;
+
+// histogram (two small multiples on one scale)
+(function(){
+  const W=560,H=250,l=40,r=12,t=14,b=34,bins=MB.hist.length,maxv=Math.max(...MB.hist,...PC.hist);
+  const bw=(W-l-r)/bins, y=v=>t+(1-v/maxv)*(H-t-b), x=i=>l+i*bw;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Edit size histogram per source"><text x="${l}" y="10" style="font-weight:600;fill:var(--ink)">Edit size per pair (rows)</text>`;
+  [0,Math.round(maxv/2),maxv].forEach(v=>{s+=`<line x1="${l}" x2="${W-r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--rule)"/><text x="${l-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`});
+  for(let i=0;i<bins;i++){const w=(bw-3)/2;
+    s+=`<rect x="${x(i)+1}" y="${y(MB.hist[i])}" width="${w}" height="${H-b-y(MB.hist[i])}" rx="2" fill="var(--mb)"><title>MagicBrush ${f(i*0.02,2)}–${f((i+1)*0.02,2)}: ${MB.hist[i]}</title></rect>`;
+    s+=`<rect x="${x(i)+1+w+1}" y="${y(PC.hist[i])}" width="${w}" height="${H-b-y(PC.hist[i])}" rx="2" fill="var(--pc)"><title>PICA-100K ${f(i*0.02,2)}–${f((i+1)*0.02,2)}: ${PC.hist[i]}</title></rect>`;}
+  [0,0.1,0.2,0.3,0.4].forEach(v=>{s+=`<text x="${l+v/0.4*(W-l-r)}" y="${H-14}" text-anchor="middle">${v===0.4?"≥0.4":v.toFixed(1)}</text>`});
+  const tx=l+0.03/0.4*(W-l-r); s+=`<line x1="${tx}" x2="${tx}" y1="${t}" y2="${H-b}" stroke="var(--ink)" stroke-dasharray="4 3"/><text x="${tx+5}" y="${t+12}" style="fill:var(--ink)">0.03</text>`;
+  s+=`<text x="${(W+l)/2}" y="${H-1}" text-anchor="middle">mean |target − input|</text>`;
+  $("#hist").innerHTML=s+"</svg>";
+})();
+const barList=(el,items,color,total)=>{const m=Math.max(...items.map(i=>i[1]));el.innerHTML=items.map(([k,v])=>`<div class="bar"><span>${esc(String(k).replaceAll("_"," "))}</span><div class="t" style="width:${v/m*100}%;background:${color}"></div><span class="v">${v}</span></div>`).join("")};
+barList($("#laws"),PC.ops,"var(--pc)");
+$("#lawnote").textContent=PC.laws.length===1?`All ${PC.n} PICA-100K rows carry the same physics law, "${PC.laws[0][0]}": the shard that was downloaded (the first of 111) is ordered by law, so this half of the set contains only global state changes such as weather and time of day, not mechanics, optics or local state changes.`:"";
+barList($("#turns"),MB.turns.map(([k,v])=>[`turn ${k}${k===1?" (real photo input)":" (edited input)"}`,v]),"var(--mb)");
+$("#stattbl").innerHTML=`<tr><th>Source</th><th>Pairs</th><th>Median edit size</th><th>Mean edit size</th><th>Below 0.03</th><th>Instruction words (median, range)</th><th>Most common input sizes</th></tr>`+
+  [["MagicBrush train",MB],["PICA-100K",PC]].map(([n,s])=>`<tr><td>${n}</td><td>${s.n}</td><td>${f(s.edit_median)}</td><td>${f(s.edit_mean)}</td><td>${pct(s.below_003)}</td><td>${s.words_median} (${s.words_min}–${s.words_max})</td><td class="mono">${s.sizes.map(([k,v])=>`${k} ×${v}`).join(", ")}</td></tr>`).join("");
+
+// examples
+function card(e,i){
+  const mb=e.source==="magicbrush";
+  const meta=mb?`<span class="chip mb">MagicBrush</span><span class="chip">turn ${e.turn}</span><span class="chip">COCO ${esc(e.coco_id)}</span>`
+               :`<span class="chip pc">PICA-100K</span><span class="chip">${esc(e.law.replaceAll("_"," "))}</span><span class="chip">op: ${esc(e.op)}</span><span class="chip">row ${e.row}</span>`;
+  const size=`<span class="chip ${e.edit<0.03?"lo":""}">edit size ${f(e.edit)}${e.edit<0.03?" · below no-edit line":""}</span>`;
+  const tiers=mb?"":`<details><summary>Other PICA prompt tiers (not used in training)</summary><pre>intermediate: ${esc(e.intermediate)}\n\nexplicit: ${esc(e.explicit)}</pre></details>`;
+  return `<article class="card ${mb?"mb":"pc"}" data-src="${e.source}">
+   <div class="meta">${meta}${size}<span class="small mono">${esc(e.id)}</span></div>
+   <p class="instr">${esc(e.instruction)}</p>
+   <div class="trio">
+    <figure><img src="${e.img_src}" alt="Input: ${esc(e.instruction.slice(0,80))}" tabindex="0" data-cap="Input · ${esc(e.id)} · ${e.src_size.join("×")}"><figcaption>input · ${e.src_size.join("×")}</figcaption></figure>
+    <figure><img src="${e.img_tgt}" alt="Target: ${esc(e.instruction.slice(0,80))}" tabindex="0" data-cap="Target (GT) · ${esc(e.id)} · ${e.tgt_size.join("×")}"><figcaption>target (GT) · ${e.tgt_size.join("×")}</figcaption></figure>
+    <figure><img src="${e.img_diff}" alt="Difference map" tabindex="0" data-cap="|target − input| · ${esc(e.id)}"><figcaption>|target − input|</figcaption></figure>
+   </div>
+   <details><summary>Training prompt, exact</summary><pre>human: ${esc(e.human)}\ngpt:   ${esc(e.gpt)}</pre></details>${tiers}
+  </article>`}
+$("#grid").innerHTML=D.examples.map(card).join("");
+{const nm=D.examples.filter(e=>e.source==="magicbrush").length,np=D.examples.length-nm;
+ $("#exintro").textContent=`${D.examples.length} pairs drawn with a fixed seed, not hand-picked: ${nm} MagicBrush pairs (${D.mb_per_turn} per edit turn) and ${np} PICA-100K pairs spread over the edit operations.`;}
+function applyF(v){document.querySelectorAll(".chipbtn").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.f===v)));
+  let n=0;document.querySelectorAll("#grid .card").forEach(c=>{const on=v==="all"||c.dataset.src===v;c.hidden=!on;n+=on});$("#excount").textContent=`${n} shown`;}
+document.querySelectorAll(".chipbtn").forEach(b=>b.addEventListener("click",()=>applyF(b.dataset.f))); applyF("all");
+const lb=$("#lb");const open=img=>{$("#lbimg").src=img.src;$("#lbimg").alt=img.alt;$("#lbcap").textContent=img.dataset.cap;lb.hidden=false;$("#lbclose").focus();};
+$("#grid").addEventListener("click",e=>{if(e.target.tagName==="IMG")open(e.target)});
+$("#grid").addEventListener("keydown",e=>{if(e.target.tagName==="IMG"&&(e.key==="Enter"||e.key===" ")){e.preventDefault();open(e.target)}});
+$("#lbclose").onclick=()=>{lb.hidden=true}; lb.addEventListener("click",e=>{if(e.target===lb)lb.hidden=true}); addEventListener("keydown",e=>{if(e.key==="Escape")lb.hidden=true});
+
+$("#rowjson").textContent=JSON.stringify(D.example_row,null,2);
+$("#metajson").textContent=JSON.stringify(D.meta_json,null,2);
+$("#ovtext").textContent=`Every candidate pair's input and target were hashed (64-bit difference hash) and compared with all ${D.overlap.checked.toLocaleString()} input and reference images of the evaluation suite. Pairs within Hamming distance ${D.overlap.hamming} of any evaluation image were dropped: ${D.overlap.n_dropped} candidates, matching ${D.overlap.dropped.length} evaluation images.`;
+$("#ovtbl").innerHTML=`<tr><th>Matched evaluation image</th><th>Candidates dropped</th></tr>`+D.overlap.dropped.map(([k,v])=>`<tr><td class="mono">${esc(k)}</td><td>${v}</td></tr>`).join("");
+</script>

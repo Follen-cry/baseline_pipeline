@@ -1,0 +1,562 @@
+[
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Collision_&_Chain",
+    "id": "120",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/input/data_120.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_1/data_120.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_2/data_120.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/output/data_120.png",
+    "steps": [
+      "Introduce two new red dice falling into the frame from the top and right, applying motion blur to indicate high velocity.",
+      "Show the falling dice impacting the white surface and colliding with the original dice, causing the left-most die to be pushed further back.",
+      "Bring all four dice to a complete stop, removing motion blur and positioning them in a scattered arrangement across the table."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Gravity_&_Fall",
+    "id": "140",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/input/data_140.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/intermediate_1/data_140.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/intermediate_2/data_140.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/output/data_140.png",
+    "steps": [
+      "Drop the first few strawberries into the blender, showing motion blur as they fall.",
+      "Increase the flow of strawberries, filling the air above the blender with many falling fruits.",
+      "Clear the air as the strawberries finish falling and settle at the bottom of the blender."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Rotation_&_Rolling",
+    "id": "164",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/input/data_164.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/intermediate_1/data_164.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/intermediate_2/data_164.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/output/data_164.png",
+    "steps": [
+      "Grasp the pedal and begin rotating the crank arm clockwise.",
+      "Continue rotating the crank arm to pull the chain toward the top of the chainring.",
+      "Use both hands to align the chain links with the chainring teeth while completing the rotation until the chain is fully seated."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Stability_&_Balance",
+    "id": "189",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/input/data_189.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/intermediate_1/data_189.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/intermediate_2/data_189.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/output/data_189.png",
+    "steps": [
+      "Introduce a red die falling from the top right toward the stack with visible motion blur.",
+      "Depict the falling die colliding with the right side of the stack, causing the two rightmost dice to tumble and scatter to the right.",
+      "Move the scattered dice further to the right as they lose momentum, with the foreground die becoming out of focus."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Collision_&_Chain",
+    "id": "121",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/input/data_121.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_1/data_121.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_2/data_121.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/output/data_121.png",
+    "steps": [
+      "Tip the first domino on the left forward to strike the second one, creating motion blur as the first few tiles begin to fall.",
+      "Propagate the falling motion through the center of the row, showing the dominoes leaning into each other in a continuous wave.",
+      "Complete the sequence so that all dominoes have fallen and settled into a stable, overlapping resting position on the table."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Gravity_&_Fall",
+    "id": "141",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/input/data_141.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/intermediate_1/data_141.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/intermediate_2/data_141.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/output/data_141.png",
+    "steps": [
+      "Move the coin down to the surface and tilt it slightly as it makes initial contact.",
+      "Lower the tilted edge of the coin closer to the surface as it begins to settle.",
+      "Place the coin completely flat on the surface in its final resting position."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Rotation_&_Rolling",
+    "id": "165",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/input/data_165.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/intermediate_1/data_165.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/intermediate_2/data_165.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Rotation_&_Rolling/output/data_165.png",
+    "steps": [
+      "Lift the rear wheel off the dirt path while the person begins to step forward with their left foot.",
+      "Maintain the wheel's elevation as the person completes their stride, allowing the wheel to rotate slightly in the air.",
+      "Lower the rear wheel back onto the ground and extend the kickstand to a supporting position."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Stability_&_Balance",
+    "id": "190",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/input/data_190.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/intermediate_1/data_190.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/intermediate_2/data_190.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Stability_&_Balance/output/data_190.png",
+    "steps": [
+      "Destabilize the tower so the blocks on the right side begin to fall and scatter at the base.",
+      "Complete the collapse of the structure until all blocks form a disorganized heap.",
+      "Settle the pile further, spreading the blocks outward to reveal a white sphere resting in the center."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Collision_&_Chain",
+    "id": "122",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/input/data_122.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_1/data_122.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/intermediate_2/data_122.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Collision_&_Chain/output/data_122.png",
+    "steps": [
+      "Collapse the first few dominoes on the left so they lie flat on the surface.",
+      "Tilt the middle section of the domino line forward as the chain reaction continues.",
+      "Complete the chain reaction by knocking down the remaining upright dominoes on the right."
+    ]
+  },
+  {
+    "primary": "Rigid_Body_&_Interaction",
+    "sub": "Gravity_&_Fall",
+    "id": "142",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/input/data_142.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/intermediate_1/data_142.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/intermediate_2/data_142.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Rigid_Body_&_Interaction/Gravity_&_Fall/output/data_142.png",
+    "steps": [
+      "Show coins falling through the air towards the open mouth of the glass jar.",
+      "Render three coins inside the jar, with some tilted or mid-bounce after hitting the bottom.",
+      "Position the three coins so they are lying flat and stationary at the base of the jar."
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "brittle_fracture",
+    "id": "1",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/input/data_1.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_1/data_1.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_2/data_1.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/output/data_1.png",
+    "steps": [
+      "Bullet impacts left side; small entry debris cloud forms.",
+      "Massive debris cloud erupts from right side; skin peels back.",
+      "Debris clouds expand outward; apple body deforms further."
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "elasticity",
+    "id": "21",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/input/data_21.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/intermediate_1/data_21.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/intermediate_2/data_21.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/output/data_21.png",
+    "steps": [
+      "The man's left hand dribbling the basketball as it contacts the ground, hand moving slightly downward simultaneously",
+      "The basketball rebounding upward toward the man's right hand, not yet making con",
+      "The man's right hand making contact with the ball, extending slightly outward to absorb the momentum"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "plastic_deformation",
+    "id": "41",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/input/data_41.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_1/data_41.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_2/data_41.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/output/data_41.png",
+    "steps": [
+      "The upper ram descends, closing the gap to contact the aluminum cube",
+      "The cube is compressed vertically and expands horizontally, losing its cubic shape",
+      "The cube is flattened completely into a thin disk structure"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "brittle_fracture",
+    "id": "2",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/input/data_2.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_1/data_2.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_2/data_2.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/output/data_2.png",
+    "steps": [
+      "Bullet travels right, impacting the banana skin and initiating penetration",
+      "Projectile traverses banana, causing explosive exit rupture and pulp ejection",
+      "Banana structure disintegrates, peeling apart while debris scatters outward"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "elasticity",
+    "id": "22",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/input/data_22.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/intermediate_1/data_22.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/intermediate_2/data_22.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/output/data_22.png",
+    "steps": [
+      "The woman holding the bow with an arrow nocked, right elbow slightly raised, lightly drawing the bowstring",
+      "The woman straightening the bow into a ready stance, drawing the bowstring further but not yet fully drawn",
+      "The woman drawing the bow further, low-angle view shifting upward, her raised elbow partially obscuring most of her face"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "plastic_deformation",
+    "id": "42",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/input/data_42.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_1/data_42.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_2/data_42.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/output/data_42.png",
+    "steps": [
+      "Hydraulic ram descends, contacts apple, and initiates vertical compression",
+      "Continued compression causes lateral expansion, skin rupture, and juice release",
+      "Apple is completely flattened and crushed into pulp"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "brittle_fracture",
+    "id": "3",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/input/data_3.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_1/data_3.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_2/data_3.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/output/data_3.png",
+    "steps": [
+      "Bottle impacts surface, bottom fractures, and fine debris sprays outward",
+      "Glass shatters completely, shards fly radially, revealing yellow interior",
+      "Debris field expands and settles; yellow object rests on ground"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "elasticity",
+    "id": "23",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/input/data_23.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/intermediate_1/data_23.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/intermediate_2/data_23.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/elasticity/output/data_23.png",
+    "steps": [
+      "The white bubble ball making initial contact with the ground, not yet compressed",
+      "The white bubble ball beginning to compress upon contact with the ground, deformation underway but not yet reaching maximum",
+      "The white bubble ball compressing beyond its maximum deformation limit, rupturing and releasing a burst of white mist"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "plastic_deformation",
+    "id": "43",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/input/data_43.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_1/data_43.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/intermediate_2/data_43.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/plastic_deformation/output/data_43.png",
+    "steps": [
+      "Hand seals bottle opening; upper walls begin to buckle inward",
+      "Bottle body collapses rapidly inward, drastically reducing internal volume",
+      "Bottle reaches fully crumpled state and deformation stabilizes"
+    ]
+  },
+  {
+    "primary": "Deformation_&_Fracture",
+    "sub": "brittle_fracture",
+    "id": "4",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/input/data_4.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_1/data_4.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/intermediate_2/data_4.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Deformation_&_Fracture/brittle_fracture/output/data_4.png",
+    "steps": [
+      "Hands accelerate the chocolate eggs inward, reducing the distance between them.",
+      "Eggs collide; kinetic energy converts to mechanical stress, initiating shell fracture.",
+      "Cracks propagate rapidly, resulting in catastrophic shattering and ejected debris."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Buoyancy_&_Tension",
+    "id": "61",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/input/data_61.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_1/data_61.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_2/data_61.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/output/data_61.png",
+    "steps": [
+      "Drop an effervescent tablet into the glass of water so it sinks to the bottom and begins releasing a stream of bubbles.",
+      "Increase the intensity of the effervescence, filling the volume of the water with a dense cloud of rising bubbles.",
+      "Allow the tablet to fully dissolve, resulting in a uniformly cloudy liquid with a thin layer of foam at the surface."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Pouring_&_Flow",
+    "id": "74",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/input/data_74.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/intermediate_1/data_74.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/intermediate_2/data_74.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/output/data_74.png",
+    "steps": [
+      "Introduce a vertical stream of blue liquid into the center of the petri dish, showing it splashing and spreading outward.",
+      "Remove the pouring stream and show the blue liquid continuing to expand with visible concentric ripples at the impact site.",
+      "Let the ripples dissipate and the liquid settle into a flatter, more stable pool covering a larger area of the dish."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Splashing_&_Impact",
+    "id": "102",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/input/data_102.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/intermediate_1/data_102.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/intermediate_2/data_102.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/output/data_102.png",
+    "steps": [
+      "Add more lime slices entering the water from the top, increasing the splash and bubble density as they begin to sink.",
+      "Disperse the lime slices further down into the frame, increasing the volume of small air bubbles throughout the water.",
+      "Remove the peripheral lime slices as they sink out of view, leaving two central pieces surrounded by a fine mist of rising bubbles."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Buoyancy_&_Tension",
+    "id": "62",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/input/data_62.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_1/data_62.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_2/data_62.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/output/data_62.png",
+    "steps": [
+      "Move the paper boat slightly forward and to the right, maintaining its orientation on the water surface.",
+      "Shift the paper boat further towards the bottom right corner, increasing its scale to show it approaching the camera.",
+      "Remove the paper boat from the scene as it floats completely out of the camera's field of view."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Pouring_&_Flow",
+    "id": "75",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/input/data_75.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/intermediate_1/data_75.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/intermediate_2/data_75.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/output/data_75.png",
+    "steps": [
+      "Rotate the central fluid vortex clockwise, shifting the pink and teal bands slightly along the flow lines.",
+      "Elongate the fluid filaments as they spiral outward from the center, increasing the curvature of the marble patterns.",
+      "Further diffuse the color boundaries and continue the rotational flow to create more intricate, thin streaks of pigment."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Splashing_&_Impact",
+    "id": "103",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/input/data_103.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/intermediate_1/data_103.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/intermediate_2/data_103.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/output/data_103.png",
+    "steps": [
+      "Move the boat from the right edge toward the center, extending the white wake trail behind it.",
+      "Advance the boat further to the left side of the frame, lengthening the wake trail across the water.",
+      "Remove the boat from the left edge of the frame, leaving only the dissipating wake visible on the water surface."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Buoyancy_&_Tension",
+    "id": "63",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/input/data_63.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_1/data_63.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_2/data_63.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/output/data_63.png",
+    "steps": [
+      "Increase the density of the bubble trail rising from the tablets at the bottom of the glass.",
+      "Slightly reduce the volume of the white tablets as they dissolve and shift the pattern of the rising bubbles higher in the water column.",
+      "Further erode the tablets' edges and maintain the steady stream of carbon dioxide bubbles reaching the top of the glass."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Pouring_&_Flow",
+    "id": "76",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/input/data_76.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/intermediate_1/data_76.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/intermediate_2/data_76.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Pouring_&_Flow/output/data_76.png",
+    "steps": [
+      "Shift the fog layer slightly to the right, revealing more of the central tree silhouettes and thinning the mist in the middle ground.",
+      "Continue the rightward drift of the fog, exposing more of the green foliage on the far right side of the frame.",
+      "Move the fog further to the right, partially obscuring the lower left foreground while clearing the view of the lower right trees."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Splashing_&_Impact",
+    "id": "104",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/input/data_104.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/intermediate_1/data_104.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/intermediate_2/data_104.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Splashing_&_Impact/output/data_104.png",
+    "steps": [
+      "Begin pouring liquid directly onto the top surface of the ice cube, creating wet reflections and ripples.",
+      "Continue pouring liquid to raise the level in the glass, causing the ice cube to become mostly submerged.",
+      "Stop the pour and allow the liquid to settle, with the ice cube now fully surrounded by the increased volume of liquid."
+    ]
+  },
+  {
+    "primary": "Fluid_Dynamics",
+    "sub": "Buoyancy_&_Tension",
+    "id": "64",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/input/data_64.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_1/data_64.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/intermediate_2/data_64.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/Fluid_Dynamics/Buoyancy_&_Tension/output/data_64.png",
+    "steps": [
+      "Shift the central blue and yellow bands slightly to the left and downward, creating a more pronounced curve in the color boundaries.",
+      "Continue the swirling motion, stretching the yellow and orange bands further into the blue region and introducing more intricate ripples in the pink and green areas.",
+      "Further deform the color bands, causing the central blue area to narrow and the surrounding warm tones to wrap around it."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Diffusion_&_Aerodynamics",
+    "id": "197",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/input/data_197.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_1/data_197.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_2/data_197.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/output/data_197.png",
+    "steps": [
+      "Slightly lift the bottom edge of the white sheer curtain and introduce a subtle curve as it begins to catch the wind.",
+      "Increase the billowing effect of the white curtain, creating more pronounced folds and moving the fabric further into the room.",
+      "Shift the folds of the white curtain slightly to show continuous movement, maintaining the lifted position of the bottom hem."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Phase_Changes",
+    "id": "217",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/input/data_217.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_1/data_217.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_2/data_217.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/output/data_217.png",
+    "steps": [
+      "Generate a ring of white foam and translucent liquid butter around the base of the solid pat.",
+      "Expand the diameter of the bubbling liquid ring and slightly reduce the volume of the central solid butter.",
+      "Increase the density and size of the bubbles in the liquid butter while the central solid piece continues to shrink."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Diffusion_&_Aerodynamics",
+    "id": "198",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/input/data_198.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_1/data_198.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_2/data_198.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/output/data_198.png",
+    "steps": [
+      "Lower the kite's altitude and tilt its nose further down and to the right, causing the tail to curve upwards.",
+      "Shift the kite upwards and to the left, rotating the body so the nose points towards the top left, with the tail trailing behind in a long arc.",
+      "Rotate the kite back to a more upright position and center it, allowing the tail to ripple naturally in the wind."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Phase_Changes",
+    "id": "218",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/input/data_218.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_1/data_218.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_2/data_218.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/output/data_218.png",
+    "steps": [
+      "Slightly shorten the candle as it burns and curve the wick further.",
+      "Continue the burning process, further reducing the candle's length and smoothing the wax rim around the flame.",
+      "Significantly shorten the candle and add prominent wax drips running down the side."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Diffusion_&_Aerodynamics",
+    "id": "199",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/input/data_199.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_1/data_199.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_2/data_199.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/output/data_199.png",
+    "steps": [
+      "Tilt the head and stem of the central poppy flower slightly to the right.",
+      "Increase the bend in the stem to move the flower head further to the right.",
+      "Shift the flower head slightly back toward the left as the sway begins to reverse."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Phase_Changes",
+    "id": "219",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/input/data_219.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_1/data_219.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_2/data_219.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/output/data_219.png",
+    "steps": [
+      "Bring a hot soldering iron tip into contact with the end of the solder wire, initiating the release of smoke.",
+      "Maintain contact until the tip of the wire melts into a liquid bead that adheres to the soldering iron.",
+      "Pull the soldering iron away from the wire, keeping the molten solder bead on the iron's tip while smoke continues to rise."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Diffusion_&_Aerodynamics",
+    "id": "200",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/input/data_200.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_1/data_200.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_2/data_200.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/output/data_200.png",
+    "steps": [
+      "Bend the flower stems and tilt the petals slightly to the right.",
+      "Increase the rightward tilt of the flowers and add a small flying insect near the center cluster.",
+      "Move the flowers slightly back toward the center as the breeze eases, keeping the insect in flight."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Phase_Changes",
+    "id": "220",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/input/data_220.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_1/data_220.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_2/data_220.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/output/data_220.png",
+    "steps": [
+      "Begin pouring a thin stream of water onto the center of the dry coffee grounds.",
+      "Continue pouring water in a circular motion to saturate the grounds, causing them to swell and rise.",
+      "Stop the water flow and allow the coffee to bloom, with bubbles forming on the surface of the wet slurry."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Diffusion_&_Aerodynamics",
+    "id": "201",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/input/data_201.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_1/data_201.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/intermediate_2/data_201.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Diffusion_&_Aerodynamics/output/data_201.png",
+    "steps": [
+      "Detach the seeds from the top and right side of the dandelion head and scatter them into the air towards the right.",
+      "Remove most of the remaining seeds from the stem and move the airborne seeds further away and out of the frame.",
+      "Clear the floating seeds from the air, leaving only the central core of the dandelion with one seed still attached at the top."
+    ]
+  },
+  {
+    "primary": "State_Change_&_Environment",
+    "sub": "Phase_Changes",
+    "id": "221",
+    "input_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/input/data_221.png",
+    "intermediate_1_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_1/data_221.png",
+    "intermediate_2_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/intermediate_2/data_221.png",
+    "output_path": "/scratch/local/ssd/junlin/data/PhyEditBench/bench/State_Change_&_Environment/Phase_Changes/output/data_221.png",
+    "steps": [
+      "Begin melting the ice cream scoops, causing liquid to pool around the base and softening the sharp edges of the chocolate portion.",
+      "Continue the melting process so the scoops lose their spherical shape and the liquid pool expands significantly across the surface.",
+      "Complete the melting until the scoops collapse into a thick, blended puddle of chocolate and vanilla liquid, with only small solid remnants remaining."
+    ]
+  }
+]
