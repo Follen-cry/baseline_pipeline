@@ -66,3 +66,12 @@ eval/v2_suite_1/results/eval_report.html
 eval/v2_suite_1/results/judge_logs/
 # the page template is source (eval/**/*.html above targets generated reports)
 !eval/v2_suite_1/results/artifact_template.html
+!eval/v2_suite_1/diagnosis/edit_sft/dataset_page_template.html
+
+# eval/v2_suite_1_sub: images live on network storage (config.outputs_root); page is rebuilt by build_artifact.py
+eval/v2_suite_1_sub/results/report.html
+eval/v2_suite_1_sub/results/judge_logs/
+!eval/v2_suite_1_sub/scripts/report_template.html
+
+# third-party benchmark source clone (nested git repo, 1.4 GB)
+eval/suites/inedit/_bench_src/

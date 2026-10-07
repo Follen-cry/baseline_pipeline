@@ -1,0 +1,384 @@
+<title>v2 Suite-1 Subset</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F2F3EF; --surface:#FFFFFF; --sunk:#E9EBE5; --ink:#1A1F1C; --muted:#5B635D; --rule:#D5D9D0;
+  --accent:#1E5A87; --accent-soft:#DCE7F0; --good:#2B7A4B; --bad:#B23A2A; --bar:#9DB6CB; --bar-ref:#C4C8BF;
+  --shadow:0 1px 2px rgba(20,30,25,.06);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#111513; --surface:#191E1B; --sunk:#222824; --ink:#E4E8E3; --muted:#9BA49D; --rule:#2F3732;
+    --accent:#86B8DF; --accent-soft:#1F3140; --good:#6CC08E; --bad:#EE8A77; --bar:#3F6A8C; --bar-ref:#4A514C;
+    --shadow:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#111513; --surface:#191E1B; --sunk:#222824; --ink:#E4E8E3; --muted:#9BA49D; --rule:#2F3732;
+  --accent:#86B8DF; --accent-soft:#1F3140; --good:#6CC08E; --bad:#EE8A77; --bar:#3F6A8C; --bar-ref:#4A514C;
+  --shadow:none; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 var(--sans);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2{font-family:var(--cond);font-weight:600;text-wrap:balance;margin:0;letter-spacing:.005em}
+h1{font-size:30px;line-height:1.15}
+h2{font-size:21px}
+p{margin:0}
+.lede{color:var(--muted);max-width:72ch;margin-top:8px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font:13px/1.4 var(--mono);color:var(--muted)}
+.meta b{color:var(--ink);font-weight:500}
+section{margin-top:40px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:12px}
+.note{color:var(--muted);font-size:13.5px;max-width:80ch}
+.eyebrow{font:500 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* score table */
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--rule);border-radius:6px;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-variant-numeric:tabular-nums}
+th,td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--rule);vertical-align:bottom}
+th:first-child,td:first-child{text-align:left}
+thead th{font:600 13px/1.25 var(--cond);color:var(--ink);background:var(--sunk)}
+thead th .sub{display:block;font:400 11.5px/1.3 var(--mono);color:var(--muted);margin-top:2px}
+th.overall,td.overall{border-left:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:0}
+tr.ref td{color:var(--muted)}
+tr.ref-first td{border-top:2px solid var(--rule)}
+td .num{font:500 14px/1 var(--mono)}
+td.best .num{color:var(--accent);font-weight:600}
+td .bar{height:4px;background:var(--sunk);border-radius:2px;margin-top:6px;margin-left:auto;width:90px;max-width:100%;overflow:hidden}
+td .bar i{display:block;height:100%;background:var(--bar)}
+tr.ref td .bar i{background:var(--bar-ref)}
+.sys{font:600 14px/1.2 var(--sans)}
+.sys small{display:block;font:400 12px/1.3 var(--sans);color:var(--muted);margin-top:2px}
+.cov{margin-top:12px;font-size:13.5px;color:var(--muted)}
+.cov .ok{color:var(--good);font-weight:600}
+.cov .warn{color:var(--bad);font-weight:600}
+details.cov-d{margin-top:6px}
+details.cov-d summary{cursor:pointer;color:var(--accent);font-size:13px}
+details.cov-d table{min-width:0;font-size:13px;margin-top:8px}
+details.cov-d td,details.cov-d th{padding:5px 10px}
+
+/* filter */
+.filter{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);padding-block:10px;display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--rule);margin-bottom:18px}
+.filter button{font:500 13px/1 var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:8px 13px;cursor:pointer}
+.filter button .c{font-family:var(--mono);color:var(--muted);margin-left:6px}
+.filter button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.filter button[aria-pressed="true"] .c{color:inherit;opacity:.8}
+button:focus-visible,.cell button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* cards */
+.cards{display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px;box-shadow:var(--shadow)}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.chip{font:600 11.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);padding:5px 8px;border-radius:3px}
+.path{font-size:13px;color:var(--muted)}
+.uid{margin-left:auto;font:12px/1.3 var(--mono);color:var(--muted);word-break:break-all}
+.instr{margin-top:10px;white-space:pre-wrap;max-height:9.5em;overflow-y:auto;font-size:14.5px;line-height:1.5;padding-left:10px;border-left:2px solid var(--rule)}
+.strip{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:10px;margin-top:14px}
+.cell{display:flex;flex-direction:column;gap:5px;min-width:0}
+.cell .lab{font:600 12px/1.2 var(--cond);letter-spacing:.03em;color:var(--muted);text-transform:uppercase}
+.cell button{padding:0;border:1px solid var(--rule);background:var(--sunk);border-radius:3px;cursor:zoom-in;display:block;width:100%;aspect-ratio:1/1;overflow:hidden}
+.cell img{width:100%;height:100%;object-fit:contain;display:block}
+.cell .sc{font:500 13px/1.3 var(--mono);font-variant-numeric:tabular-nums}
+.cell .sc.up{color:var(--good)} .cell .sc.down{color:var(--bad)}
+.cell .sc small{font-size:11.5px;color:var(--muted);font-weight:400}
+.cell.textref .box{border:1px dashed var(--rule);border-radius:3px;aspect-ratio:1/1;padding:10px;font-size:13px;line-height:1.45;overflow-y:auto;color:var(--ink);background:var(--ground)}
+.foot{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:12px;font-size:13px;color:var(--muted)}
+.foot .refsc{font-family:var(--mono)}
+.foot details summary{cursor:pointer;color:var(--accent)}
+.foot ol{margin:6px 0 0;padding-left:20px}
+.foot li{margin:2px 0}
+.explain{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.explain b{color:var(--ink);font-weight:500}
+
+/* scoring rules */
+.setup{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 18px;margin:14px 0 0;padding:14px 16px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;font-size:14px}
+.setup dt,.rules dt{font:600 12px/1.5 var(--cond);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding-top:1px}
+.setup dd,.rules dd{margin:0;max-width:78ch}
+.tabs{display:flex;flex-wrap:wrap;gap:0;margin-top:22px;border-bottom:1px solid var(--rule)}
+.tabs button{font:600 14px/1 var(--cond);color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;margin-bottom:-1px;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.rule-panel{background:var(--surface);border:1px solid var(--rule);border-top:0;border-radius:0 0 6px 6px;padding:18px 16px;display:flex;flex-direction:column;gap:18px}
+.rules{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 18px;margin:0;font-size:14px}
+.rule-panel h3{font:600 15px/1.2 var(--cond);margin:0 0 8px;letter-spacing:.01em}
+.rule-panel ul{margin:0;padding-left:20px;font-size:14px;max-width:80ch}
+.rule-panel li{margin:3px 0}
+.prompt{border:1px solid var(--rule);border-radius:4px;margin-top:8px;background:var(--ground)}
+.prompt>summary{cursor:pointer;padding:9px 12px;font-size:14px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.prompt>summary b{font-weight:600}
+.imgchips{display:inline-flex;flex-wrap:wrap;gap:4px}
+.imgchip{font:500 11px/1 var(--mono);padding:4px 6px;border-radius:3px;background:var(--accent-soft);color:var(--accent)}
+.prompt .inner{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px}
+.prompt .lbl{font:600 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+pre.code{margin:0;white-space:pre-wrap;word-break:break-word;font:12.5px/1.5 var(--mono);background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:10px 12px;max-height:420px;overflow:auto;color:var(--ink)}
+.parsed{font:500 13px/1.4 var(--mono);color:var(--accent)}
+.ex-head{font-size:14px;display:flex;flex-direction:column;gap:4px}
+.ex-head .uid{margin-left:0}
+.ex-result{font:600 14px/1.4 var(--mono);padding:10px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);color:var(--ink);border-radius:0 3px 3px 0}
+@media (max-width:760px){ .setup,.rules{grid-template-columns:1fr;gap:2px} .setup dd,.rules dd{margin-bottom:8px} }
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,10,9,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 20px) 16px calc(env(safe-area-inset-bottom,0px) + 20px)}
+.lb img{max-width:min(92vw,900px);max-height:78vh;width:auto;height:auto;object-fit:contain;background:#222;border-radius:3px;image-rendering:auto}
+.lb .cap{color:#EEF1EC;font:14px/1.4 var(--sans);text-align:center;max-width:80ch}
+.lb .cap b{font-family:var(--cond);font-size:16px}
+.lb .nav{display:flex;gap:10px}
+.lb .nav button{font:500 13px/1 var(--sans);color:#EEF1EC;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;cursor:pointer}
+.lb-hint{color:#B9C0BA;font-size:12px}
+
+@media (max-width:760px){
+  h1{font-size:25px}
+  .strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .uid{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:no-preference){ .filter button{transition:background .15s,color .15s} }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">InternVL-U · v2 temporal-SSL checkpoints</p>
+    <h1 style="margin-top:8px">v2 Suite-1 Subset: 200 target datapoints</h1>
+    <p class="lede" id="lede"></p>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section id="scores">
+    <div class="sec-head"><h2>Scores by benchmark</h2></div>
+    <p class="note" id="table-note"></p>
+    <div class="tbl-wrap" style="margin-top:12px"><table id="tbl"></table></div>
+    <div class="cov" id="cov"></div>
+  </section>
+
+  <section id="scoring">
+    <div class="sec-head"><h2>How scoring works</h2></div>
+    <p class="note" id="rules-lede"></p>
+    <dl class="setup" id="setup"></dl>
+    <div class="tabs" id="rule-tabs" role="tablist" aria-label="Benchmark scoring rules"></div>
+    <div id="rule-body"></div>
+  </section>
+
+  <section id="gallery">
+    <div class="sec-head"><h2>Gallery</h2><p class="note" id="gal-note"></p></div>
+    <div class="filter" id="filter" role="toolbar" aria-label="Filter by benchmark"></div>
+    <div class="cards" id="cards"></div>
+  </section>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Enlarged image">
+  <img id="lb-img" alt="">
+  <div class="cap" id="lb-cap"></div>
+  <div class="nav"><button id="lb-prev" type="button">← Prev</button><button id="lb-close" type="button">Close</button><button id="lb-next" type="button">Next →</button></div>
+  <div class="lb-hint">Esc closes · ← → step through this datapoint's images</div>
+</div>
+
+<script>
+const D = /*__DATA__*/null;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (v, d) => v == null ? "–" : (+v).toFixed(d);
+const trim = (v, d) => v == null ? "–" : String(+(+v).toFixed(d));
+const REF_DESC = {copy: "input returned unchanged", random: "an unrelated image"};
+
+// ---------- header
+const C = D.counts, L = D.labels;
+$("#lede").textContent =
+  `A fixed ${D.n_items}-datapoint sample of v2_suite_1's target group, split 3:3:3:1 across four editing benchmarks. ` +
+  `Every output and judge score below is reused from the full run (${D.judge}, each benchmark's official judge code). ` +
+  `Copy and random are reference systems judged the same way.`;
+$("#meta").innerHTML = [
+  ["sampling seed", D.seed],
+  ...Object.entries(D.pools).map(([p, v]) => [p === "imgedit" ? "ImgEdit Basic" : L[v.bench], `${v.n} (group ${v.group})`]),
+  ["judge", D.judge],
+].map(([k, v]) => `<span>${esc(k)} <b>${esc(v)}</b></span>`).join("");
+
+// ---------- table
+const COLS = [
+  {key: "PhyEditBench overall (1-10)", name: "PhyEditBench", sub: `overall, 1–10 · n=${C.phyeditbench}`, lo: 1, hi: 10, d: 2},
+  {key: "PICABench Acc (%)", name: "PICABench", sub: `Acc % · n=${C.picabench}`, lo: 0, hi: 100, d: 1},
+  {key: "RISEBench Score (1-5)", name: "RISEBench", sub: `score, 1–5 · n=${C.risebench}`, lo: 1, hi: 5, d: 2},
+  {key: "RISEBench Acc (%)", name: "RISEBench", sub: `Acc % (solved)`, lo: 0, hi: 100, d: 1},
+  {key: "ImgEdit (1-5)", name: "ImgEdit", sub: `score, 1–5 · n=${C.imgedit_basic}`, lo: 1, hi: 5, d: 2},
+  {key: "Overall (0-1)", name: "Overall", sub: `0–1 · n=${D.n_items}`, lo: 0, hi: 1, d: 3, cls: "overall"},
+];
+const rows = D.table;
+const best = {};
+for (const c of COLS) best[c.key] = Math.max(...rows.filter(r => D.models.includes(r.system)).map(r => r[c.key] ?? -Infinity));
+const ordered = [...D.models, ...D.refs].map(s => rows.find(r => r.system === s)).filter(Boolean);
+let th = `<thead><tr><th>System</th>${COLS.map(c => `<th class="${c.cls || ""}">${esc(c.name)}<span class="sub">${esc(c.sub)}</span></th>`).join("")}</tr></thead><tbody>`;
+ordered.forEach((r, i) => {
+  const ref = D.refs.includes(r.system);
+  const first = ref && !D.refs.includes(ordered[i - 1]?.system);
+  th += `<tr class="${ref ? "ref" : ""} ${first ? "ref-first" : ""}"><td><span class="sys">${esc(r.system)}${ref ? `<small>reference · ${esc(REF_DESC[r.system] || "")}</small>` : ""}</span></td>`;
+  for (const c of COLS) {
+    const v = r[c.key];
+    const w = v == null ? 0 : Math.max(0, Math.min(1, (v - c.lo) / (c.hi - c.lo))) * 100;
+    const isBest = !ref && v != null && Math.abs(v - best[c.key]) < 1e-9;
+    th += `<td class="${c.cls || ""} ${isBest ? "best" : ""}"><span class="num">${fmt(v, c.d)}</span><div class="bar"><i style="width:${w.toFixed(1)}%"></i></div></td>`;
+  }
+  th += `</tr>`;
+});
+$("#tbl").innerHTML = th + "</tbody>";
+$("#table-note").textContent =
+  `Each benchmark's native metric over this subset. PhyEditBench overall = 0.2 consistency + 0.3 instruction following + 0.4 physical plausibility + 0.1 image quality. ` +
+  `PICABench Acc = share of checklist questions answered correctly. RISEBench Acc = share of items fully solved. ` +
+  `Overall = mean over all ${D.n_items} items of the primary metric rescaled to 0–1 (PhyEditBench overall, PICABench Acc, RISEBench score, ImgEdit score), so benchmarks weigh 60:60:60:20. ` +
+  `Highlighted: best of the ${D.models.length} models in each column.`;
+
+// coverage
+const sysN = new Set(D.coverage.map(c => c.system)).size;
+const covOk = D.n_missing === 0;
+const covRows = D.coverage.map(c => `<tr><td>${esc(c.system)}</td><td>${esc(L[c.bench])}</td><td>${c.items}</td><td>${c.images}</td><td>${c.scored}</td><td>${c.parse_fail_rows_kept}</td></tr>`).join("");
+$("#cov").innerHTML =
+  `Coverage: <span class="${covOk ? "ok" : "warn"}">${covOk ? "complete" : D.n_missing + " missing"}</span> · ` +
+  `${sysN} systems × ${D.n_items} datapoints, each with an output image and a primary score` +
+  (covOk ? "." : `: ${D.missing.map(m => esc(m.system + " " + m.uid)).join(", ")}`) +
+  `<details class="cov-d"><summary>Per system and benchmark</summary><div class="tbl-wrap"><table><thead><tr><th>System</th><th>Benchmark</th><th>Items</th><th>Images</th><th>Scored</th><th>Unparsed judge rows</th></tr></thead><tbody>${covRows}</tbody></table></div></details>`;
+
+// ---------- scoring rules
+const R = D.rules, J = R.judge;
+$("#rules-lede").textContent =
+  `Every score on this page comes from a VLM judge running each benchmark's official judge code, with only the API client swapped for a local server. ` +
+  `The prompts below are extracted from that code (placeholders in {braces} are filled per item). Each tab ends with a worked example: ` +
+  `one real datapoint from the gallery, the exact prompt the judge received, and the judge's recorded reply for ${J.example_model}.`;
+$("#setup").innerHTML = [
+  ["Judge", `${J.model}, served as “${J.served}” (${J.server})`],
+  ["Sampling", `temperature ${J.temperature} on the first attempt. A reply that cannot be parsed is retried up to ${J.max_retry} times at temperature ${J.retry_temperature} (seed = attempt number); if it still fails the row is kept as a failure, never dropped. Unparsed rows left in this subset: ${D.coverage.reduce((a, c) => a + c.parse_fail_rows_kept, 0)}.`],
+  ["Same for all", `Models and the ${D.refs.join(" and ")} references go through identical prompts and parsing.`],
+  ["Overall column", `Mean over all ${D.n_items} items of the primary metric rescaled to 0–1 of its range: PhyEditBench overall (1–10), PICABench acc (0–1), RISEBench score (1–5), ImgEdit score (1–5).`],
+  ["Caveat", `The official benchmarks use GPT-4-class judges. Absolute numbers here are not comparable to published leaderboards; compare systems only within this page.`],
+].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+
+const chips = imgs => `<span class="imgchips">${imgs.map((x, i) => `<span class="imgchip">${i + 1}. ${esc(x)}</span>`).join("")}</span>`;
+function rulePanel(b) {
+  const dl = [["Metric", b.metric], ["Judge calls", b.calls_per_item], ["Images sent", b.images], ["System prompt", b.system],
+    ["Reply format", b.output], ["Parsing", b.parse], ["Per-item score", b.item_rule], ["Benchmark score", b.bench_rule]]
+    .map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  const prompts = b.prompts.map(p => `<details class="prompt"><summary><b>${esc(p.name)}</b>${chips(p.images)}</summary>
+    <div class="inner"><span class="lbl">Prompt text (images follow in the order shown)</span><pre class="code">${esc(p.text)}</pre></div></details>`).join("");
+  const code = b.code.map(([name, src]) => `<details class="prompt"><summary><b>${esc(name)}</b></summary>
+    <div class="inner"><pre class="code">${esc(src)}</pre></div></details>`).join("");
+  const ex = b.example;
+  const calls = ex.calls.map(c => `<details class="prompt"><summary><b>${esc(c.name)}</b>${chips(c.images)}<span class="parsed">${esc(c.parsed)}</span></summary>
+    <div class="inner"><span class="lbl">Prompt sent</span><pre class="code">${esc(c.prompt)}</pre>
+    <span class="lbl">Judge reply (${esc(J.example_model)})</span><pre class="code">${esc(c.reply)}</pre></div></details>`).join("");
+  return `<div class="rule-panel" role="tabpanel" data-rule="${b.key}">
+    <dl class="rules">${dl}</dl>
+    <div><h3>What to keep in mind</h3><ul>${b.notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul></div>
+    <div><h3>Judge prompts (${b.prompts.length})</h3>${prompts}</div>
+    <div><h3>Scoring code, verbatim from the benchmark repo</h3>${code}</div>
+    <div><h3>Worked example</h3>
+      <div class="ex-head"><span class="uid">${esc(ex.uid)}</span><span><b>Instruction:</b> ${esc(ex.instruction)}</span>
+      ${ex.reference ? `<span><b>Reference description:</b> ${esc(ex.reference)}</span>` : ""}</div>
+      ${calls}
+      <p class="ex-result" style="margin-top:10px">${esc(ex.result)}</p>
+    </div>
+  </div>`;
+}
+$("#rule-body").innerHTML = R.benches.map(rulePanel).join("");
+let ruleTab = R.benches[0].key;
+function renderRuleTabs() {
+  $("#rule-tabs").innerHTML = R.benches.map(b => `<button type="button" role="tab" data-t="${b.key}" aria-selected="${b.key === ruleTab}">${esc(b.name)}</button>`).join("");
+  document.querySelectorAll(".rule-panel").forEach(p => p.hidden = p.dataset.rule !== ruleTab);
+}
+$("#rule-tabs").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; ruleTab = b.dataset.t; renderRuleTabs(); });
+renderRuleTabs();
+
+// ---------- gallery
+const BORDER = ["risebench", "phyeditbench", "picabench", "imgedit_basic"];
+function scoreText(b, s) {
+  if (!s || s.v == null) return {t: "no score", title: ""};
+  if (b === "phyeditbench") return {t: `${trim(s.v, 2)}<small> /10</small>`,
+    title: Object.entries(s.dims || {}).map(([k, v]) => `${k.replace(/_/g, " ")} ${v}`).join(" · ")};
+  if (b === "picabench") return {t: `${s.n_ok}/${s.n_qa}<small> QA</small>`, title: `accuracy ${trim(s.v, 3)}`};
+  if (b === "risebench") return {t: `${trim(s.v, 2)}<small> /5${s.complete ? " · solved" : ""}</small>`,
+    title: Object.entries(s.dims || {}).filter(([, v]) => v != null).map(([k, v]) => `${k} ${v}`).join(" · ")};
+  return {t: `${trim(s.v, 2)}<small> /5</small>`, title: ""};
+}
+function plain(b, s) { return scoreText(b, s).t.replace(/<[^>]+>/g, ""); }
+
+function card(g, idx) {
+  const base = g.scores[D.models[0]]?.v;
+  const cells = [{lab: "Input", src: g.input, sc: ""}];
+  for (const m of D.models) {
+    const s = g.scores[m], st = scoreText(g.bench, s);
+    let cls = "";
+    if (m !== D.models[0] && s?.v != null && base != null) cls = s.v > base + 1e-9 ? "up" : s.v < base - 1e-9 ? "down" : "";
+    cells.push({lab: m, src: g.outs[m], sc: `<span class="sc ${cls}" title="${esc(st.title)}">${st.t}</span>`});
+  }
+  let textRef = "";
+  if (g.ref.img) cells.push({lab: g.ref.kind || "Reference", src: g.ref.img, sc: ""});
+  else if (g.bench === "risebench" && g.ref.text) textRef = g.ref.text;
+  const n = cells.length + (textRef ? 1 : 0);
+  const imgs = cells.map((c, i) => `<figure class="cell" style="margin:0"><span class="lab">${esc(c.lab)}</span>
+      <button type="button" data-card="${idx}" data-i="${i}" aria-label="Enlarge ${esc(c.lab)}"><img loading="lazy" src="${c.src}" alt="${esc(c.lab)} image"></button>${c.sc}</figure>`).join("");
+  const tref = textRef ? `<div class="cell textref"><span class="lab">Reference (text)</span><div class="box">${esc(textRef)}</div></div>` : "";
+  const refsc = D.refs.map(r => `${r} ${plain(g.bench, g.scores[r])}`).join(" · ");
+  let extra = "";
+  if (g.bench === "picabench" && g.ref.qa) extra = `<details><summary>Judge checklist (${g.ref.qa.length} questions)</summary><ol>${g.ref.qa.map(([q, a]) => `<li>${esc(q)} <b>${esc(a)}</b></li>`).join("")}</ol></details>`;
+  const explain = g.bench === "phyeditbench" && g.ref.text ? `<p class="explain"><b>Physics:</b> ${esc(g.ref.text)}</p>` : "";
+  const path = [g.category, g.subcategory, g.etype].filter((x, i, a) => x && a.indexOf(x) === i).map(x => String(x).replace(/_/g, " ")).join(" · ");
+  return `<article class="card" data-bench="${g.bench}">
+    <div class="card-head"><span class="chip">${esc(L[g.bench])}</span><span class="path">${esc(path)}</span><span class="uid">${esc(g.uid)}</span></div>
+    <div class="instr">${esc(g.instruction)}</div>
+    <div class="strip" style="--n:${n}">${imgs}${tref}</div>
+    ${explain}
+    <div class="foot"><span>Reference scores: <span class="refsc">${esc(refsc)}</span></span>${extra}</div>
+  </article>`;
+}
+const G = D.gallery;
+$("#cards").innerHTML = G.map(card).join("");
+$("#gal-note").textContent = `${G.length} datapoints drawn at random (seed ${D.gallery_seed}) from the subset. Scores under each output are the judge's; green/red = above/below base on that item. Click any image to enlarge.`;
+
+let filt = "all";
+try { filt = localStorage.getItem("sub-filter") || "all"; } catch (e) {}
+function renderFilter() {
+  const opts = [["all", "All", G.length], ...BORDER.map(b => [b, L[b], G.filter(g => g.bench === b).length])];
+  if (!opts.some(o => o[0] === filt)) filt = "all";
+  $("#filter").innerHTML = opts.map(([k, name, n]) => `<button type="button" data-f="${k}" aria-pressed="${k === filt}">${esc(name)}<span class="c">${n}</span></button>`).join("");
+  document.querySelectorAll(".card").forEach(c => c.hidden = !(filt === "all" || c.dataset.bench === filt));
+}
+$("#filter").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  filt = b.dataset.f;
+  try { localStorage.setItem("sub-filter", filt); } catch (e) {}
+  renderFilter();
+});
+renderFilter();
+
+// ---------- lightbox
+const lb = $("#lb"); let cur = null;
+function cardCells(ci) {
+  const g = G[ci], out = [{lab: "Input", src: g.input, sc: ""}];
+  for (const m of D.models) out.push({lab: m, src: g.outs[m], sc: plain(g.bench, g.scores[m])});
+  if (g.ref.img) out.push({lab: g.ref.kind || "Reference", src: g.ref.img, sc: ""});
+  return out;
+}
+function show(ci, i) {
+  const cs = cardCells(ci); i = (i + cs.length) % cs.length; cur = {ci, i};
+  const c = cs[i], g = G[ci];
+  $("#lb-img").src = c.src; $("#lb-img").alt = c.lab;
+  $("#lb-cap").innerHTML = `<b>${esc(c.lab)}</b>${c.sc ? " · " + esc(c.sc) : ""}<br>${esc(g.instruction.length > 240 ? g.instruction.slice(0, 240) + "…" : g.instruction)}`;
+  lb.hidden = false; $("#lb-close").focus();
+}
+function hide() { lb.hidden = true; cur = null; }
+$("#cards").addEventListener("click", e => {
+  const b = e.target.closest(".cell button"); if (!b) return;
+  show(+b.dataset.card, +b.dataset.i);
+});
+$("#lb-close").onclick = hide;
+$("#lb-prev").onclick = () => cur && show(cur.ci, cur.i - 1);
+$("#lb-next").onclick = () => cur && show(cur.ci, cur.i + 1);
+lb.addEventListener("click", e => { if (e.target === lb || e.target.id === "lb-img") hide(); });
+document.addEventListener("keydown", e => {
+  if (lb.hidden) return;
+  if (e.key === "Escape") hide();
+  if (e.key === "ArrowLeft") show(cur.ci, cur.i - 1);
+  if (e.key === "ArrowRight") show(cur.ci, cur.i + 1);
+});
+</script>

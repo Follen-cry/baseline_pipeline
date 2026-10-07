@@ -8,10 +8,14 @@
     "base": "/scratch/network/ssd2/junlin/huggingface/hub/models--InternVL-U--InternVL-U/snapshots/f012d760e69712bb47f7d3d09a24280f346cee01",
     "T0": "/scratch/network/ssd/junlin/models/internvlu-v2-t0-gen-merged",
     "T2": "/scratch/network/ssd/junlin/models/internvlu-v2-t2-gen-merged",
-    "T3": "/scratch/network/ssd/junlin/models/internvlu-v2-t3-gen-merged"
+    "T3": "/scratch/network/ssd/junlin/models/internvlu-v2-t3-gen-merged",
+    "T2_1": "/scratch/network/ssd/junlin/models/internvlu-v2-t2.1-gen-merged",
+    "T5": "/scratch/network/ssd/junlin/models/internvlu-v2-t5-gen-merged",
+    "T6": "/scratch/network/ssd/junlin/models/internvlu-v2-t6-gen-merged"
   },
   "references": ["copy", "random"],
   "report_models": ["base", "T0", "T2", "T3"],
+  "_report_models_doc": "T2_1/T5/T6 (added 2026-09-28) are zero-shot new-setting checkpoints, same tier as T0/T2/T3, but not added to report_models -- they are scored (table.csv/scores_item.csv via score.py auto-detection) without changing the published artifact page/gallery, which wasn't asked to be updated. T2_1 = training setting 'T2.1' (dot avoided in the key: config.py's dotted-path CLI lookup and shell associative-array keys both break on '.').",
 
   "ft_models": {
     "_doc": "base/T0/T2/T3 each further fine-tuned on the SAME edit-instruction data (identical recipe, only the starting checkpoint differs): 1,280 rows = 640 MagicBrush *train* turns (osunlp/MagicBrush, disjoint from this suite's MagicBrush test slice, near-dup-checked against every suite input/reference image by dhash) + 640 PICA-100K pairs (Andrew613/PICA-100K, superficial prompt). 2 epochs / 160 steps, v2 T-series recipe (full-unified, LLM-LoRA r32, lr 1e-5, gen_decoder_lr 5e-5, gen_loss_weight 0.5 warmup 20, imgen_ratio 1.0, area-512 targets, global batch 16, lm_loss_weight 0, gen_resize_mode area). Data/training recipe: ../v2_suite_1/diagnosis/edit_sft/build_edit_sft.py + run_edit_sft_probe.sh. report_models unchanged; these are judged and appear in table.csv/scores_item.csv via score.py's auto-detection (any judged system not already in models/references).",
@@ -22,11 +26,14 @@
   },
 
   "probe_models": {
-    "_doc": "Lighter sibling of ft_models, paired with THIS 200-item subset manifest rather than v2_suite_1's full 1,210-item one: base/T0/T2/T3 each further fine-tuned on ~800 rows (400 MagicBrush *train* turns + 400 PICA-100K pairs, same 1:1 ratio, seed 20260929, dhash-checked against ../manifest.jsonl's 200 items) for 1 epoch / ~50 steps, otherwise the identical v2 T-series recipe as ft_models (full-unified, LLM-LoRA r32, lr 1e-5, gen_decoder_lr 5e-5, gen_loss_weight 0.5 warmup 20, imgen_ratio 1.0, area-512 targets, global batch 16, lm_loss_weight 0, gen_resize_mode area). Data/training/eval: edit_sft_probe/{build_probe_data.py, run_probe_sft.sh, train_{base,T0,T2,T3}.sh, run_probe_eval.sh}. Not yet trained -- paths below are where merged checkpoints will land. report_models unchanged; once judged, these are picked up by score.py's auto-detection like ft_models.",
+    "_doc": "Lighter sibling of ft_models, paired with THIS 200-item subset manifest rather than v2_suite_1's full 1,210-item one: base/T0/T2/T3 each further fine-tuned on ~800 rows (400 MagicBrush *train* turns + 400 PICA-100K pairs, same 1:1 ratio, seed 20260929, dhash-checked against ../manifest.jsonl's 200 items) for 1 epoch / ~50 steps, otherwise the identical v2 T-series recipe as ft_models (full-unified, LLM-LoRA r32, lr 1e-5, gen_decoder_lr 5e-5, gen_loss_weight 0.5 warmup 20, imgen_ratio 1.0, area-512 targets, global batch 16, lm_loss_weight 0, gen_resize_mode area). Data/training/eval: edit_sft_probe/{build_probe_data.py, run_probe_sft.sh, train_{base,T0,T2,T3,T2_1,T5,T6}.sh, run_probe_eval.sh}. Trained: base_probe (2026-09-28) and T2_1_probe / T5_probe / T6_probe (2026-09-29); T0/T2/T3_probe were never run (their entries below are placeholders). report_models unchanged; once judged, these are picked up by score.py's auto-detection like ft_models.",
     "base_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/base-merged", "base_checkpoint": "models.base"},
     "T0_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T0-merged", "base_checkpoint": "models.T0"},
     "T2_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T2-merged", "base_checkpoint": "models.T2"},
-    "T3_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T3-merged", "base_checkpoint": "models.T3"}
+    "T3_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T3-merged", "base_checkpoint": "models.T3"},
+    "T2_1_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T2_1-merged", "base_checkpoint": "models.T2_1"},
+    "T5_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T5-merged", "base_checkpoint": "models.T5"},
+    "T6_probe": {"path": "/scratch/network/ssd/junlin/models/edit_sft_probe_sub/T6-merged", "base_checkpoint": "models.T6"}
   },
 
   "inference": {

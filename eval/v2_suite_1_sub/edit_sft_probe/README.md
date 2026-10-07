@@ -12,7 +12,9 @@ understanding. This probe re-runs that check cheaper (1 epoch instead of 2, ~800
 1,280) so it's viable to re-verify each time `v2_suite_1_sub` itself changes, without touching the
 full suite.
 
-**Status:** files only. Nothing has been trained or evaluated yet — see "What's been run" below.
+**Status:** trained and evaluated for `base`, `T2_1`, `T5` and `T6` (2026-09-28/29, scored 2026-10-03);
+`T0`, `T2` and `T3` were never run through this probe. See "What's been run" below and `../README.md`
+("New-setting checkpoints") for the numbers.
 
 ## Data
 
@@ -161,7 +163,15 @@ Training/eval outputs are on scratch, not in this git-tracked folder:
       (expected — no `magicbrush` bench in this subset), 260 eval images checked. Full detail in
       `data/overlap_report.json`; the sampled list itself is `data/train.jsonl` (1,600 images in
       `data/images/`).
-- [ ] Training (`train_base.sh` / `train_T0.sh` / `train_T2.sh` / `train_T3.sh`) — not started.
-- [ ] Evaluation (`run_probe_eval.sh gen` / `judge`) — not started.
+- [x] Training — `train_base.sh` **done 2026-09-28** (17 min, 800 samples, `base-merged`); `train_T2_1.sh`,
+      `train_T5.sh`, `train_T6.sh` (new wrappers, same pattern as `train_T0.sh`, reading `models.T2_1` /
+      `models.T5` / `models.T6`) **done 2026-09-29**, one node of 4 GPUs each, run with
+      `EXTRA="--dataloader_drop_last True --save_strategy steps --save_steps 20 --save_total_limit 2"` as a
+      safety net (800 rows / batch 16 = 50 steps divides evenly and all three finished normally).
+      `train_T0.sh` / `train_T2.sh` / `train_T3.sh` — not run.
+- [x] Evaluation — `base_probe`, `T2_1_probe`, `T5_probe`, `T6_probe` generated (200/200 each) and judged
+      (all 4 benchmarks, 0 unparsed rows). `run_probe_eval.sh` still lists only base/T0/T2/T3 and was **not**
+      used for the new three: inference used `scripts/launch_gen.sh <name>_probe <ckpt> ...` and judging
+      `scripts/run_judge.sh` directly (commands in `../README.md`).
 
 Config reference for this probe: `../config.json → probe_models`.
