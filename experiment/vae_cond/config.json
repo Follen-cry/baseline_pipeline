@@ -1,0 +1,24 @@
+{
+  "_doc": "Single config for the vae_cond experiment. Relative paths are relative to this folder.",
+  "base_model": "/scratch/network/ssd2/junlin/huggingface/hub/models--InternVL-U--InternVL-U/snapshots/f012d760e69712bb47f7d3d09a24280f346cee01",
+  "internvlu_pkg": "/scratch/network/ssd2/junlin/ssl_mllm/Model_Related/InternVLU/InternVL-U",
+  "internvlu_python": "/homes/55/junlin/miniconda3/envs/internvlu/bin/python",
+  "source_jsonl": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/v2/datasets/temporal_ssl/settings/phystran_g1/T5_evalmini.jsonl",
+  "datapoints": "datapoints.jsonl",
+  "outputs_root": "outputs",
+  "selection": {"seed": 20260930, "n": 5, "rule": "one row per distinct PhysicTran38K category; random.Random(f'{seed}:phystran_g1').sample(sorted(categories), n); first row (by id) of each picked category"},
+  "conditions": {
+    "none": "no VAE condition; all 3 frames go to the ViT only",
+    "first": "VAE-condition on F0 only; all 3 frames go to the ViT",
+    "all": "VAE-condition on F0, F1, F2; all 3 frames go to the ViT"
+  },
+  "inference": {
+    "generation_mode": "image",
+    "gen_area_side": 512,
+    "round_to": 16,
+    "num_inference_steps": 20,
+    "all_cfg_scale": 4.5,
+    "part_cfg_scale": 2.0,
+    "seed": 42
+  }
+}
