@@ -1,0 +1,169 @@
+<title>VAE Condition Ablation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column for the story, then a wide gallery of datapoint rows (inputs | GT, then the 3 conditions). */
+:root {
+  --bg: #f6f7f8; --fg: #1b2227; --muted: #5d6a73; --line: #d8dee2; --panel: #ffffff; --code: #eceff1;
+  --none: #b5472f; --first: #1f6fb2; --all: #2f8a5a;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #12171a; --fg: #e6eaed; --muted: #94a1aa; --line: #2b353b; --panel: #192024; --code: #1f282d;
+    --none: #e5836b; --first: #6fb0ec; --all: #6cc597; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #12171a; --fg: #e6eaed; --muted: #94a1aa; --line: #2b353b; --panel: #192024; --code: #1f282d;
+  --none: #e5836b; --first: #6fb0ec; --all: #6cc597; color-scheme: dark; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.55;
+  padding-inline: 16px; padding-block: 28px 64px; }
+main { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+.col { max-width: 760px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h2 { font-size: 1.25rem; margin: 0; letter-spacing: -0.01em; }
+h3 { font-size: 1.05rem; margin: 0; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; text-transform: capitalize; }
+h3 small { font: 400 12px var(--mono); color: var(--muted); text-transform: none; }
+p { margin: 0; }
+.lede { font-size: 1.05rem; color: var(--muted); }
+.eyebrow { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+code, .mono { font-family: var(--mono); font-size: .86em; background: var(--code); padding: 1px 5px; border-radius: 4px; }
+pre { font: 400 12.5px/1.5 var(--mono); background: var(--code); padding: 12px 14px; border-radius: 6px; overflow-x: auto; margin: 0; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; background: currentColor; }
+.c-none { --c: var(--none); } .c-first { --c: var(--first); } .c-all { --c: var(--all); }
+tr.c-none, tr.c-first, tr.c-all, figure.out { color: var(--fg); }
+.c-none .dot, .c-first .dot, .c-all .dot { color: var(--c); }
+
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+td.num, th.num { font-variant-numeric: tabular-nums; }
+
+.finds { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.finds li { padding-left: 14px; border-left: 2px solid var(--line); }
+.finds b { font-weight: 600; }
+
+.gallery { display: flex; flex-direction: column; gap: 36px; }
+.dp { display: flex; flex-direction: column; gap: 10px; padding-top: 22px; border-top: 1px solid var(--line); }
+.row { display: grid; gap: 10px; }
+.ins { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.outs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--code); }
+figcaption { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12.5px; }
+figcaption b { font-weight: 600; }
+figcaption span { font: 400 11.5px var(--mono); color: var(--muted); }
+figure.gt img { outline: 2px solid var(--fg); outline-offset: -2px; }
+figure.out img { outline: 3px solid var(--c); outline-offset: -3px; }
+figure.out figcaption b { color: var(--c); }
+figure.out p { font-size: 13px; color: var(--muted); }
+details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+details summary:focus-visible, a:focus-visible { outline: 2px solid var(--first); outline-offset: 2px; }
+.cap { font-size: 13px; color: var(--muted); padding: 8px 0 0; max-width: 90ch; }
+.legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; }
+.note { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.flow > div { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
+.flow b { display: block; margin-bottom: 4px; }
+@media (max-width: 760px) {
+  .ins { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .outs { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+
+<main>
+  <header class="col">
+    <div class="eyebrow">InternVL-U base · PhysicTran38K · 5 datapoints × 3 conditions</div>
+    <h1>VAE Condition Ablation</h1>
+    <p class="lede">The model sees three frames F0, F1, F2 of a clip and generates the next frame F3. The ViT always gets all three. Only the frames that are also encoded by the VAE and fed to the diffusion decoder change.</p>
+  </header>
+
+  <section class="col">
+    <h2>Results at a glance</h2>
+    <ul class="finds">
+      <li><b>No VAE condition fails.</b> Without any VAE latent the decoder does not reproduce the scene. 4 of 5 outputs are a blank field, a text poster, portraits or a contact sheet. Only the fruit has the right object, on the wrong background.</li>
+      <li><b>One VAE frame (F0) is enough to anchor the scene.</b> 3 of 5 outputs (lizard, cobblestones, fruit) are clean and close to the input frames. The other two (plant, tension strip) are broken: the plant ends up in a bordered panel and the strip scene is mostly empty.</li>
+      <li><b>All three frames is not better.</b> It matches <code>first</code> on cobblestones and fruit, adds ghosting on the lizard, and breaks the same two scenes in similar ways. The one visible plus is the plant: a few yellow flowers appear, as in the ground truth.</li>
+      <li><b>No condition produces the physical change.</b> Where the frame is clean, its distance to F2 is about the same as its distance to the ground truth (table), so these are near copies of an earlier frame, not forecasts.</li>
+    </ul>
+    <div class="tbl"><table>
+      <thead><tr><th>Condition</th><th class="num">VAE frames</th><th class="num">MAD to GT F3</th><th class="num">MAD to F2</th></tr></thead>
+      <tbody>{{SUMMARY}}</tbody>
+    </table></div>
+    <p class="note" style="font-size:13px;color:var(--muted)">MAD = mean absolute pixel difference on a 0-255 scale (output resized to the reference), averaged over the 5 datapoints. It is a rough signal. A blank gray frame and a faithful but different scene both score high, so read it together with the images. n = 5, one seed, so treat everything here as qualitative.</p>
+  </section>
+
+  <section class="col">
+    <h2>Setup</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Condition</th><th>ViT sees</th><th>VAE latents fed to the decoder</th></tr></thead>
+      <tbody>
+        <tr class="c-none"><th><i class="dot"></i>none</th><td>F0 F1 F2</td><td>none (<code>conditional_input=None</code>)</td></tr>
+        <tr class="c-first"><th><i class="dot"></i>first</th><td>F0 F1 F2</td><td>F0</td></tr>
+        <tr class="c-all"><th><i class="dot"></i>all</th><td>F0 F1 F2</td><td>F0 F1 F2</td></tr>
+      </tbody>
+    </table></div>
+    <div class="flow">
+      <div><b>Data</b>5 rows of the T5 eval set (<code>phystran_g1</code>, 125 rows, gap 1.0 s, clips 832×480), one per distinct category, picked with seed 20260930.</div>
+      <div><b>Model</b>InternVL-U base snapshot <code>f012d760</code>, no fine-tuning. Image generation mode, 20 steps, CFG all 4.5 / part 2.0, noise seed 42 for every condition.</div>
+      <div><b>Resolution</b>Frames resized to 672×384 (area ≈ 512², sides multiple of 16), the same rule as <code>v2_suite_1_sub</code> generation.</div>
+    </div>
+  </section>
+
+  <section class="col">
+    <h2>How the prompts are handled</h2>
+    <p>The text is T5's own user turn, identical for the three conditions. The pipeline receives <code>image=[[F0, F1, F2]]</code>, so each <code>&lt;image&gt;</code> slot is filled and all three frames go through the ViT.</p>
+    <pre>Here are three consecutive frames sampled from a video clip, in chronological
+order and equally spaced in time.
+
+Caption: &lt;PhysicTran38K caption&gt;
+F0: &lt;image&gt;
+F1: &lt;image&gt;
+F2: &lt;image&gt;
+GAP: 1.0 s (time between consecutive frames)
+
+Generate the next frame F3, which comes one GAP after F2.</pre>
+    <p>The stock processor builds three classifier-free-guidance rows from it:</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Row</th><th>Text</th><th class="num">ViT images</th><th class="num">VAE images (none / first / all)</th></tr></thead>
+      <tbody>
+        <tr><td>full</td><td>the prompt above</td><td class="num">3</td><td class="num">0 / 1 / 3</td></tr>
+        <tr><td>text dropped</td><td>3× <code>&lt;image&gt;</code> + "Generate an image based on reference images."</td><td class="num">3</td><td class="num">0 / 1 / 3</td></tr>
+        <tr><td>unconditional</td><td>"Here is a random image &lt;img_uncond&gt;:"</td><td class="num">0</td><td class="num">0 / 0 / 0</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" style="font-size:13px">The PhysicTran38K caption states the outcome ("the final frame shows a sustained dormant posture…"), so the text alone can describe F3 in all three conditions. This is the same caption caveat as in T5's docs. It probably narrows the gap between conditions, but it does not explain the blank and poster outputs of <code>none</code>.</p>
+  </section>
+
+  <section class="col">
+    <h2>How the conditions are implemented</h2>
+    <p>The stock pipeline VAE-encodes every earlier image (<code>_prepare_diffusion_inputs</code> → <code>conditional_image</code>). <code>gen.py</code> wraps that method and slices only the VAE-side tensors <code>conditional_image</code> and <code>image_grid_thw_gen_cond</code> to the first 0 / 1 / 3 frames, kept index-aligned. The ViT tensors (<code>pixel_values</code>, <code>encoder_image_token_mask</code>, <code>image_fhw_cond</code>) are never touched. <code>check_inputs.py</code> confirms the counts above on real inputs, and every run logs them in <code>outputs/_meta/</code>.</p>
+    <p><b>Two stock-code problems had to be patched at runtime</b> (<code>patches.py</code>; the package is not edited):</p>
+    <ul class="finds">
+      <li><b>Processor assert.</b> With 3 frames, the unconditional row (no <code>&lt;image&gt;</code> slots) trips <code>only 1 fake picture in pure text input</code>. That row's image data is discarded anyway, so the assert is skipped for it.</li>
+      <li><b>Decoder crash for more than one VAE image.</b> <code>_prepare_hidden_inputs_anyres</code> adds a vector of per-image token counts where it needs their sum, so it raised <code>TypeError: only integer tensors of a single element can be converted to an index</code> at 3 images. The patch adds <code>.sum()</code> at the two slice sites. This only affects <code>all</code>; <code>none</code> and <code>first</code> run on the stock path. Training-time code only ever passes one condition image per sample, so the base model has probably not seen several VAE frames at once, which may be why <code>all</code> does not help.</li>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <div class="col">
+      <h2>All five datapoints</h2>
+      <div class="legend"><span class="c-none"><i class="dot"></i>none</span><span class="c-first"><i class="dot"></i>first (F0)</span><span class="c-all"><i class="dot"></i>all (F0, F1, F2)</span></div>
+      <p class="lede" style="font-size:.95rem">Top row of each block: the three input frames and the ground-truth F3. Bottom row: the three generations with a short description and the pixel distances.</p>
+    </div>
+    {{CARDS}}
+  </section>
+
+  <section class="col">
+    <h2>Limits and reproduction</h2>
+    <ul class="finds">
+      <li>5 datapoints, one noise seed, no repeats. Differences between <code>first</code> and <code>all</code> are within what another seed could change.</li>
+      <li><code>none</code>, <code>first</code> and <code>all</code> also differ in how many condition tokens the decoder attends to, not only in what information they carry. This run does not separate the two.</li>
+      <li>Fixed settings: {{INF}}.</li>
+    </ul>
+    <pre>cd experiment/vae_cond
+bash run.sh 0          # wiring check -> generation (~2.5 min on one A40) -> comparison sheet
+python build_artifact.py</pre>
+    <p style="font-size:13px;color:var(--muted)">Code and outputs: <code>baseline_pipeline/experiment/vae_cond/</code> on branch <code>worktree-vae-cond-exp</code>.</p>
+  </section>
+</main>

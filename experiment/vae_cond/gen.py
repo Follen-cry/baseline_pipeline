@@ -67,24 +67,26 @@ def main():
     sys.path.insert(0, CFG["internvlu_pkg"])
     from internvlu import InternVLUPipeline
     from internvlu.processing_internvlu import InternVLUProcessor
-    from patches import allow_multi_image_uncond
+    from internvlu.diffusion.internvlu_transformer import InternVLUTransformer2DModel
+    from patches import allow_multi_image_uncond, fix_multi_cond_token_slice
     allow_multi_image_uncond(InternVLUProcessor)  # stock processor asserts on >1 image in the uncond CFG row
+    fix_multi_cond_token_slice(InternVLUTransformer2DModel)  # stock decoder crashes on >1 VAE cond image (`all`)
     pipe = InternVLUPipeline.from_pretrained(a.model_path, torch_dtype=torch.bfloat16).to("cuda")
 
-    state = {}  # filled by the wrapper on each call
+    state, cur = {}, {}  # state: filled by the wrapper per call; cur["keep"]: set per generation
     orig = pipe._prepare_diffusion_inputs
 
     def wrapped(**kw):
         state.clear()
         state["vit_pixel_values"] = list(kw["pixel_values"].shape)  # (tiles, 3, 448, 448): ViT input, never modified
-        return restrict_vae_cond(orig(**kw), state["keep"], state)
+        return restrict_vae_cond(orig(**kw), cur["keep"], state)
 
     pipe._prepare_diffusion_inputs = wrapped
 
     os.makedirs(os.path.join(out_root, "_meta"), exist_ok=True)
     t0 = time.time()
     for n, (cond, d) in enumerate(todo, 1):
-        state["keep"] = KEEP[cond]
+        cur["keep"] = KEEP[cond]
         src = [Image.open(p).convert("RGB") for p in d["frames"]]
         w, h = area_size(*src[0].size, inf["gen_area_side"], inf["round_to"])
         src = [im.resize((w, h), Image.LANCZOS) for im in src]  # F0, F1, F2 chronological; all go to the ViT
@@ -99,7 +101,7 @@ def main():
         img.save(out + ".tmp.png")
         os.replace(out + ".tmp.png", out)  # atomic: a killed job never leaves a half-written PNG
         meta = {"id": d["id"], "condition": cond, "n_frames_to_vit": len(src), "gen_size_wh": [w, h],
-                **{k: v for k, v in state.items() if k != "keep"}}
+                **state}
         json.dump(meta, open(os.path.join(out_root, "_meta", f"{cond}__{d['id']}.json"), "w"))
         print(f"[gen] {n}/{len(todo)} {cond:5s} {d['id']}  vae_cond(before->after)={meta.get('vae_cond_before')}->"
               f"{meta.get('vae_cond_after')}  {(time.time() - t0) / n:.1f}s/it", flush=True)
