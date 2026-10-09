@@ -55,11 +55,14 @@ def main():
     ap.add_argument("--conditions", nargs="+", default=list(KEEP), choices=list(KEEP))
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--model_path", default=CFG["base_model"])
+    ap.add_argument("--size", default="", help="WxH override for frames AND output (default: area-512 rule), e.g. 688x400")
+    ap.add_argument("--tag", default="", help="output subfolder suffix, e.g. _688x400 -> outputs/<cond>_688x400/")
+    ap.add_argument("--categories", nargs="*", default=[], help="only these datapoint categories")
     a = ap.parse_args()
     inf = CFG["inference"]
     out_root = path("outputs_root")
-    dps = datapoints()[: a.limit or None]
-    todo = [(c, d) for d in dps for c in a.conditions if not os.path.exists(os.path.join(out_root, c, d["id"] + ".png"))]
+    dps = [d for d in datapoints() if not a.categories or d["category"] in a.categories][: a.limit or None]
+    todo = [(c, d) for d in dps for c in a.conditions if not os.path.exists(os.path.join(out_root, c + a.tag, d["id"] + ".png"))]
     print(f"[gen] {len(dps)} datapoints x {a.conditions}: {len(todo)} to do", flush=True)
     if not todo:
         return
@@ -88,7 +91,7 @@ def main():
     for n, (cond, d) in enumerate(todo, 1):
         cur["keep"] = KEEP[cond]
         src = [Image.open(p).convert("RGB") for p in d["frames"]]
-        w, h = area_size(*src[0].size, inf["gen_area_side"], inf["round_to"])
+        w, h = tuple(map(int, a.size.split("x"))) if a.size else area_size(*src[0].size, inf["gen_area_side"], inf["round_to"])
         src = [im.resize((w, h), Image.LANCZOS) for im in src]  # F0, F1, F2 chronological; all go to the ViT
         with torch.no_grad():
             # image=[src]: one entry per prompt, each entry = this prompt's 3 frames (a bare list of 3 would be read as 3 prompts)
@@ -96,13 +99,13 @@ def main():
                        num_inference_steps=inf["num_inference_steps"], all_cfg_scale=inf["all_cfg_scale"],
                        part_cfg_scale=inf["part_cfg_scale"],
                        generator=torch.Generator(device="cuda").manual_seed(inf["seed"])).images[0]
-        out = os.path.join(out_root, cond, d["id"] + ".png")
+        out = os.path.join(out_root, cond + a.tag, d["id"] + ".png")
         os.makedirs(os.path.dirname(out), exist_ok=True)
         img.save(out + ".tmp.png")
         os.replace(out + ".tmp.png", out)  # atomic: a killed job never leaves a half-written PNG
         meta = {"id": d["id"], "condition": cond, "n_frames_to_vit": len(src), "gen_size_wh": [w, h],
                 **state}
-        json.dump(meta, open(os.path.join(out_root, "_meta", f"{cond}__{d['id']}.json"), "w"))
+        json.dump(meta, open(os.path.join(out_root, "_meta", f"{cond}{a.tag}__{d['id']}.json"), "w"))
         print(f"[gen] {n}/{len(todo)} {cond:5s} {d['id']}  vae_cond(before->after)={meta.get('vae_cond_before')}->"
               f"{meta.get('vae_cond_after')}  {(time.time() - t0) / n:.1f}s/it", flush=True)
     print(f"[gen] DONE in {(time.time() - t0) / 60:.1f} min", flush=True)
