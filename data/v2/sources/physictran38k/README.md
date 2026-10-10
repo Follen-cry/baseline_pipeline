@@ -53,8 +53,9 @@ repo (≈ 1 h for 10K files).
 **Full repo (2026-10-10):** `download_physictran38k.py --all` lists every type and writes
 `RAW/manifest_all.jsonl` — **45,990 videos, 7.04 GB** (tier `A` = 7,371 in the final list,
 `unlisted` = 38,619; `B1` is empty), same row schema as the 10K manifest plus
-`in_selection_10k` (all 10,000 matched). Downloads the remaining 35,990 into the same tree
-(≈ 4 h at 2.5 files/s; log `RAW/download_all.log`). `selection_10k.jsonl` is unchanged, so the
+`in_selection_10k` (all 10,000 matched). The remaining 35,990 were downloaded into the same tree
+on 2026-10-10 (4.0 h, 0 failures; log `RAW/download_all.log`): all 45,990 present and
+size-checked against the manifest, 300/300 random new videos decode. `selection_10k.jsonl` is unchanged, so the
 v2 pools (`main`, `phystran_g1`) are unaffected; using the extra clips needs a manifest switch
 in `clip_sources.py`.
 
