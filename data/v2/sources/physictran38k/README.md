@@ -50,6 +50,14 @@ Xet path costs one API call per file, so the script disables Xet, throttles to 2
 pauses 5 min on any 429, and reuses the frozen `selection_10k.jsonl` instead of re-listing the
 repo (≈ 1 h for 10K files).
 
+**Full repo (2026-10-10):** `download_physictran38k.py --all` lists every type and writes
+`RAW/manifest_all.jsonl` — **45,990 videos, 7.04 GB** (tier `A` = 7,371 in the final list,
+`unlisted` = 38,619; `B1` is empty), same row schema as the 10K manifest plus
+`in_selection_10k` (all 10,000 matched). Downloads the remaining 35,990 into the same tree
+(≈ 4 h at 2.5 files/s; log `RAW/download_all.log`). `selection_10k.jsonl` is unchanged, so the
+v2 pools (`main`, `phystran_g1`) are unaffected; using the extra clips needs a manifest switch
+in `clip_sources.py`.
+
 Video specs: **3.27 s, 15 fps (49 frames), 832×480**. So Δt ≤ ~1.0 s, and gaps should be set
 in frames (0.25 s = 3.75 frames isn't exact; use 3 f = 0.2 s or 4 f = 0.267 s).
 

@@ -14,8 +14,13 @@ Each row records tier, whether the video is in moving_videos.txt (meaning undocu
 decide after measuring camera motion), and the generation prompt (which states the final
 state, so it is NOT usable as a v2 caption as-is).
 
+Full repo (--all): every mp4 of every type -> manifest_all.jsonl (same row schema; `tier` A / B1 /
+"unlisted" from the authors' lists, `in_selection_10k` marks the frozen 10K). selection_10k.jsonl
+is untouched, so the v2 pools (which read it) do not change.
+
 Usage:
     python download_physictran38k.py            # reuse selection_10k.jsonl (or build it) + download, resumable
+    python download_physictran38k.py --all      # list the whole repo -> manifest_all.jsonl + download, resumable
     python download_physictran38k.py --reselect # rebuild the selection from the repo listing
     python download_physictran38k.py --dry-run  # selection + manifest only
 """
@@ -96,12 +101,21 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--reselect", action="store_true",
                     help="rebuild selection_10k.jsonl from the repo instead of reusing it")
+    ap.add_argument("--all", action="store_true",
+                    help="every video in the repo -> manifest_all.jsonl (reused if present) + download")
     ap.add_argument("--workers", type=int, default=16)
     ap.add_argument("--rate", type=float, default=2.5, help="max file downloads started per second")
     args = ap.parse_args()
     os.makedirs(RAW_ROOT, exist_ok=True)
     man = os.path.join(RAW_ROOT, "selection_10k.jsonl")
-    if os.path.exists(man) and not args.reselect:
+    if args.all:
+        man_all = os.path.join(RAW_ROOT, "manifest_all.jsonl")
+        if os.path.exists(man_all) and not args.reselect:
+            rows = [json.loads(l) for l in open(man_all)]
+            print(f"[all] reusing {man_all}: {len(rows)} videos", flush=True)
+        else:
+            rows = build_all(man_all, man)
+    elif os.path.exists(man) and not args.reselect:
         # reuse the frozen selection: no repo listing, so no API quota spent before downloading
         rows = [json.loads(l) for l in open(man)]
         print(f"[select] reusing {man}: {len(rows)} videos", flush=True)
@@ -112,7 +126,7 @@ def main():
     download(rows, args)
 
 
-def build_selection(man):
+def list_repo():
     api = HfApi()
     types = list_types(api)
     print(f"[select] {len(types)} transition types", flush=True)
@@ -120,8 +134,11 @@ def build_selection(man):
     with ThreadPoolExecutor(8) as ex:
         for t, res in zip(types, ex.map(lambda t: load_type(api, t), types)):
             info[t] = res
-    chosen = select(info)
+    return types, info
 
+
+def manifest_rows(types, info, chosen):
+    """chosen: t -> {video: tier}; one manifest row per chosen video, in type / index order."""
     rows = []
     for t in types:
         mp4, L = info[t]
@@ -136,9 +153,40 @@ def build_selection(man):
                 repo_path=f"{t}/{v}", video=os.path.join(RAW_ROOT, t, v), bytes=mp4[v],
                 tier=tier, in_moving_list=v in moving,
                 prompt=m.get("prompt"), state=m.get("State"), transition_name=m.get("Transition")))
-    with open(man, "w") as f:
+    return rows
+
+
+def write_jsonl(path, rows):
+    with open(path, "w") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
+
+
+def build_all(man_all, man_10k):
+    types, info = list_repo()
+    chosen = {}
+    for t, (mp4, L) in info.items():
+        final, filt = L["final_filter_videos.txt"] or set(), L["filtered_videos.txt"] or set()
+        chosen[t] = {v: "A" if v in final else "B1" if v in filt else "unlisted" for v in mp4}
+    rows = manifest_rows(types, info, chosen)
+    sel = {r["id"] for r in map(json.loads, open(man_10k))} if os.path.exists(man_10k) else set()
+    for r in rows:
+        r["in_selection_10k"] = r["id"] in sel
+    write_jsonl(man_all, rows)
+    by_tier = defaultdict(int)
+    for r in rows:
+        by_tier[r["tier"]] += 1
+    print(f"[all] {len(rows)} videos in {len(types)} types, tiers {dict(by_tier)}, "
+          f"{sum(r['in_selection_10k'] for r in rows)} in selection_10k (of {len(sel)}), "
+          f"{sum(r['bytes'] for r in rows)/1e9:.2f} GB -> {man_all}", flush=True)
+    return rows
+
+
+def build_selection(man):
+    types, info = list_repo()
+    chosen = select(info)
+    rows = manifest_rows(types, info, chosen)
+    write_jsonl(man, rows)
     by_tier = defaultdict(int)
     for r in rows:
         by_tier[r["tier"]] += 1
