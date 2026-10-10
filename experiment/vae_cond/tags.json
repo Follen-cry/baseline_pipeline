@@ -1,0 +1,23 @@
+{
+ "_doc": "Hand tags of the generated frames, one character per datapoint in datapoints.jsonl order (40). Read from outputs/review_<size>_<k>.png contact sheets (170 px tall thumbnails) by one unblinded reviewer (Claude); approximate. Codes: o = coherent frame of the input scene (no layout problem); L = layout artifact (panel/border, caption text strip, letterbox bars, shifted/zoomed/cropped content, inset picture); D = object duplicated side by side; F = main object missing, wrong, garbled or fragmented. 'none' is not tagged: it reproduces the input scene in 0 of 40 at every size (gray fields, portraits, text posters, a different object or room).",
+ "codes": {
+  "o": "coherent",
+  "L": "layout artifact",
+  "D": "duplicated object",
+  "F": "object missing / wrong / fragmented"
+ },
+ "tags": {
+  "832x480": {
+   "first": "oooooFooooooLooooDooooooooDDooFooFooDooD",
+   "all": "oooooFoDoooFoooLooFoooooFoFDoooooFFooooD"
+  },
+  "688x400": {
+   "first": "ooooFFoooooooooLooooooooooFLoooooFFooooo",
+   "all": "oooooFFFoooFoooLooooooooFoFooooLoFFooooL"
+  },
+  "672x384": {
+   "first": "LoLoLFoooooooooLoLFooooLooFLLoooLFFoLooo",
+   "all": "FoLoLFoooLoFoooLoLoooooLFoLLooooLFFoLooo"
+  }
+ }
+}

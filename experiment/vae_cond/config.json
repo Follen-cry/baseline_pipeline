@@ -6,7 +6,9 @@
   "source_jsonl": "/scratch/network/ssd2/junlin/ssl_mllm/baseline_pipeline/data/v2/datasets/temporal_ssl/settings/phystran_g1/T5_evalmini.jsonl",
   "datapoints": "datapoints.jsonl",
   "outputs_root": "outputs",
-  "selection": {"seed": 20260930, "n": 5, "rule": "one row per distinct PhysicTran38K category; random.Random(f'{seed}:phystran_g1').sample(sorted(categories), n); first row (by id) of each picked category"},
+  "selection": {"seed": 20260930, "n": 40, "n_initial": 5, "rule": "one row per distinct PhysicTran38K category (first row by id). The initial 5 = random.Random(f'{seed}:phystran_g1').sample(sorted(categories), 5) (the first run); the other 35 = random.Random(f'{seed}:ext35').sample(sorted(remaining categories), 35)"},
+  "images_dir": "data/images",
+  "sizes": ["832x480", "688x400", "672x384"],
   "conditions": {
     "none": "no VAE condition; all 3 frames go to the ViT only",
     "first": "VAE-condition on F0 only; all 3 frames go to the ViT",

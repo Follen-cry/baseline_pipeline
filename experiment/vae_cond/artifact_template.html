@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one narrow reading column for the story, then a wide gallery of datapoint rows (inputs | GT, then the 3 conditions) with an output-size toggle. */
+/* Layout: one narrow reading column for the story and tables, then a wide gallery of {{N}} datapoint rows (inputs | GT, then the 3 conditions) with an output-size toggle. */
 :root {
   --bg: #f6f7f8; --fg: #1b2227; --muted: #5d6a73; --line: #d8dee2; --panel: #ffffff; --code: #eceff1;
   --none: #b5472f; --first: #1f6fb2; --all: #2f8a5a; --warn: #8a5a00; --warnbg: #fbf1dc;
@@ -11,19 +11,19 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --bg: #12171a; --fg: #e6eaed; --muted: #94a1aa; --line: #2b353b; --panel: #192024; --code: #1f282d;
-    --none: #e5836b; --first: #6fb0ec; --all: #6cc597; --warn: #f0c46a; --warnbg: #2c2512; color-scheme: dark; }
+    --none: #d8664b; --first: #5896dc; --all: #4aaa78; --warn: #f0c46a; --warnbg: #2c2512; color-scheme: dark; }
 }
 :root[data-theme="dark"] { --bg: #12171a; --fg: #e6eaed; --muted: #94a1aa; --line: #2b353b; --panel: #192024; --code: #1f282d;
-  --none: #e5836b; --first: #6fb0ec; --all: #6cc597; --warn: #f0c46a; --warnbg: #2c2512; color-scheme: dark; }
+  --none: #d8664b; --first: #5896dc; --all: #4aaa78; --warn: #f0c46a; --warnbg: #2c2512; color-scheme: dark; }
 body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.55;
   padding-inline: 16px; padding-block: 28px 64px; }
 main { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
-.col { max-width: 760px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.wide { max-width: none; }
+.col { max-width: 800px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
 h2 { font-size: 1.25rem; margin: 0; letter-spacing: -0.01em; }
-h3 { font-size: 1.05rem; margin: 0; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; text-transform: capitalize; }
+h3 { font-size: 1.05rem; margin: 0; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; text-transform: capitalize; }
 h3 small { font: 400 12px var(--mono); color: var(--muted); text-transform: none; }
+h3 .idx { font: 500 12px var(--mono); color: var(--muted); }
 p { margin: 0; }
 .lede { font-size: 1.05rem; color: var(--muted); }
 .eyebrow { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -34,40 +34,50 @@ pre { font: 400 12.5px/1.5 var(--mono); background: var(--code); padding: 12px 1
 
 .tbl { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
-th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 thead th { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-td.num, th.num { font-variant-numeric: tabular-nums; text-align: right; }
+td.num, th.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+td small { color: var(--muted); font-size: 11.5px; }
 th.sizecell { font: 500 13px var(--mono); border-right: 1px solid var(--line); }
 th.sizecell small { display: block; font: 400 11px var(--sans); color: var(--muted); margin-top: 2px; }
+tr.ref td, tr.ref th { color: var(--muted); font-style: italic; }
+.barcell { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.bar { display: inline-block; width: 110px; height: 8px; background: var(--code); border-radius: 4px; margin-right: 10px; vertical-align: middle; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--c); border-radius: 0 4px 4px 0; }
 
 .finds { display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; list-style: none; }
 .finds li { padding-left: 14px; border-left: 2px solid var(--line); }
 .finds b { font-weight: 600; }
-.update { background: var(--warnbg); color: var(--fg); border: 1px solid var(--warn); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.update { background: var(--warnbg); border: 1px solid var(--warn); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
 .update .eyebrow { color: var(--warn); }
-.note { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: var(--muted); }
+.note { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--muted); }
 .shot { width: 100%; height: auto; border-radius: 6px; display: block; }
 
 .gallery { display: flex; flex-direction: column; gap: 36px; }
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; align-self: flex-start; flex-wrap: wrap; }
+.ctrl { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; flex-wrap: wrap; }
 .seg button { font: 500 13px var(--mono); padding: 8px 14px; background: var(--panel); color: var(--fg); border: 0; border-right: 1px solid var(--line); cursor: pointer; }
 .seg button:last-child { border-right: 0; }
 .seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
-.seg button:focus-visible, details summary:focus-visible { outline: 2px solid var(--first); outline-offset: 2px; }
+.seg button:focus-visible, details summary:focus-visible, .ctrl input:focus-visible { outline: 2px solid var(--first); outline-offset: 2px; }
+.ctrl label { font-size: 13px; display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+.shown { font: 400 12px var(--mono); color: var(--muted); }
 .dp { display: flex; flex-direction: column; gap: 10px; padding-top: 22px; border-top: 1px solid var(--line); }
 .row { display: grid; gap: 10px; }
 .ins { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .outs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 figure { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-figure img, .sz img { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--code); }
-figcaption { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12.5px; }
+figure img, .sz img { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--code); aspect-ratio: 16 / 9; object-fit: cover; }
+figcaption { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12.5px; align-items: center; }
 figcaption b { font-weight: 600; }
 figcaption span { font: 400 11.5px var(--mono); color: var(--muted); }
 figure.gt img { outline: 2px solid var(--fg); outline-offset: -2px; }
 .sz { display: none; flex-direction: column; gap: 6px; }
 .sz img { outline: 3px solid var(--c); outline-offset: -3px; }
 .sz figcaption b { color: var(--c); }
-.sz p { font-size: 13px; color: var(--muted); }
+.sz p { font: 400 11.5px var(--mono); color: var(--muted); }
+.chip { border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; font: 500 11px var(--sans) !important; color: var(--fg) !important; }
+.chip.bad { background: var(--code); border-color: var(--muted); }
 [data-size="832x480"] .sz-832x480, [data-size="688x400"] .sz-688x400, [data-size="672x384"] .sz-672x384 { display: flex; }
 details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
 .cap { font-size: 13px; color: var(--muted); padding: 8px 0 0; max-width: 90ch; }
@@ -81,30 +91,49 @@ details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
 }
 </style>
 
-<main id="root" data-size="832x480">
+<main id="root" data-size="{{DEFAULT}}">
   <header class="col">
-    <div class="eyebrow">InternVL-U base · PhysicTran38K · 5 datapoints × 3 conditions × 3 output sizes</div>
+    <div class="eyebrow">InternVL-U base · PhysicTran38K · {{N}} datapoints × 3 conditions × 3 output sizes = {{N}}×9 generations</div>
     <h1>VAE Condition Ablation</h1>
-    <p class="lede">The model sees three frames F0, F1, F2 of a clip and generates the next frame F3. The ViT always gets all three. Only the frames that are also encoded by the VAE and fed to the diffusion decoder change.</p>
+    <p class="lede">The model sees three frames F0, F1, F2 of a clip and generates the next frame F3. The ViT always gets all three. Only the frames that are also encoded by the VAE and fed to the diffusion decoder change: none, F0 only, or all three.</p>
   </header>
 
   <section class="col">
     <div class="update">
-      <div class="eyebrow">Correction after the size test</div>
-      <p>The first run asked for a 672×384 output, but the pipeline feeds the VAE a 688×400 condition. That one-patch size mismatch caused the cropped, shifted and paneled outputs (the tension strip pushed to the bottom edge, plants inside gray borders). When the output size equals the condition size, those artifacts disappear. The comparison below therefore defaults to <b>832×480</b>, the native frame size; 688×400 and 672×384 stay one click away in the gallery.</p>
+      <div class="eyebrow">What changed from the 5-datapoint version</div>
+      <p>The run now covers {{N}} datapoints (the first 5 are the earlier ones). Two earlier statements did not hold up and are replaced below: <b>"all three frames is better than F0 only"</b> (at {{N}} datapoints the two are indistinguishable on semantic similarity), and the 672×384 outputs being representative (that size has a one-patch mismatch with the VAE condition, see "Why 672×384 looks cropped").</p>
     </div>
     <h2>Results at a glance</h2>
     <ul class="finds">
-      <li><b>No VAE condition fails at every size.</b> The decoder does not reproduce the scene: gray fields, a cartoon face, a text poster, a lone yellow flower or fruit. Sometimes the object is on topic, never the scene.</li>
-      <li><b>With a matched size, one VAE frame (F0) already gives a coherent frame in 5 of 5 datapoints at 832×480</b> (4 of 5 at 688×400, where tension is blurred and loses the hands).</li>
-      <li><b>All three frames is the better setting.</b> It is closer to the ground truth in pixels at both matched sizes (table), keeps the hands in the tension frame at 688×400 where <code>first</code> loses them, and brings more yellow flowers in the plant clip. The gap is moderate and rests on 5 examples.</li>
-      <li><b>Neither shows the physical change reliably.</b> Outputs are still about as close to F2 as to the ground truth (<code>all</code> at 688×400 is even closer to F2: 17.7 vs 20.4), so mostly they extend the last frame. The visible exceptions are the extra flowers and a warmer, more yellow fruit at 832×480.</li>
+      <li><b>No VAE condition fails at every size.</b> The input scene is not reproduced in any of the {{N}} datapoints. Gray fields, portraits, text posters, another object or another room. By CLIP similarity to F2, 27 to 30 of {{N}} outputs fall below 0.75, against 1 to 9 for the conditioned settings.</li>
+      <li><b>F0 only and all three frames are equivalent semantically.</b> CLIP similarity to the ground truth differs by 0.007 to 0.013 with a standard error of 0.009 to 0.016, and neither wins more than 23 of {{N}} datapoints at any size. In pixels, <code>all</code> is closer to the ground truth (35 of {{N}} datapoints at 688×400), because it is handed F2 itself.</li>
+      <li><b>Output size matters more than the condition.</b> At 672×384, 10 of {{N}} outputs have layout artifacts (panels, caption strips, shifted or cropped content) in both conditions. At the matched sizes it is 1 to 3. At 832×480 native the artifacts change type: 8 duplicated objects (5 with <code>first</code>, 3 with <code>all</code>) appear that do not occur at the other sizes.</li>
+      <li><b>688×400 is the safest size here.</b> It has the highest CLIP scores for both conditions (<code>all</code>: +0.030 ± 0.008 over 832×480) and no duplicated objects. It is the default in the gallery.</li>
+      <li><b>No condition forecasts better than copying the last frame.</b> The trivial "copy F2" baseline scores CLIP 0.974 and pixel distance 10.2 to the ground truth. Every generated setting is farther (CLIP 0.83 to 0.89, pixel distance 25 to 47). Visible physical changes exist (seedling grows, light changes color, the window turns translucent) but are the exception.</li>
     </ul>
+  </section>
+
+  <section class="col">
+    <h2>Similarity to the ground truth and to F2</h2>
     <div class="tbl"><table>
-      <thead><tr><th>Output size</th><th>Condition</th><th class="num">MAD to GT F3</th><th class="num">MAD to F2</th></tr></thead>
-      <tbody>{{SUMMARY}}</tbody>
+      <thead><tr><th>Output size</th><th>Condition</th><th class="num">CLIP → GT</th><th class="num">CLIP → F2</th><th class="num">MAD → GT</th><th class="num">MAD → F2</th></tr></thead>
+      <tbody>{{T1}}</tbody>
     </table></div>
-    <p class="note">MAD = mean absolute pixel difference on a 0-255 scale (output resized to the reference), averaged over the 5 datapoints. Lower means closer. Because <code>all</code> receives F2 itself through the VAE, being closer to F2 is expected and is not evidence of a better forecast. A blank gray frame also scores high. Read the table together with the images. n = 5, one seed.</p>
+    <p class="note">Mean ± standard error over {{N}} datapoints. CLIP = cosine similarity of CLIP ViT-L/14-336 image embeddings (higher is closer, resized without cropping). MAD = mean absolute pixel difference on a 0-255 scale (lower is closer). CLIP tracks scene content, MAD tracks layout and color. Neither says whether the physics changed correctly, and both reward copying the last frame, which is why the copy-F2 row is the ceiling for both.</p>
+    <h2>First vs all, paired by datapoint</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Output size</th><th class="num">CLIP → GT, all − first</th><th class="num">all closer in CLIP</th><th class="num">all closer in pixels</th></tr></thead>
+      <tbody>{{T2}}</tbody>
+    </table></div>
+  </section>
+
+  <section class="col">
+    <h2>Failure types, tagged by eye</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Output size</th><th>Condition</th><th>Coherent frame</th><th class="num">Layout</th><th class="num">Duplicate</th><th class="num">Object lost</th></tr></thead>
+      <tbody>{{T3}}</tbody>
+    </table></div>
+    <p class="note"><b>Layout</b>: panels or borders, caption text strips, letterbox bars, shifted or zoomed content. <b>Duplicate</b>: the object appears twice side by side. <b>Object lost</b>: main object missing, wrong or fragmented. One unblinded reviewer (Claude) tagged each frame from 170 px contact sheets, so treat the counts as approximate (±2). <code>none</code> is not tagged: it reproduces the input scene in 0 of {{N}} at every size. The tags are in <code>tags.json</code>.</p>
   </section>
 
   <section class="col">
@@ -118,17 +147,17 @@ details summary { cursor: pointer; font-size: 13px; color: var(--muted); }
       </tbody>
     </table></div>
     <div class="flow">
-      <div><b>Data</b>5 rows of the T5 eval set (<code>phystran_g1</code>, 125 rows, gap 1.0 s, clips 832×480), one per distinct category, picked with seed 20260930.</div>
+      <div><b>Data</b>{{N}} rows of the T5 eval set (<code>phystran_g1</code>, 125 rows, gap 1.0 s, clips 832×480), one per distinct category (46 exist). The first 5 are the earlier pick, the other 35 were drawn with seed 20260930. Images are copied under <code>data/images/</code>.</div>
       <div><b>Model</b>InternVL-U base snapshot <code>f012d760</code>, no fine-tuning. Image generation mode, 20 steps, CFG all 4.5 / part 2.0, noise seed 42 for every condition and size.</div>
-      <div><b>Sizes</b>Frames and output are resized to the same W×H: 832×480 (native), 688×400, or 672×384 (area ≈ 512², the rule used by <code>v2_suite_1_sub</code> generation, first run).</div>
+      <div><b>Sizes</b>Frames and output share one W×H: 832×480 (native), 688×400, or 672×384 (area ≈ 512², the rule of <code>v2_suite_1_sub</code> generation, the first run).</div>
     </div>
   </section>
 
   <section class="col">
-    <h2>Why the first run was cropped</h2>
-    <p>Checking the preprocessing for cropping (CPU-only, no weights) showed no crop anywhere: the full frame reaches both branches. The ViT gets it squashed to 448×448 (an aspect change that is standard for every edit call). The VAE branch gets it resized to 688×400, which is 43×25 condition tokens at 16 px per token. The 672×384 output grid has 42×24 tokens. The decoder places condition and target tokens in one shared coordinate system, and a grid that is off by one row and column puts the content in the wrong place, which looks like cropping. 688×400 and 832×480 are multiples of 16 and make both grids equal.</p>
-    <img class="shot" src="{{PREPROC}}" alt="Tension F2 as received by each branch: original, our resize, ViT input, VAE input">
-    <p class="note">Tension F2: original frame, our 672×384 resize, what the ViT receives, what the VAE branch receives. The content is complete in all four. Read from <code>pixel_values</code> / <code>pixel_values_gen</code> by <code>inspect_preproc.py</code>. The mismatch explanation fits all the evidence, and matching the sizes removes the artifacts, but I did not isolate which tokens the decoder misplaces.</p>
+    <h2>Why 672×384 looks cropped</h2>
+    <p>Nothing in preprocessing crops. The full frame reaches both branches. The ViT gets it squashed to 448×448 (an aspect change that is standard for every edit call). The VAE branch gets it resized to 688×400, which is 43×25 condition tokens at 16 px per token, while the 672×384 output grid has 42×24 tokens. 672×384 has an area of 258,048 px, just under the processor's 262,144 px minimum, so the condition path scales it up and rounds one way while the output path keeps 672×384. My reading is that the decoder then places condition and target tokens one row and one column apart in its shared coordinate system, which shows up as shifted, bordered or caption-strip frames. 688×400 and 832×480 are multiples of 16 inside the processor's pixel range, so neither path changes them.</p>
+    <img class="shot" src="img/preproc_tension.jpg" alt="Tension F2 as received by each branch: original, our resize, ViT input, VAE input">
+    <p class="note">Tension F2: original frame, our 672×384 resize, what the ViT receives, what the VAE branch receives. Read from <code>pixel_values</code> and <code>pixel_values_gen</code> by <code>inspect_preproc.py</code>. The rounding difference is inferred from the observed sizes, not read from the processor source, and I did not isolate which tokens the decoder misplaces. The evidence is that the artifact rate falls from 10 of {{N}} to 1 to 3 when the sizes match.</p>
   </section>
 
   <section class="col">
@@ -153,7 +182,7 @@ Generate the next frame F3, which comes one GAP after F2.</pre>
         <tr><td>unconditional</td><td>"Here is a random image &lt;img_uncond&gt;:"</td><td class="num">0</td><td class="num">0 / 0 / 0</td></tr>
       </tbody>
     </table></div>
-    <p class="note">The PhysicTran38K caption states the outcome ("the final frame shows a sustained dormant posture…"), so the text alone can describe F3 in all three conditions. This is the same caption caveat as in T5's docs. It probably narrows the gap between conditions, but it does not prevent the failures of <code>none</code>.</p>
+    <p class="note">The PhysicTran38K caption states the outcome ("the final frame shows a sustained dormant posture…"), so the text alone can describe F3 in all three conditions. This is the same caption caveat as in T5's docs. It does not prevent the failures of <code>none</code>.</p>
   </section>
 
   <section class="col">
@@ -162,18 +191,22 @@ Generate the next frame F3, which comes one GAP after F2.</pre>
     <p><b>Two stock-code problems had to be patched at runtime</b> (<code>patches.py</code>; the package is not edited):</p>
     <ul class="finds">
       <li><b>Processor assert.</b> With 3 frames, the unconditional row (no <code>&lt;image&gt;</code> slots) trips <code>only 1 fake picture in pure text input</code>. That row's image data is discarded anyway, so the assert is skipped for it.</li>
-      <li><b>Decoder crash for more than one VAE image.</b> <code>_prepare_hidden_inputs_anyres</code> adds a vector of per-image token counts where it needs their sum, so it raised <code>TypeError: only integer tensors of a single element can be converted to an index</code> at 3 images. The patch adds <code>.sum()</code> at the two slice sites. This only affects <code>all</code>; <code>none</code> and <code>first</code> run on the stock path. Training-time code only passes one condition image per sample, so the base model has probably not seen several VAE frames at once.</li>
+      <li><b>Decoder crash for more than one VAE image.</b> <code>_prepare_hidden_inputs_anyres</code> adds a vector of per-image token counts where it needs their sum, so it raised <code>TypeError: only integer tensors of a single element can be converted to an index</code> at 3 images. The patch adds <code>.sum()</code> at the two slice sites. This only affects <code>all</code>. Training code only passes one condition image per sample, so the base model has probably never seen several VAE frames at once.</li>
     </ul>
   </section>
 
   <section class="gallery">
     <div class="col">
-      <h2>All five datapoints</h2>
-      <p class="lede" style="font-size:.95rem">Top row of each block: the three input frames and the ground-truth F3. Bottom row: the three generations at the chosen output size, with a short description and pixel distances.</p>
-      <div class="seg" role="group" aria-label="Output size">
-        <button type="button" data-size="832x480" aria-pressed="true">832×480 native</button>
-        <button type="button" data-size="688x400" aria-pressed="false">688×400 = cond size</button>
-        <button type="button" data-size="672x384" aria-pressed="false">672×384 first run</button>
+      <h2>All {{N}} datapoints</h2>
+      <p class="lede" style="font-size:.95rem">Top row of each block: the three input frames and the ground-truth F3. Bottom row: the three generations at the chosen output size, with the tag and the CLIP / pixel distance to the ground truth.</p>
+      <div class="ctrl">
+        <div class="seg" role="group" aria-label="Output size">
+          <button type="button" data-size="832x480" aria-pressed="false">832×480 native</button>
+          <button type="button" data-size="688x400" aria-pressed="false">688×400</button>
+          <button type="button" data-size="672x384" aria-pressed="false">672×384 first run</button>
+        </div>
+        <label><input type="checkbox" id="onlyArt"> Only datapoints where first or all has an artifact</label>
+        <span class="shown" id="shown"></span>
       </div>
       <div class="legend"><span class="c-none"><i class="dot"></i>none</span><span class="c-first"><i class="dot"></i>first (F0)</span><span class="c-all"><i class="dot"></i>all (F0, F1, F2)</span></div>
     </div>
@@ -183,14 +216,16 @@ Generate the next frame F3, which comes one GAP after F2.</pre>
   <section class="col">
     <h2>Limits and reproduction</h2>
     <ul class="finds">
-      <li>5 datapoints, one noise seed, no repeats. Differences between <code>first</code> and <code>all</code> are within what another seed could change. The matched sizes were chosen after seeing the first run, so the size effect is a fix found post hoc, not a pre-planned arm.</li>
+      <li>{{N}} datapoints from one source (synthetic PhysicTran38K clips, one gap), one noise seed, no repeats. Differences of a few hundredths in CLIP are inside the noise.</li>
+      <li>The matched sizes were chosen after seeing the first run, so the size effect is a fix found post hoc, not a pre-planned arm. The failure tags are my reading, not a blinded rating.</li>
       <li><code>none</code>, <code>first</code> and <code>all</code> also differ in how many condition tokens the decoder attends to, not only in what information they carry. This run does not separate the two.</li>
       <li>Fixed settings: {{INF}}.</li>
     </ul>
     <pre>cd experiment/vae_cond
-bash run.sh 0            # wiring check -> generation at 672x384 -> comparison sheet
-bash run_size_test.sh 0  # 688x400 and 832x480
-python size_sheet.py; python inspect_preproc.py tension; python build_artifact.py</pre>
+python select_datapoints.py        # 40 datapoints, copies images to data/images/
+bash run_all.sh 0 1 2 3 4 5        # 3 sizes x 3 conditions, sharded over GPUs (~11 min on 6 A40s)
+python metrics.py; python review_sheet.py
+python inspect_preproc.py tension; python build_artifact.py</pre>
     <p style="font-size:13px;color:var(--muted)">Code and outputs: <code>baseline_pipeline/experiment/vae_cond/</code> on branch <code>worktree-vae-cond-exp</code>.</p>
   </section>
 </main>
@@ -198,11 +233,24 @@ python size_sheet.py; python inspect_preproc.py tension; python build_artifact.p
 (function () {
   var root = document.getElementById("root");
   var btns = document.querySelectorAll(".seg button");
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () {
-      root.setAttribute("data-size", b.getAttribute("data-size"));
-      btns.forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+  var only = document.getElementById("onlyArt");
+  var shown = document.getElementById("shown");
+  var cards = document.querySelectorAll(".dp");
+  function apply() {
+    var s = root.getAttribute("data-size");
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-size") === s ? "true" : "false"); });
+    var n = 0;
+    cards.forEach(function (c) {
+      var hide = only.checked && c.getAttribute("data-art-" + s) !== "1";
+      c.hidden = hide;
+      if (!hide) n++;
     });
+    shown.textContent = n + " of " + cards.length + " shown";
+  }
+  btns.forEach(function (b) {
+    b.addEventListener("click", function () { root.setAttribute("data-size", b.getAttribute("data-size")); apply(); });
   });
+  only.addEventListener("change", apply);
+  apply();
 })();
 </script>
